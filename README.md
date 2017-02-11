@@ -2,6 +2,8 @@
 
 # Node-isassemble Johnny-Five
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/reconbot/johnny-five.svg)](https://greenkeeper.io/)
+
 
 #### Johnny-Five is an Open Source, JavaScript Arduino programming framework, developed at [Bocoup](http://bocoup.com).
 
