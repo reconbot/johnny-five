@@ -82,14 +82,14 @@
     "temporal": "latest",
     "descriptor": "latest",
     "serialport": "latest",
-    "optimist": "~0.5.2",
-    "async": "~0.2.9",
+    "optimist": "~0.6.1",
+    "async": "~2.1.4",
     "keypress": "latest"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-nodeunit": "~0.2.0"
+    "grunt": "~1.0.1",
+    "grunt-contrib-jshint": "~1.1.0",
+    "grunt-contrib-nodeunit": "~1.0.0"
   },
   "keywords": []
 }
