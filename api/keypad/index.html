@@ -1,0 +1,505 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Keypad API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Keypad API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/keypad">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Keypad">
+  <meta name="keywords" content="JavaScript, Robotics , Keypad">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Keypad</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p><img src="http://i.imgur.com/Il23mnI.png" alt=""></p>
+<p>The <code>Keypad</code> class constructs an object that represents a single Keypad attached to the board. <code>Touchpad</code> is an alias for <code>Keypad</code>.</p>
+<p>Supported Keypads:</p>
+<ul>
+<li>VKEY
+<ul>
+<li><a href="https://www.sparkfun.com/products/12080?utm_source=j5">SparkFun</a></li>
+</ul></li>
+<li>Waveshare AD (Analog)
+<ul>
+<li><a href="http://www.amazon.com/Waveshare-Accessory-buttons-controlled-keyboard/dp/B00KM6UXVS?utm_source=j5">Amazon</a></li>
+</ul></li>
+<li>MPR121
+<ul>
+<li><a href="https://www.sparkfun.com/products/9695?utm_source=j5">SparkFun</a> (Breakout)</li>
+<li><a href="https://www.sparkfun.com/products/12017?utm_source=j5">SparkFun</a> (Keypad)</li>
+<li><a href="https://www.adafruit.com/products/1982?utm_source=j5">Adafruit</a> (Breakout)</li>
+<li><a href="https://www.adafruit.com/products/2024?utm_source=j5">Adafruit</a> (Shield)</li>
+</ul></li>
+<li>MPR121QR2
+<ul>
+<li><a href="https://www.sparkfun.com/products/12013?utm_source=j5">SparkFun</a></li>
+</ul></li>
+<li>Grove QTouch (AT42QT1070)
+<ul>
+<li><a href="http://www.seeedstudio.com/depot/Grove-Touch-Sensor-p-747.html?utm_source=j5">Seeed Studio</a></li>
+</ul></li>
+<li>12 Button Keypad (requires I2C backpack)
+<ul>
+<li><a href="https://www.adafruit.com/products/1824?utm_source=j5">Adafruit</a>
+<ul>
+<li>This likely works with the 3x4 membrane as well, as long as the signal lines are connected correctly</li>
+</ul></li>
+<li><a href="https://www.sparkfun.com/products/8653?utm_source=j5">Sparkfun</a></li>
+</ul></li>
+</ul>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>General Options</strong>
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>controller</td><td>string</td><td>AT42QT1070, MPR121, MPR121_* (variants below), QTOUCH, VKEY, ANALOG. The Name of the controller to use</td><td>ANALOG</td><td>Yes</td></tr>
+<tr><td>keys</td><td>array</td><td>Mapping of key values</td><td>By Device</td><td>No</td></tr>
+<tr><td>holdtime</td><td>Number</td><td>Time in milliseconds that the button must be held until emitting a &quot;hold&quot; event.</td><td>500ms</td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+<li><p><strong>MPR121 Options (<code>controller: &quot;MPR121&quot; | &quot;MPR121_*&quot;</code>)</strong></p>
+<p>In addition to the General Options, the MPR121 supports the following:</p>
+<p><span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>sensitivity</td><td>Object</td><td><code>{ press: 0-1, release: 0-1 }</code>. Use a generic sensitivity for all pads</td><td>*</td><td>no</td></tr>
+<tr><td>sensitivity</td><td>Array</td><td>An array of <code>{ press: 0-1, release: 0-1 }</code> objects</td><td>*</td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<h5>* Sensitivity</h5>
+<p>The sensitivity setting allows the calibration of the keypad to compensate for factors such as humidity, temperature, etc. A too high sensitivity % might result in false positives; in some cases, just getting close to it might be enough to trigger a press.</p>
+<table>
+<thead>
+<tr><th>Type</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td>press</td><td>0.95</td></tr>
+<tr><td>release</td><td>0.975</td></tr>
+</tbody>
+</table>
+<p>Note: <code>release</code> should always have a higher sensitivity than <code>press</code>.</p>
+<h5>MPR121 Variants</h5>
+<table>
+<thead>
+<tr><th>For this MPR121 variant...</th><th>Use this controller</th></tr>
+</thead>
+<tbody>
+<tr><td><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/images/mpr121_breakout_blue.jpg" alt=""></td><td><code>MPR121</code></td></tr>
+<tr><td><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/images/mpr121_breakout_red.jpg" alt=""></td><td><code>MPR121</code></td></tr>
+<tr><td><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/images/mpr121_keypad.jpg" alt=""></td><td><code>MPR121_KEYPAD</code></td></tr>
+<tr><td><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/images/mpr121_shield.jpg" alt=""></td><td><code>MPR121_SHIELD</code></td></tr>
+<tr><td><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/images/mpr121qr2_touch_shield.jpg" alt=""></td><td><code>MPR121QR2_SHIELD</code></td></tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>VKEY Options (<code>controller: &quot;VKEY&quot;</code>)</strong>
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>pin</td><td>number, string</td><td>Analog pin</td><td></td><td>Yes</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+<li><p><strong>ANALOG Options (<code>controller: &quot;ANALOG&quot;</code>)</strong>
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>pin</td><td>number, string</td><td>Analog pin</td><td></td><td>Yes</td></tr>
+<tr><td>length</td><td>number</td><td>Number of keys (required only if <code>keys</code> is not specified)</td><td></td><td>Yes</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>value</code></td><td>Index of the pressed key</td><td>No</td></tr>
+<tr><td><code>target</code></td><td>Mapped key value of pressed key</td><td>No</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>ANALOG</h4>
+<pre><code class="language-javascript">new five.Keypad({
+  pin: &quot;A0&quot;,
+  length: 16
+});
+</code></pre>
+<h4>VKEY</h4>
+<pre><code class="language-javascript">new five.Keypad({
+  controller: &quot;VKEY&quot;,
+  pin: &quot;A0&quot;,
+});
+</code></pre>
+<h4>MPR121</h4>
+<pre><code class="language-javascript">new five.Keypad({
+   controller: &quot;MPR121&quot;
+});
+</code></pre>
+<h4>MPR121QR2_SHIELD</h4>
+<pre><code class="language-javascript">new five.Keypad({
+   controller: &quot;MPR121QR2_SHIELD&quot;
+});
+</code></pre>
+<p><img src="http://johnny-five.io/img/breadboard/keypad-MPR121QR2.png" alt=""></p>
+<h4>MPR121_KEYPAD</h4>
+<pre><code class="language-javascript">new five.Keypad({
+   controller: &quot;MPR121_KEYPAD&quot;
+});
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/keypad-MPR121_KEYPAD.png" alt=""></p>
+<h4>QTOUCH / AT42QT1070</h4>
+<pre><code class="language-javascript">new five.Keypad({
+  controller: &quot;QTOUCH&quot;, // or &quot;AT42QT1070&quot;
+});
+</code></pre>
+<p>Note: the <a href="https://www.adafruit.com/products/1362?utm_source=j5">Adafruit: Standalone 5-Pad Capacitive Touch Sensor Breakout - AT42QT1070</a> will not work with the <code>Keypad</code> class, it has i2c disabled and must be used with the <code>Button</code> class instead.</p>
+<h4>3x4 Keypad</h4>
+<p>This requires using a Nano Backpack. It's possible to use a 3x4 membrane, as long as it's pins are connected correctly:</p>
+<table>
+<thead>
+<tr><th>Row</th><th>Nano Pin</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>7</td></tr>
+<tr><td>2</td><td>2</td></tr>
+<tr><td>3</td><td>3</td></tr>
+<tr><td>4</td><td>5</td></tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr><th>Col</th><th>Nano Pin</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>6</td></tr>
+<tr><td>2</td><td>8</td></tr>
+<tr><td>3</td><td>4</td></tr>
+</tbody>
+</table>
+<pre><code class="language-javascript">new five.Keypad({
+  controller: &quot;3X4_I2C_NANO_BACKPACK&quot;
+});
+</code></pre>
+<p><img src="http://johnny-five.io/img/breadboard/keypad-3X4_I2C_NANO_BACKPACK.png" alt=""></p>
+<h4>4x4 Keypad</h4>
+<p>Similar to the 3x4 Keypad, this requires a Nano Backpack. However, it uses an extra pin for the 4th column of keys. Connect the pins according to the rows and columns to get the correct output.</p>
+<table>
+<thead>
+<tr><th>Row</th><th>Nano Pin</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>7</td></tr>
+<tr><td>2</td><td>2</td></tr>
+<tr><td>3</td><td>3</td></tr>
+<tr><td>4</td><td>5</td></tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr><th>Col</th><th>Nano Pin</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>6</td></tr>
+<tr><td>2</td><td>8</td></tr>
+<tr><td>3</td><td>4</td></tr>
+<tr><td>4</td><td>9</td></tr>
+</tbody>
+</table>
+<pre><code class="language-javascript">new five.Keypad({
+  controller: &quot;4X4_I2C_NANO_BACKPACK&quot;
+});
+</code></pre>
+<p><img src="http://johnny-five.io/img/breadboard/keypad-4X4_I2C_NANO_BACKPACK.png" alt=""></p>
+<h3>Usage</h3>
+<pre><code class="language-javascript">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+  // MPR121 3x4 Capacitive Touch Pad
+  var keypad = new five.Keypad({
+    controller: &quot;MPR121&quot;,
+    keys: [
+      [&quot;!&quot;, &quot;@&quot;, &quot;#&quot;],
+      [&quot;$&quot;, &quot;%&quot;, &quot;^&quot;],
+      [&quot;&amp;&quot;, &quot;-&quot;, &quot;+&quot;],
+      [&quot;_&quot;, &quot;=&quot;, &quot;:&quot;]
+    ]
+  });
+
+  [&quot;change&quot;, &quot;press&quot;, &quot;hold&quot;, &quot;release&quot;].forEach(function(eventType) {
+    keypad.on(eventType, function(data) {
+      console.log(&quot;Event: %s, Target: %s&quot;, eventType, data.which);
+    });
+  });
+});
+</code></pre>
+<h4>A Note About The <code>keys</code> Option</h4>
+<p>The <code>keys</code> option allows the assignment of <em>any</em> value to <em>any</em> key/button on the device. The value of <code>keys</code> may be a flat array of strings, or an array of arrays where the nested array are &quot;rows&quot; on the device. The values given in the <code>keys</code> array are the values that the instance will report for key/button presses.</p>
+<p>Using the <code>MPR121QR2</code> to illustrate <code>keys</code>:</p>
+<p><img src="http://johnny-five.io/img/breadboard/keypad-MPR121QR2.png" alt=""></p>
+<p>The buttons are labelled <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code>, <code>9</code>. If the instance of <code>Keypad</code> is created <strong>without</strong> an explicit <code>keys</code> property, the output will be <em>exactly</em> those numbers; ie. pressing <code>1</code> will result in an event whose data object's <code>which</code> property is the value <code>1</code> (and so on):</p>
+<pre><code class="language-js">var keypad = new five.Keypad({
+  controller: &quot;MPR121QR2&quot;
+});
+
+keypad.on(&quot;press&quot;, function(event) {
+  console.log(&quot;Which button?&quot;, event.which);
+});
+</code></pre>
+<p>However, the <code>keys</code> property allows a program to assign <strong>any</strong> value to be the resulting value (because who knows—you may want to use symbols!)</p>
+<pre><code class="language-js">var keypad = new five.Keypad({
+  controller: &quot;MPR121QR2&quot;,
+  keys: [
+    [&quot;&quot;, &quot;△&quot;, &quot;&quot;],
+    [&quot;◁&quot;, &quot;☐&quot;, &quot;▷&quot;],
+    [&quot;&quot;, &quot;▽&quot;, &quot;&quot;]
+  ]
+});
+
+keypad.on(&quot;press&quot;, function(event) {
+  if (event.which) {
+    console.log(event.which);
+  }
+});
+</code></pre>
+<p>Pressing <code>2</code>, <code>8</code>, <code>4</code>, <code>6</code>, <code>5</code> would result in the following output:</p>
+<pre><code>$ node eg/keypad-symbol-MPR121QR2.js
+1448040971577 Device(s) /dev/cu.usbmodem1411
+1448040971586 Connected /dev/cu.usbmodem1411
+1448040975171 Repl Initialized
+&gt;&gt; △
+▽
+◁
+▷
+☐
+</code></pre>
+<p>If your program prefers a flat array, the equivalent program would be:</p>
+<pre><code class="language-js">var keypad = new five.Keypad({
+  controller: &quot;MPR121QR2&quot;,
+  keys: [&quot;&quot;, &quot;△&quot;, &quot;&quot;, &quot;◁&quot;, &quot;☐&quot;, &quot;▷&quot;, &quot;&quot;, &quot;▽&quot;, &quot;&quot;]
+});
+
+keypad.on(&quot;press&quot;, function(event) {
+  if (event.which) {
+    console.log(event.which);
+  }
+});
+</code></pre>
+<h2>Events</h2>
+<ul>
+<li><p><strong>change</strong> Emitted for <strong>hold</strong>, <strong>down</strong>, <strong>up</strong></p></li>
+<li><p><strong>hold</strong> The key or keys have been held for <code>holdtime</code> milliseconds</p></li>
+<li><p><strong>down</strong>, <strong>press</strong> The key or keys have been pressed.</p></li>
+<li><p><strong>up</strong>, <strong>release</strong> The key or keys have been released.</p></li>
+</ul>
+<p>The following data object is emitted with each event:</p>
+<table>
+<thead>
+<tr><th>Key Name</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>which</code></td><td>An array containing keys of <em>which</em> buttons or pads are pressed.</td></tr>
+<tr><td><code>timestamp</code></td><td>Timestamp at time of event</td></tr>
+</tbody>
+</table>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/keypad-analog-vkey">Keypad - VKEY</a></li>
+<li><a href="/examples/keypad-analog-ad">Keypad - Waveshare AD</a></li>
+<li><a href="/examples/keypad-3X4_I2C_NANO_BACKPACK">Keypad - 3x4 I2C Nano Backpack</a></li>
+<li><a href="/examples/keypad-4X4_I2C_NANO_BACKPACK">Keypad - 4x4 I2C Nano Backpack</a></li>
+<li><a href="/examples/grove-q-touch">Intel Edison + Grove - Q Touch</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Example plugin with Johnny-Five</title>
+  <meta property="og:title" content="JavaScript Robotics: Example plugin (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/examples/plugin">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Example plugin">
+  <meta name="keywords" content="JavaScript, Robotics , Example plugin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Example plugin</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Board</h3>
+<ul>
+<li><a href="/examples/board/">Board - Basic Initialization</a></li>
+<li><a href="/examples/board-with-port/">Board - Specify port</a></li>
+<li><a href="/examples/board-cleanup/">Board - Cleanup in 'exit' event</a></li>
+<li><a href="/examples/board-multi/">Board - Multiple in one program</a></li>
+<li><a href="/examples/repl/">REPL</a></li>
+<li><a href="/examples/board-sampling-interval/">Board - Specify Sampling Interval</a></li>
+<li><a href="/examples/pin/">Pin</a></li>
+<li><a href="/examples/custom-properties/">Custom Data Properties</a></li>
+</ul>
+<h3>LED</h3>
+<ul>
+<li><a href="/examples/led/">LED</a></li>
+<li><a href="/examples/led-PCA9685/">LED - PCA9685</a></li>
+<li><a href="/examples/led-tessel-servo-module/">LED - Tessel Servo Module</a></li>
+<li><a href="/examples/led-blink/">LED - Blink</a></li>
+<li><a href="/examples/led-pulse/">LED - Pulse</a></li>
+<li><a href="/examples/led-pulse-animation/">LED - Pulse with animation</a></li>
+<li><a href="/examples/led-fade/">LED - Fade</a></li>
+<li><a href="/examples/led-fade-callback/">LED - Fade callback</a></li>
+<li><a href="/examples/led-fade-animation/">LED - Fade with animation</a></li>
+<li><a href="/examples/led-demo-sequence/">LED - Demo sequence</a></li>
+<li><a href="/examples/led-slider/">LED - Slider</a></li>
+<li><a href="/examples/led-array/">LEDs - An array of LEDs</a></li>
+<li><a href="/examples/led-array-controller/">LEDs - Controlling an array of LEDs</a></li>
+</ul>
+<h3>LED: RGB</h3>
+<ul>
+<li><a href="/examples/led-rgb/">LED - RGB</a></li>
+<li><a href="/examples/led-rgb-anode/">LED - RGB (Common Anode)</a></li>
+<li><a href="/examples/led-rgb-anode-PCA9685/">LED - RGB (Common Anode) PCA9685</a></li>
+<li><a href="/examples/led-rgb-intensity/">LED - RGB Intensity</a></li>
+<li><a href="/examples/led-rainbow/">LED - Rainbow</a></li>
+<li><a href="/examples/led-rgb-BLINKM/">LED - Rainbow BlinkM</a></li>
+</ul>
+<h3>LED: Digits &amp; Matrix</h3>
+<ul>
+<li><a href="/examples/led-digits-clock-galileo/">LED - Digital Clock</a></li>
+<li><a href="/examples/led-digits-clock-HT16K33/">LED - Digital Clock, HT16K33</a></li>
+<li><a href="/examples/led-digits-clock-dual/">LED - Digital Clock, Dual Displays</a></li>
+<li><a href="/examples/led-matrix/">LED - Matrix</a></li>
+<li><a href="/examples/led-matrix-tutorial/">LED - Matrix Demo</a></li>
+<li><a href="/examples/led-matrix-HT16K33/">LED - Matrix HT16K33</a></li>
+<li><a href="/examples/led-matrix-HT16K33-16x8/">LED - Matrix HT16K33 16x8</a></li>
+<li><a href="/examples/led-chars-demo/">LED - Draw Matrix Characters Demo</a></li>
+<li><a href="/examples/led-enumeratechars/">LED - Enumerate Matrix Characters &amp; Symbols</a></li>
+</ul>
+<h3>Servo</h3>
+<ul>
+<li><a href="/examples/servo/">Servo</a></li>
+<li><a href="/examples/servo-PCA9685/">Servo - PCA9685</a></li>
+<li><a href="/examples/servo-tessel-servo-module/">Servo - Tessel Servo Module</a></li>
+<li><a href="/examples/servo-continuous/">Servo - Continuous</a></li>
+<li><a href="/examples/servo-multi-turn/">Servo - Multi-Turn</a></li>
+<li><a href="/examples/servo-slider/">Servo - Slider control</a></li>
+<li><a href="/examples/servo-prompt/">Servo - Prompt</a></li>
+<li><a href="/examples/servo-drive/">Servo - Drive</a></li>
+<li><a href="/examples/servo-sweep/">Servo - Sweep</a></li>
+<li><a href="/examples/servo-array/">Servos - An array of servos</a></li>
+</ul>
+<h3>GPS</h3>
+<ul>
+<li><a href="/examples/gps/">GPS - Default GPS</a></li>
+<li><a href="/examples/gps-GP-20U7/">GPS - Sparkfun GP-20U7</a></li>
+<li><a href="/examples/gps-adafruit/">GPS - Adafruit Ultimate GPS Breakout</a></li>
+</ul>
+<h3>Servo Animation</h3>
+<ul>
+<li><a href="/examples/servo-animation/">Servo - Animation</a></li>
+<li><a href="/examples/servo-animation-leg/">Servo - Leg Animation</a></li>
+</ul>
+<h3>Color</h3>
+<ul>
+<li><a href="/examples/color-EVS_EV3/">Color - EVShield EV3 (Code)</a></li>
+<li><a href="/examples/color-raw-EVS_EV3/">Color - EVShield EV3 (Raw)</a></li>
+<li><a href="/examples/color-EVS_NXT/">Color - EVShield NXT (Code)</a></li>
+<li><a href="/examples/color-ISL29125/">Color - ISL29125</a></li>
+</ul>
+<h3>Motor</h3>
+<ul>
+<li><a href="/examples/motor/">Motor</a></li>
+<li><a href="/examples/motor-directional/">Motor - Directional</a></li>
+<li><a href="/examples/motor-brake/">Motor - Brake</a></li>
+<li><a href="/examples/motor-current/">Motor - Current</a></li>
+<li><a href="/examples/motor-enable/">Motor - Enable Pin</a></li>
+<li><a href="/examples/motor-sparkfun-edison-hbridge/">Motor - Sparkfun Dual H-bridge Edison Block</a></li>
+<li><a href="/examples/motor-hbridge/">Motor - H-Bridge</a></li>
+<li><a href="/examples/motor-TB6612FNG/">Motor - Sparkfun TB6612FNG</a></li>
+<li><a href="/examples/motor-hbridge-dual/">Motors - Dual H-Bridge</a></li>
+<li><a href="/examples/motor-PCA9685/">Motor - PCA9685</a></li>
+<li><a href="/examples/motor-GROVE_I2C/">Motor - GROVE_I2C_MOTOR_DRIVER</a></li>
+<li><a href="/examples/motor-l298-breakout/">Motor - l298 Breakout</a></li>
+<li><a href="/examples/motor-LUDUS/">Motor - LUDUS</a></li>
+<li><a href="/examples/motor-3-pin/">Motor - 3 pin</a></li>
+<li><a href="/examples/motor-EVS_EV3/">Motor - EVShield EV3</a></li>
+<li><a href="/examples/motor-EVS_NXT/">Motor - EVShield NXT</a></li>
+<li><a href="/examples/motor-drv8871/">Motor - Adafruit DRV8871 DC Motor Driver Breakout</a></li>
+</ul>
+<h3>Stepper Motor</h3>
+<ul>
+<li><a href="/examples/stepper-driver/">Stepper - Driver</a></li>
+<li><a href="/examples/stepper-sweep/">Stepper - Sweep</a></li>
+</ul>
+<h3>ESC &amp; Brushless Motor</h3>
+<ul>
+<li><a href="/examples/esc-keypress/">ESC - Keypress controlled ESCs</a></li>
+<li><a href="/examples/esc-PCA9685/">ESC - PCA9685</a></li>
+<li><a href="/examples/esc-bidirectional/">ESC - Bidirectional</a></li>
+</ul>
+<h3>Button / Switch</h3>
+<ul>
+<li><a href="/examples/button/">Button</a></li>
+<li><a href="/examples/button-collection-AT42QT1070/">Buttons - Collection w/ AT42QT1070</a></li>
+<li><a href="/examples/button-bumper/">Button - Bumper</a></li>
+<li><a href="/examples/button-options/">Button - Options</a></li>
+<li><a href="/examples/button-pullup/">Button - Pullup</a></li>
+<li><a href="/examples/toggle-switch/">Toggle Switch</a></li>
+<li><a href="/examples/button-EVS_EV3/">Button - EVShield EV3</a></li>
+<li><a href="/examples/button-EVS_NXT/">Button - EVShield NXT</a></li>
+<li><a href="/examples/switch-magnetic-door/">Switch - Magnetic Door</a></li>
+<li><a href="/examples/switch-tilt-SW_200D/">Switch - Tilt SW-200D</a></li>
+</ul>
+<h3>Keypad</h3>
+<ul>
+<li><a href="/examples/keypad-analog-vkey/">Keypad - VKEY</a></li>
+<li><a href="/examples/keypad-analog-ad/">Keypad - Waveshare AD</a></li>
+<li><a href="/examples/keypad-MPR121/">Touchpad - MPR121</a></li>
+<li><a href="/examples/keypad-MPR121_SHIELD/">Touchpad - MPR121_SHIELD</a></li>
+<li><a href="/examples/keypad-MPR121_KEYPAD/">Touchpad - MPR121_KEYPAD</a></li>
+<li><a href="/examples/keypad-MPR121-sensitivity/">Touchpad - MPR121, Sensitivity</a></li>
+<li><a href="/examples/keypad-MPR121QR2_SHIELD/">Touchpad - MPR121QR2_SHIELD</a></li>
+<li><a href="/examples/keypad-QTOUCH/">Touchpad - Grove QTouch</a></li>
+<li><a href="/examples/keypad-3X4_I2C_NANO_BACKPACK/">Keypad - 3x4 I2C Nano Backpack</a></li>
+<li><a href="/examples/keypad-4X4_I2C_NANO_BACKPACK/">Keypad - 4x4 I2C Nano Backpack</a></li>
+</ul>
+<h3>Relay</h3>
+<ul>
+<li><a href="/examples/relay/">Relay</a></li>
+<li><a href="/examples/relay-on-analog-pin/">Relay On Analog Pin</a></li>
+<li><a href="/examples/relay-collection/">Relay - Collection</a></li>
+</ul>
+<h3>Shift Register</h3>
+<ul>
+<li><a href="/examples/shift-register/">Shift Register</a></li>
+<li><a href="/examples/shift-register-seven-segment/">Shift Register - Seven Segment controller</a></li>
+<li><a href="/examples/shift-register-seven-segment-anode/">Shift Register - Common Anode Seven Segment controller</a></li>
+<li><a href="/examples/shift-register-daisy-chain/">Shift Register - Seven segments, Chained</a></li>
+<li><a href="/examples/shift-register-daisy-chain-anode/">Shift Register - Common Anode Seven segments, Chained</a></li>
+</ul>
+<h3>Infrared Reflectance</h3>
+<ul>
+<li><a href="/examples/ir-motion/">IR Motion</a></li>
+<li><a href="/examples/ir-proximity/">IR Proximity</a></li>
+<li><a href="/examples/ir-reflect/">IR Reflectance</a></li>
+<li><a href="/examples/ir-reflect-array/">IR Reflectance Array</a></li>
+</ul>
+<h3>Proximity</h3>
+<ul>
+<li><a href="/examples/proximity/">Proximity</a></li>
+<li><a href="/examples/proximity-GP2Y0A710K0F/">Proximity - GP2Y0A710K0F</a></li>
+<li><a href="/examples/proximity-srf10/">Proximity - SRF10</a></li>
+<li><a href="/examples/proximity-mb1000/">Proximity - MB1000</a></li>
+<li><a href="/examples/proximity-mb1010/">Proximity - MB1010</a></li>
+<li><a href="/examples/proximity-mb1003/">Proximity - MB1003</a></li>
+<li><a href="/examples/proximity-mb1230/">Proximity - MB1230</a></li>
+<li><a href="/examples/proximity-hcsr04/">Proximity - HC-SR04</a></li>
+<li><a href="/examples/proximity-hcsr04-analog/">Proximity - HC-SR04 (Analog)</a></li>
+<li><a href="/examples/proximity-hcsr04-i2c/">Proximity - HC-SR04 I2C Backpack</a></li>
+<li><a href="/examples/proximity-lidarlite/">Proximity - LIDAR-Lite</a></li>
+<li><a href="/examples/proximity-EVS_EV3_IR/">Proximity - EVShield EV3 (IR)</a></li>
+<li><a href="/examples/proximity-EVS_EV3_US/">Proximity - EVShield EV3 (Ultrasonic)</a></li>
+<li><a href="/examples/proximity-EVS_EV3_IR-alert/">Proximity - EVShield EV3 (IR)</a></li>
+<li><a href="/examples/proximity-EVS_EV3_US-alert/">Proximity - EVShield EV3 (Ultrasonic)</a></li>
+</ul>
+<h3>Motion</h3>
+<ul>
+<li><a href="/examples/motion/">Motion</a></li>
+<li><a href="/examples/motion-gp2y0d805z0f/">Motion - GP2Y0D805Z0F</a></li>
+<li><a href="/examples/motion-gp2y0d810z0f/">Motion - GP2Y0D810Z0F</a></li>
+<li><a href="/examples/motion-gp2y0d815z0f/">Motion - GP2Y0D810Z0F</a></li>
+<li><a href="/examples/motion-GP2Y0A60SZLF/">Motion - GP2Y0A60SZLF</a></li>
+</ul>
+<h3>Joystick</h3>
+<ul>
+<li><a href="/examples/joystick/">Joystick</a></li>
+<li><a href="/examples/joystick-esplora/">Joystick - Esplora</a></li>
+<li><a href="/examples/joystick-shield/">Joystick - Sparkfun Shield</a></li>
+<li><a href="/examples/joystick-pantilt/">Joystick - Pan + Tilt control</a></li>
+</ul>
+<h3>LCD</h3>
+<ul>
+<li><a href="/examples/lcd/">LCD</a></li>
+<li><a href="/examples/lcd-16x2-tessel/">LCD - Tessel 2 16x2</a></li>
+<li><a href="/examples/lcd-enumeratechars/">LCD - Enumerate characters</a></li>
+<li><a href="/examples/lcd-runner-20x4/">LCD - Runner 20x4</a></li>
+<li><a href="/examples/lcd-runner/">LCD - Runner 16x2</a></li>
+<li><a href="/examples/lcd-i2c/">LCD - I2C</a></li>
+<li><a href="/examples/lcd-i2c-PCF8574/">LCD - I2C PCF8574</a></li>
+<li><a href="/examples/lcd-i2c-runner/">LCD - I2C Runner</a></li>
+<li><a href="/examples/lcd-rgb-tessel-grove-JHD1313M1/">Tessel 2 + Grove - RGB LCD Display</a></li>
+<li><a href="/examples/lcd-rgb-bgcolor-previewer/">Grove - RGB LCD Color Previewer</a></li>
+<li><a href="/examples/lcd-rgb-bgcolor-previewer-tessel/">Tessel 2 + Grove - RGB LCD Color Previewer</a></li>
+</ul>
+<h3>Compass/Magnetometer</h3>
+<ul>
+<li><a href="/examples/magnetometer/">Compass / Magnetometer</a></li>
+<li><a href="/examples/compass-hmc6352/">Compass - HMC6352</a></li>
+<li><a href="/examples/compass-MAG3110/">Compass - MAG3110</a></li>
+<li><a href="/examples/compass-MAG3110-tessel/">Compass - MAG3110 on Tessel 2</a></li>
+<li><a href="/examples/compass-hmc5883l/">Compass - HMC5883L</a></li>
+<li><a href="/examples/magnetometer-log/">Compass - Logger</a></li>
+<li><a href="/examples/magnetometer-north/">Compass - Find north</a></li>
+</ul>
+<h3>Piezo</h3>
+<ul>
+<li><a href="/examples/piezo/">Piezo</a></li>
+</ul>
+<h3>IMU/Multi</h3>
+<ul>
+<li><a href="/examples/imu-lsm303c/">IMU - LSM303C</a></li>
+<li><a href="/examples/imu-mpu6050/">IMU - MPU6050</a></li>
+<li><a href="/examples/imu-bno055/">IMU - BNO055</a></li>
+<li><a href="/examples/imu-bno055-orientation/">IMU - BNO055 (Orientation)</a></li>
+<li><a href="/examples/multi-mpl115a2/">Multi - MPL115A2</a></li>
+<li><a href="/examples/multi-mpl3115a2/">Multi - MPL3115A2</a></li>
+<li><a href="/examples/multi-BME280/">Multi - BME280</a></li>
+<li><a href="/examples/multi-bmp180/">Multi - BMP180</a></li>
+<li><a href="/examples/multi-bmp085/">Multi - BMP085</a></li>
+<li><a href="/examples/multi-htu21d/">Multi - HTU21D</a></li>
+<li><a href="/examples/multi-sht31d/">Multi - SHT31D</a></li>
+<li><a href="/examples/multi-HIH6130/">Multi - HIH6130</a></li>
+<li><a href="/examples/multi-DHT11_I2C_NANO_BACKPACK/">Multi - DHT11_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/multi-DHT21_I2C_NANO_BACKPACK/">Multi - DHT21_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/multi-DHT22_I2C_NANO_BACKPACK/">Multi - DHT22_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/multi-TH02/">Multi - TH02</a></li>
+<li><a href="/examples/multi-SI7020/">Multi - SI7020</a></li>
+<li><a href="/examples/multi-SI7021/">Multi - SI7021</a></li>
+<li><a href="/examples/multi-MS5611/">Multi - MS5611</a></li>
+</ul>
+<h3>Sensors</h3>
+<ul>
+<li><a href="/examples/sensor/">Sensor</a></li>
+<li><a href="/examples/sensor-slider/">Sensor - Slide potentiometer</a></li>
+<li><a href="/examples/sensor-fsr/">Sensor - Force sensitive resistor</a></li>
+<li><a href="/examples/microphone/">Sensor - Microphone</a></li>
+<li><a href="/examples/sensor-digital-microwave/">Sensor - Digital Microwave</a></li>
+<li><a href="/examples/photoresistor/">Sensor - Photoresistor</a></li>
+<li><a href="/examples/potentiometer/">Sensor - Potentiometer</a></li>
+<li><a href="/examples/flex/">Sensor - Flex sensor</a></li>
+<li><a href="/examples/accelerometer/">Accelerometer</a></li>
+<li><a href="/examples/accelerometer-LIS3DH/">Accelerometer - LIS3DH</a></li>
+<li><a href="/examples/accelerometer-MMA8452/">Accelerometer - MMA8452</a></li>
+<li><a href="/examples/accelerometer-adxl345/">Accelerometer - ADXL345</a></li>
+<li><a href="/examples/accelerometer-adxl335/">Accelerometer - ADXL335</a></li>
+<li><a href="/examples/accelerometer-mma7361/">Accelerometer - MMA7361</a></li>
+<li><a href="/examples/accelerometer-mpu6050/">Accelerometer - MPU6050</a></li>
+<li><a href="/examples/accelerometer-pan-tilt/">Accelerometer - Pan + Tilt</a></li>
+<li><a href="/examples/gyro/">Gyro</a></li>
+<li><a href="/examples/gyro-lpr5150l/">Gyro - Analog LPR5150AL</a></li>
+<li><a href="/examples/gyro-mpu6050/">Gyro - I2C MPU6050</a></li>
+<li><a href="/examples/temperature-tmp36/">Thermometer - TMP36</a></li>
+<li><a href="/examples/temperature-tmp102/">Thermometer - TMP102</a></li>
+<li><a href="/examples/temperature-lm35/">Thermometer - LM35</a></li>
+<li><a href="/examples/temperature-lm335/">Thermometer - LM335</a></li>
+<li><a href="/examples/temperature-ds18b20/">Thermometer - DS18B20</a></li>
+<li><a href="/examples/temperature-max31850k/">Thermometer - MAX31850</a></li>
+<li><a href="/examples/temperature-mpu6050/">Thermometer - MPU6050</a></li>
+<li><a href="/examples/temperature-htu21d/">Thermometer - HTU21D</a></li>
+<li><a href="/examples/temperature-sht31d/">Thermometer - SHT31D</a></li>
+<li><a href="/examples/temperature-HIH6130/">Thermometer - HIH6130</a></li>
+<li><a href="/examples/temperature-MCP9808/">Thermometer - MCP9808</a></li>
+<li><a href="/examples/barometer-mpl115a2/">Barometer - MPL115A2</a></li>
+<li><a href="/examples/barometer-mpl3115a2/">Barometer - MPL3115A2</a></li>
+<li><a href="/examples/altimeter-mpl3115a2/">Altimeter - MPL3115A2</a></li>
+<li><a href="/examples/temperature-mpl3115a2/">Thermometer - MPL3115A2</a></li>
+<li><a href="/examples/temperature-mpl115a2/">Thermometer - MPL115A2</a></li>
+<li><a href="/examples/barometer-BMP180/">Barometer - BMP180</a></li>
+<li><a href="/examples/barometer-BMP085/">Barometer - BMP085</a></li>
+<li><a href="/examples/barometer-MS5611/">Barometer - MS5611</a></li>
+<li><a href="/examples/hygrometer-htu21d/">Hygrometer - HTU21D</a></li>
+<li><a href="/examples/hygrometer-SI7021/">Hygrometer - SI7021</a></li>
+<li><a href="/examples/hygrometer-sht31d/">Hygrometer - SHT31D</a></li>
+<li><a href="/examples/hygrometer-HIH6130/">Hygrometer - HIH6130</a></li>
+<li><a href="/examples/temperature-BMP180/">Thermometer - BMP180</a></li>
+<li><a href="/examples/temperature-bmp085/">Thermometer - BMP085</a></li>
+<li><a href="/examples/temperature-SI7020/">Thermometer - SI7020</a></li>
+<li><a href="/examples/temperature-SI7021/">Thermometer - SI7021</a></li>
+<li><a href="/examples/temperature-MS5611/">Thermometer - MS5611</a></li>
+<li><a href="/examples/altimeter-MS5611/">Altimeter - MS5611</a></li>
+<li><a href="/examples/altimeter-BMP180/">Altimeter - BMP180</a></li>
+<li><a href="/examples/altimeter-BMP085/">Altimeter - BMP085</a></li>
+<li><a href="/examples/temperature-TH02/">Thermometer - TH02</a></li>
+<li><a href="/examples/hygrometer-TH02/">Hygrometer - TH02</a></li>
+<li><a href="/examples/temperature-DHT11_I2C_NANO_BACKPACK/">Thermometer - DHT11_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/hygrometer-DHT11_I2C_NANO_BACKPACK/">Hygrometer - DHT11_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/temperature-DHT21_I2C_NANO_BACKPACK/">Thermometer - DHT21_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/hygrometer-DHT21_I2C_NANO_BACKPACK/">Hygrometer - DHT21_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/temperature-DHT22_I2C_NANO_BACKPACK/">Thermometer - DHT22_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/hygrometer-DHT22_I2C_NANO_BACKPACK/">Hygrometer - DHT22_I2C_NANO_BACKPACK</a></li>
+</ul>
+<h3>Expander</h3>
+<ul>
+<li><a href="/examples/expander-MCP23017/">Expander - MCP23017</a></li>
+<li><a href="/examples/expander-MCP23008/">Expander - MCP23008</a></li>
+<li><a href="/examples/expander-LIS3DH/">Expander - LIS3DH</a></li>
+<li><a href="/examples/expander-PCF8574/">Expander - PCF8574</a></li>
+<li><a href="/examples/expander-PCF8575/">Expander - PCF8575</a></li>
+<li><a href="/examples/expander-PCA9685/">Expander - PCA9685</a></li>
+<li><a href="/examples/expander-PCF8591/">Expander - PCF8591</a></li>
+<li><a href="/examples/expander-74HC595/">Expander - 74HC595</a></li>
+<li><a href="/examples/expander-MUXSHIELD2-mixed/">Expander - MUXSHIELD2, Digital Input and Output</a></li>
+<li><a href="/examples/expander-MUXSHIELD2-analog-read/">Expander - MUXSHIELD2, Analog Sensors</a></li>
+<li><a href="/examples/expander-CD74HC4067_NANO_BACKPACK/">Expander - CD74HC4067, 16 Channel Analog Input Breakout</a></li>
+</ul>
+<h3>Photon Weather Shield</h3>
+<ul>
+<li><a href="/examples/sensor-photon-weather-shield-moisture/">Photon Weather Shield: Moisture</a></li>
+</ul>
+<h3>Lego EVShield</h3>
+<ul>
+<li><a href="/examples/button-EVS_EV3/">Button - EVShield EV3</a></li>
+<li><a href="/examples/button-EVS_NXT/">Button - EVShield NXT</a></li>
+<li><a href="/examples/color-EVS_EV3/">Color - EVShield EV3 (Code)</a></li>
+<li><a href="/examples/color-raw-EVS_EV3/">Color - EVShield EV3 (Raw)</a></li>
+<li><a href="/examples/color-EVS_NXT/">Color - EVShield NXT (Code)</a></li>
+<li><a href="/examples/light-ambient-EVS_EV3/">Light - EVShield EV3 (Ambient)</a></li>
+<li><a href="/examples/light-ambient-EVS_NXT/">Light - EVShield NXT (Ambient)</a></li>
+<li><a href="/examples/light-reflected-EVS_EV3/">Light - EVShield EV3 (Reflected)</a></li>
+<li><a href="/examples/light-reflected-EVS_NXT/">Light - EVShield NXT (Reflected)</a></li>
+<li><a href="/examples/light-ambient-BH1750/">Light - BH1750</a></li>
+<li><a href="/examples/light-ambient-TSL2561/">Light - TSL2561</a></li>
+<li><a href="/examples/motor-EVS_EV3/">Motor - EVShield EV3</a></li>
+<li><a href="/examples/motor-EVS_NXT/">Motor - EVShield NXT</a></li>
+<li><a href="/examples/proximity-EVS_EV3_IR-alert/">Proximity - EVShield EV3 (IR)</a></li>
+<li><a href="/examples/proximity-EVS_EV3_US-alert/">Proximity - EVShield EV3 (Ultrasonic)</a></li>
+</ul>
+<h3>Intel Edison + Grove IoT Kit</h3>
+<ul>
+<li><a href="/examples/grove-accelerometer-adxl345-edison/">Intel Edison + Grove - Accelerometer (ADXL345)</a></li>
+<li><a href="/examples/grove-accelerometer-mma7660-edison/">Intel Edison + Grove - Accelerometer (MMA7660)</a></li>
+<li><a href="/examples/grove-barometer-edison/">Intel Edison + Grove - Barometer (BMP180)</a></li>
+<li><a href="/examples/grove-humidity-temperature-edison/">Intel Edison + Grove - Humidity &amp; Temperature (TH02)</a></li>
+<li><a href="/examples/grove-compass-edison/">Intel Edison + Grove - Compass (HMC588L)</a></li>
+<li><a href="/examples/grove-flame-sensor-edison/">Intel Edison + Grove - Flame Sensor</a></li>
+<li><a href="/examples/grove-led-edison/">Intel Edison + Grove - LED</a></li>
+<li><a href="/examples/grove-light-sensor-edison/">Intel Edison + Grove - Light Sensor (TSL2561)</a></li>
+<li><a href="/examples/grove-button-edison/">Intel Edison + Grove - Button</a></li>
+<li><a href="/examples/grove-moisture-edison/">Intel Edison + Grove - Moisture Sensor</a></li>
+<li><a href="/examples/grove-gas-mq2-edison/">Intel Edison + Grove - Gas (MQ2)</a></li>
+<li><a href="/examples/grove-gas-tp401-edison/">Intel Edison + Grove - Air quality sensor</a></li>
+<li><a href="/examples/grove-joystick-edison/">Intel Edison + Grove - Joystick</a></li>
+<li><a href="/examples/grove-rotary-potentiometer-edison/">Intel Edison + Grove - Rotary Potentiometer</a></li>
+<li><a href="/examples/grove-lcd-rgb-edison/">Intel Edison + Grove - RGB LCD</a></li>
+<li><a href="/examples/grove-lcd-rgb-bgcolor-previewer-edison/">Intel Edison + Grove - RGB LCD Color Previewer</a></li>
+<li><a href="/examples/grove-lcd-rgb-temperature-display-edison/">Intel Edison + Grove - RGB LCD temperature display</a></li>
+<li><a href="/examples/grove-relay-edison/">Intel Edison + Grove - Relay</a></li>
+<li><a href="/examples/grove-servo-edison/">Intel Edison + Grove - Servo</a></li>
+<li><a href="/examples/grove-touch-edison/">Intel Edison + Grove - Touch</a></li>
+<li><a href="/examples/grove-q-touch/">Intel Edison + Grove - Q Touch</a></li>
+<li><a href="/examples/grove-i2c-motor-driver-edison/">Intel Edison + Grove - I2C Motor Driver</a></li>
+</ul>
+<h3>Grove IoT Kit (Seeed Studio)</h3>
+<ul>
+<li><a href="/examples/grove-led/">Grove - LED</a></li>
+<li><a href="/examples/grove-button/">Grove - Button</a></li>
+<li><a href="/examples/grove-touch/">Grove - Touch</a></li>
+<li><a href="/examples/grove-joystick/">Grove - Joystick</a></li>
+<li><a href="/examples/grove-rotary-potentiometer/">Grove - Rotary Potentiometer</a></li>
+<li><a href="/examples/grove-lcd-rgb/">Grove - RGB LCD</a></li>
+<li><a href="/examples/grove-lcd-rgb-temperature-display/">Grove - RGB LCD temperature display</a></li>
+<li><a href="/examples/grove-servo/">Grove - Servo</a></li>
+<li><a href="/examples/grove-i2c-motor-driver/">Grove - Motor (I2C Driver)</a></li>
+</ul>
+<h3>Micro Magician V2</h3>
+<ul>
+<li><a href="/examples/micromagician-accelerometer/">Micro Magician V2 - Accelerometer</a></li>
+<li><a href="/examples/micromagician-motor/">Micro Magician V2 - Motor</a></li>
+<li><a href="/examples/micromagician-servo/">Micro Magician V2 - Servo</a></li>
+</ul>
+<h3>TinkerKit</h3>
+<ul>
+<li><a href="/examples/tinkerkit-accelerometer/">TinkerKit - Accelerometer</a></li>
+<li><a href="/examples/tinkerkit-blink/">TinkerKit - Blink</a></li>
+<li><a href="/examples/tinkerkit-button/">TinkerKit - Button</a></li>
+<li><a href="/examples/tinkerkit-combo/">TinkerKit - Combo</a></li>
+<li><a href="/examples/tinkerkit-continuous-servo/">TinkerKit - Continuous servo</a></li>
+<li><a href="/examples/tinkerkit-gyroscope/">TinkerKit - Gyro</a></li>
+<li><a href="/examples/tinkerkit-joystick/">TinkerKit - Joystick</a></li>
+<li><a href="/examples/tinkerkit-linear-pot/">TinkerKit - Linear potentiometer</a></li>
+<li><a href="/examples/tinkerkit-rotary/">TinkerKit - Rotary potentiometer</a></li>
+<li><a href="/examples/tinkerkit-thermistor/">TinkerKit - Temperature</a></li>
+<li><a href="/examples/tinkerkit-tilt/">TinkerKit - Tilt</a></li>
+<li><a href="/examples/tinkerkit-touch/">TinkerKit - Touch</a></li>
+</ul>
+<h3>Wii</h3>
+<ul>
+<li><a href="/examples/nunchuk/">Wii Nunchuck</a></li>
+<li><a href="/examples/classic-controller/">Wii Classic Controller</a></li>
+</ul>
+<h3>Complete Bots / Projects</h3>
+<ul>
+<li><a href="/examples/line-follower/">Line Follower</a></li>
+<li><a href="/examples/motobot/">Motobot</a></li>
+<li><a href="/examples/navigator/">Navigator</a></li>
+<li><a href="/examples/nodebot/">Nodebot</a></li>
+<li><a href="/examples/whisker/">Whisker</a></li>
+<li><a href="/examples/phoenix/">Phoenix Hexapod</a></li>
+<li><a href="/examples/boe-test-servos/">BOE Bot</a></li>
+<li><a href="/examples/bug/">Bug</a></li>
+<li><a href="/examples/brat/">Lynxmotion Biped BRAT</a></li>
+<li><a href="/examples/claw/">Robotic Claw</a></li>
+<li><a href="/examples/kinect-arm-controller/">Kinect Robotic Arm Controller</a></li>
+<li><a href="/examples/laser-trip-wire/">Laser Trip Wire</a></li>
+<li><a href="/examples/radar/">Radar</a></li>
+</ul>
+<h3>Component Plugin Template</h3>
+<ul>
+<li><a href="/examples/plugin/">Example plugin</a></li>
+</ul>
+<h3>IO Plugins</h3>
+<ul>
+<li><a href="/examples/imp-io/">Led Blink on Electric Imp</a></li>
+<li><a href="/examples/spark-io/">Led Blink on Spark Core</a></li>
+<li><a href="/examples/pcduino-io/">Led Blink on pcDuino3</a></li>
+<li><a href="/examples/galileo-io/">Led Blink on Intel Galileo Gen 2</a></li>
+<li><a href="/examples/raspi-io/">Led Blink on Raspberry Pi</a></li>
+<li><a href="/examples/edison-io-arduino/">Led Blink on Intel Edison Arduino Board</a></li>
+<li><a href="/examples/edison-io-miniboard/">Led Blink on Intel Edison Mini Board</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <p>Run this example from the command line with:</p>
+<pre><code class="language-bash">node eg/plugin.js
+</code></pre>
+<pre><code class="language-javascript">module.exports = function(five) {
+  return (function() {
+
+    function Component(opts) {
+      if (!(this instanceof Component)) {
+        return new Component(opts);
+      }
+
+      // Board.Component
+      //    - Register the component with an
+      //      existing Board instance.
+      //
+      // Board.Options
+      //    - Normalize incoming options
+      //      - Convert string or number pin values
+      //        to `this.pin = value`
+      //      - Calls an IO Plugin's `normalize` method
+      //
+      five.Board.Component.call(
+        this, opts = five.Board.Options(opts)
+      );
+
+
+      // Define Component initialization
+
+    }
+
+    // Define Component Prototype
+
+
+    return Component;
+  }());
+};
+
+
+/**
+ *  To use the plugin in a program:
+ *
+ *  var five = require(&quot;johnny-five&quot;);
+ *  var Component = require(&quot;component&quot;)(five);
+ *
+ *
+ */
+
+</code></pre>
+<p> </p>
+
+
+        <h3>Component Classes in this example:</h3>
+        <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <ul>
+<li><a href="/api/board">Board</a></li>
+</ul>
+
+        </nav>
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

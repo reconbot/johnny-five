@@ -1,0 +1,335 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: ESC API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: ESC API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/esc">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , ESC">
+  <meta name="keywords" content="JavaScript, Robotics , ESC">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>ESC</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p><img src="http://i.gyazo.com/cd7a0b9df8390de58cecdb589fc8cb1c.png" alt=""></p>
+<p>The <code>ESC</code> class constructs objects that represent a single ESC (Electronic Speed Control) component attached to the physical board. <code>ESC</code> objects are similar to <code>Servo</code> objects as they both use PWM pins to communicate with the physical ESC. Currently, this class assumes the ESC is <a href="#wiki-calibrating-an-esc">pre-calibrated</a>.</p>
+<p>See also:</p>
+<ul>
+<li><a href="/api/escs">ESCs</a></li>
+</ul>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>pin</strong> A Number or String address for the ESC pin (PWM).</p>
+<pre><code class="language-js">var esc = new five.ESC(9);
+</code></pre></li>
+<li><p><strong>Options</strong> An object of property parameters.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/ Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>pin</td><td>Number, String</td><td>Any PWM Pin. The address of the PWM pin the ESC is attached to</td><td></td><td>yes</td></tr>
+<tr><td>controller</td><td>String</td><td>DEFAULT, PCA9685. Controller interface type.</td><td>&quot;DEFAULT&quot;</td><td>no</td></tr>
+<tr><td>pwmRange</td><td>Array</td><td><code>[ min, max ]</code> The pulse width range in microseconds.</td><td><code>[1000, 2000]</code></td><td>no</td></tr>
+<tr><td>device</td><td>String</td><td>FORWARD, FORWARD_REVERSE, FORWARD_BRAKE_REVERSE. Device capability type.</td><td>&quot;FORWARD&quot;</td><td>no</td></tr>
+<tr><td>neutral</td><td>Number</td><td>Neutral point, usually the middle of the PWM range.</td><td>Varies by <code>device</code></td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+<li><p><strong>PCA9685 Options (<code>controller: &quot;PCA9685&quot;</code>)</strong>
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>address</td><td>Number</td><td>I2C device address.</td><td><code>0x40</code></td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>id</code></td><td>A user definable id value. Defaults to a generated uid</td><td>No</td></tr>
+<tr><td><code>pin</code></td><td>The pin address that the ESC is attached to</td><td>No</td></tr>
+<tr><td><code>neutral</code></td><td>The zero-state value of the ESC, middle of PWM range.</td><td>No</td></tr>
+<tr><td><code>pwmRange</code></td><td><code>[ min, max ]</code> The pulse width range in microseconds.</td><td>No</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>Basic</h4>
+<pre><code class="language-js">new five.ESC(9);
+</code></pre>
+<p><img src="https://raw.github.com/rwaldron/johnny-five/master/docs/breadboard/esc-keypress.png" alt="ESC"></p>
+<h4>ESC PCA9685</h4>
+<pre><code class="language-js">new five.ESC({
+  controller: &quot;PCA9685&quot;,
+  pin: 1
+});
+</code></pre>
+<p><img src="https://raw.github.com/rwaldron/johnny-five/master/docs/breadboard/esc-PCA9685-b.png" alt="ESC"></p>
+<h4>Bidirectional</h4>
+<pre><code class="language-js">new five.ESC({
+  pin: 9, 
+  device: &quot;FORWARD_REVERSE&quot;, 
+});
+</code></pre>
+<p><img src="https://raw.github.com/rwaldron/johnny-five/master/docs/breadboard/esc-bidirectional.png" alt="ESC"></p>
+<h2>Usage</h2>
+<p>Standard ESC</p>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var esc = new five.ESC(11);
+  var speed = 0;
+
+  board.loop(100, () =&gt; {
+    if (speed &lt; 100) {
+      speed += 1;
+      esc.throttle(speed);
+    }
+  });
+});
+</code></pre>
+<h2>API</h2>
+<ul>
+<li><strong>speed(value)</strong> Deprecated. Use <code>throttle(μs)</code></li>
+</ul>
+<ul>
+<li><p><strong>throttle(value|percentage)</strong> Throttle the speed of the ESC by setting a pulse in μs or percentage (0-100).</p>
+<pre><code class="language-js">var esc = new five.ESC(9);
+
+esc.throttle(1500); // 1500μs is half speed of a single direction or neutral of a bidirectional
+
+esc.throttle(50); // 50% is half speed in a single direction or neutral of a bidirectional
+</code></pre></li>
+<li><p><strong>brake()</strong> Brake the ESC</p>
+<pre><code class="language-js">var esc = new five.ESC(9);
+
+esc.brake();
+</code></pre></li>
+</ul>
+<h2>Calibrating an ESC</h2>
+<p><strong>This isn't a requirement, but if you experience issues with your ESCs, it might prove helpful</strong></p>
+<p>Load the following sketch onto your Arduino, via the Arduino IDE follow the instructions.</p>
+<p>This requires that the ESC's power source is <strong>off or disconnected</strong> at the start of the calibration process. You will be prompted to turn on/reconnect the power during the process.</p>
+<pre><code class="language-c">#include &lt;Servo.h&gt;
+
+#define MAX_SIGNAL 2000
+#define MIN_SIGNAL 1000
+#define MOTOR_PIN 12
+
+Servo motor;
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println(&quot;Program begin...&quot;);
+  Serial.println(&quot;This program will calibrate the ESC.&quot;);
+
+  motor.attach(MOTOR_PIN);
+
+  Serial.println(&quot;Calibrating Maximum Signal&quot;);
+  Serial.println(&quot;Turn on power source, then wait 2 seconds and press any key + &lt;enter&gt;&quot;);
+  motor.writeMicroseconds(MAX_SIGNAL);
+
+  // Wait for input
+  while (!Serial.available());
+  Serial.read();
+
+  // Send min output
+  Serial.println(&quot;Calibrating Minimum Signal&quot;);
+  motor.writeMicroseconds(MIN_SIGNAL);
+
+}
+
+void loop() {  
+
+}
+</code></pre>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/esc-keypress">ESC - Keypress controlled ESCs</a></li>
+<li><a href="/examples/esc-PCA9685">ESC - PCA9685</a></li>
+<li><a href="/examples/esc-bidirectional">ESC - Bidirectional</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

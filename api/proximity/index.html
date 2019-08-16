@@ -1,0 +1,584 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Proximity API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Proximity API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/proximity">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Proximity">
+  <meta name="keywords" content="JavaScript, Robotics , Proximity">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Proximity</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p>The <code>Proximity</code> class constructs an object that represents a single Proximity sensor.</p>
+<p>Supported Proximity sensors:</p>
+<ul>
+<li>Pulse/PWM
+<ul>
+<li>Ultrasonic (All use <code>controller: &quot;HCSR04&quot;</code>, Arduino boards require <a href="#pingfirmata">PingFirmata</a> alternatively an HCSR04 backpack can be used to make the sensor I2C compatible.)
+<ul>
+<li><a href="http://www.amazon.com/SainSmart-HC-SR04-Ranging-Detector-Distance/dp/B004U8TOE6">SR04 or HCSR04</a> *</li>
+<li><a href="http://www.robotshop.com/en/devantech-ultrasonic-range-finder-srf05.html">SRF05</a> *</li>
+<li><a href="https://www.parallax.com/product/28015">Parallax Ping</a> *</li>
+<li><a href="http://www.seeedstudio.com/depot/Ultra-Sonic-range-measurement-module-p-626.html">SeeedStudio Ultrasonic Range</a></li>
+<li><a href="http://www.seeedstudio.com/depot/Grove-Ultrasonic-Ranger-p-960.html">Grove - Ultrasonic Ranger</a> *
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Range:
+<ul>
+<li>Close: 0-2cm (will result in 2cm reading)</li>
+<li>Long: 2–400cm</li>
+</ul></li>
+<li>Resolution: ~0.3cm</li>
+</ul></li>
+</ul></li>
+<li><a href="http://comingsoon.radioshack.com/radioshack-ultrasonic-range-sensor/2760342.html">RadioShack 2760342</a></li>
+</ul></li>
+</ul></li>
+<li>Analog
+<ul>
+<li>Ultrasonic
+<ul>
+<li><a href="http://maxbotix.com/Ultrasonic_Sensors/MB1000.htm">MB1000, LV-MaxSonar-EZ0</a>
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Range:
+<ul>
+<li>Close: 0-15cm (will result in 15cm reading)</li>
+<li>Long: 15-645cm (15-50cm may experience acoustic phase cancellation)</li>
+</ul></li>
+<li>Resolution: 2.54cm</li>
+</ul></li>
+<li>Likely supports the entire <code>LV-MaxSonar-EZ*</code> line, additional sensors to be confirmed.</li>
+</ul></li>
+<li><a href="http://maxbotix.com/Ultrasonic_Sensors/MB1010.htm">MB1010, LV-MaxSonar-EZ1</a>
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Range:
+<ul>
+<li>Close: 0-15cm (will result in 15cm reading)</li>
+<li>Long: 15-645cm</li>
+</ul></li>
+<li>Resolution: 2.54cm</li>
+</ul></li>
+</ul></li>
+<li><a href="http://maxbotix.com/Ultrasonic_Sensors/MB1003.htm">MB1003, HRLV-MaxSonar-EZ0</a>
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Range:
+<ul>
+<li>Close: 0-30cm (will result in 30cm reading)</li>
+<li>Long: 30-500cm</li>
+</ul></li>
+<li>Resolution: 1cm</li>
+</ul></li>
+</ul></li>
+<li><a href="http://maxbotix.com/Ultrasonic_Sensors/MB1230.htm">MB1230, XL-MaxSonar-EZ3</a>
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Range:
+<ul>
+<li>Close: 0-20cm (will result in 20cm reading)</li>
+<li>Long: 20-765cm</li>
+</ul></li>
+<li>Resolution: 1cm</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Infrared
+<ul>
+<li><a href="https://www.sparkfun.com/products/242?utm_source=j5">GP2Y0A21YK</a>
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Range:
+<ul>
+<li>Close: 0-10cm (will result in 10cm reading)</li>
+<li>Long: 10-80cm</li>
+</ul></li>
+<li>Resolution: 1cm</li>
+</ul></li>
+</ul></li>
+<li><a href="https://www.sparkfun.com/products/8959?utm_source=j5">GP2D120XJ00F</a>
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Range:
+<ul>
+<li>Close: 0-4cm (will result in 4cm reading)</li>
+<li>Long: 4-30cm</li>
+</ul></li>
+<li>Resolution: 1cm</li>
+</ul></li>
+</ul></li>
+<li><a href="https://www.sparkfun.com/products/8958?utm_source=j5">GP2Y0A02YK0F</a>
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Range:
+<ul>
+<li>Close: 0-15cm (will result in 15cm reading)</li>
+<li>Long: 15-150cm</li>
+</ul></li>
+<li>Resolution: 1cm</li>
+</ul></li>
+</ul></li>
+<li><a href="https://www.sparkfun.com/products/12728?utm_source=j5">GP2Y0A41SK0F</a>
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Range:
+<ul>
+<li>Close: 0-4cm (will result in 4cm reading)</li>
+<li>Long: 4-30cm</li>
+</ul></li>
+<li>Resolution: 1cm</li>
+</ul></li>
+</ul></li>
+<li><a href="https://www.adafruit.com/products/1568?utm_source=j5">GP2Y0A710K0F</a>
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Range:
+<ul>
+<li>Close: 0-50cm (will result in 50cm reading)</li>
+<li>Long: 50-500cm</li>
+</ul></li>
+<li>Resolution: 1cm</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>I2C
+<ul>
+<li>Lidar
+<ul>
+<li><a href="https://www.sparkfun.com/products/13167?utm_source=j5">LIDAR-Lite</a>
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Range:
+<ul>
+<li>Long: 0-4000cm</li>
+</ul></li>
+<li>Resolution: &lt; 1cm</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Ultrasonic
+<ul>
+<li><a href="http://www.robotshop.com/en/devantech-srf10-ultrasonic-range-finder.html">SRF10</a>
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Range:
+<ul>
+<li>Close: 0-6cm (will result in 6cm reading)</li>
+<li>Long: 6-600cm</li>
+</ul></li>
+<li>Resolution: &lt; 1cm</li>
+</ul></li>
+</ul></li>
+<li>[HCSR04 (or similar see above) using and I2C backpack]
+<ul>
+<li>Hardware Constraints
+<ul>
+<li>Additional hardware:
+<ul>
+<li>Requires addition of another board such as an Arduino Nano to provide the I2C support.</li>
+</ul></li>
+<li>Range:
+<ul>
+<li>Close: 0-2cm (will result in 2cm reading)</li>
+<li>Long: 2-300cm</li>
+</ul></li>
+<li>Resolution: &lt; 1cm</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>options</strong> An object of property parameters.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>pin</td><td>Number, String</td><td>Analog or Digital Pin. Use for non-I2C sensors</td><td></td><td>Yes (non-I2C)</td></tr>
+<tr><td>controller</td><td>String</td><td>GP2Y0A21YK, GP2D120XJ00F, GP2Y0A02YK0F, GP2Y0A41SK0F, GP2Y0A710K0F, PING_PULSEIN *, MB1000, MB1003, MB1230, LIDARLITE. See aliases</td><td></td><td>Yes</td></tr>
+<tr><td>freq</td><td>Number</td><td>Milliseconds. The frequency in ms of data events.</td><td>25ms</td><td>No</td></tr>
+</tbody>
+</table>
+<p></span></p>
+<h5>Controller Alias Table</h5>
+<table>
+<thead>
+<tr><th>Controller</th><th>Alias</th></tr>
+</thead>
+<tbody>
+<tr><td>GP2Y0A21YK</td><td>2Y0A21</td></tr>
+<tr><td>GP2D120XJ00F</td><td>2D120X</td></tr>
+<tr><td>GP2Y0A02YK0F</td><td>2Y0A02</td></tr>
+<tr><td>GP2Y0A41SK0F</td><td>OA41SK</td></tr>
+<tr><td>GP2Y0A21YK</td><td>0A21</td></tr>
+<tr><td>GP2Y0A02YK0F</td><td>0A02</td></tr>
+<tr><td>LV-MaxSonar-EZ</td><td>MB1000</td></tr>
+<tr><td>HRLV-MaxSonar-EZ0</td><td>MB1003</td></tr>
+<tr><td>XL-MaxSonar-EZ3</td><td>MB1230</td></tr>
+<tr><td>HC-SR04</td><td>PING_PULSE_IN</td></tr>
+<tr><td>HCSR04</td><td>PING_PULSE_IN</td></tr>
+<tr><td>SRF05</td><td>PING_PULSE_IN</td></tr>
+<tr><td>PARALLAXPING</td><td>PING_PULSE_IN</td></tr>
+<tr><td>SEEEDPING</td><td>PING_PULSE_IN</td></tr>
+<tr><td>GROVEPING</td><td>PING_PULSE_IN</td></tr>
+<tr><td>LIDAR-Lite</td><td>LIDARLITE</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>id</code></td><td>A user definable id value. Defaults to a generated uid</td><td>No</td></tr>
+<tr><td><code>cm</code></td><td>Distance to obstruction in centimeters.</td><td>Yes</td></tr>
+<tr><td><code>centimeters</code></td><td>Distance to obstruction in centimeters.</td><td>Yes</td></tr>
+<tr><td><code>in</code></td><td>Distance to obstruction in inches.</td><td>Yes</td></tr>
+<tr><td><code>inches</code></td><td>Distance to obstruction in inches.</td><td>Yes</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>Analog GP2Y0A21YK (and friends)</h4>
+<pre><code class="language-js">/*
+  Use with:
+
+  - GP2Y0A21YK
+  - GP2D120XJ00F
+  - GP2Y0A02YK0F
+  - GP2Y0A41SK0F
+*/
+
+new five.Proximity({
+  controller: &quot;GP2Y0A21YK&quot;,
+  pin: &quot;A0&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/ir-proximity.png" alt="Proximity"></p>
+<h4>Analog GP2Y0A710K0F</h4>
+<pre><code class="language-js">new five.Proximity({
+  controller: &quot;GP2Y0A710K0F&quot;,
+  pin: &quot;A0&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/proximity-GP2Y0A710K0F.png" alt="Proximity"></p>
+<h4>HCSR04/Parallax Ping *</h4>
+<pre><code class="language-js">new five.Proximity({
+  controller: &quot;HCSR04&quot;,
+  pin: 7
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/ping.png" alt="Ping"></p>
+<blockquote>
+<p>* For Arduino boards, it is absolutely REQUIRED to flash your board with a special version of StandardFirmata (PingFirmata). Instructions are <a href="#pingfirmata">here</a>.</p>
+</blockquote>
+<p>Alternatively also consider an I2C Backpack which will keep your firmata the same and allow you to use this sensor on alternative boards such as a Raspberry Pi, BeagleBone or other non-Arduino board.</p>
+<h4>HCSR04 (and friends) I2C Backpack *</h4>
+<pre><code class="language-js">new five.Proximity({
+  controller: &quot;HCSR04I2CBACKPACK&quot;,
+});
+</code></pre>
+<p><img src="https://raw.github.com/rwaldron/johnny-five/master/docs/breadboard/proximity-hcsr04-i2c.png" alt="Ping"></p>
+<p>The I2C backpack requires using an Arduino (eg Nano or pro-mini) to provide the I2C capability. This removes the blocking behaviour of the PingFirmata firmware and makes this sensor more portable across alternative boards (anything that has I2C support in its IO plugin). See <a href="https://github.com/ajfisher/nodebots-hcsr04">NodeBots Interchange HC-SR04 module</a> for more details.</p>
+<h5>MB1000 LV-MaxSonar-EZ0</h5>
+<pre><code class="language-js">new five.Proximity({
+  controller: &quot;MB1000&quot;,
+  pin: &quot;A0&quot;
+});
+</code></pre>
+<h5>MB1003 HRLV-MaxSonar-EZ0</h5>
+<pre><code class="language-js">new five.Proximity({
+  controller: &quot;MB1003&quot;,
+  pin: &quot;A0&quot;
+});
+</code></pre>
+<h5>MB1230 XL-MaxSonar-EZ3</h5>
+<pre><code class="language-js">new five.Proximity({
+  controller: &quot;MB1230&quot;,
+  pin: &quot;A0&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/sonar.png" alt="Sonar"></p>
+<h4>LIDAR-Lite</h4>
+<pre><code class="language-js">new five.Proximity({
+  controller: &quot;LIDARLITE&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/proximity-lidarlite.png" alt="LIDAR"></p>
+<h4>SRF10</h4>
+<pre><code class="language-js">new five.Proximity({
+  controller: &quot;SRF10&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/proximity-srf10.png" alt="SRF10"></p>
+<h2>Usage</h2>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+  var proximity = new five.Proximity({
+    controller: ...,
+    pin: &quot;A0&quot;
+  });
+
+  proximity.on(&quot;data&quot;, function() {
+    console.log(&quot;inches: &quot;, this.inches);
+    console.log(&quot;cm: &quot;, this.cm);
+  });
+});
+
+</code></pre>
+<h2>API</h2>
+<ul>
+<li><p><strong>within(range, unit, handler)</strong> When value is within the provided range for the specified unit (<code>cm</code>, <code>centimeters</code>, <code>in</code> or <code>inches</code>), execute callback.</p>
+<pre><code class="language-js">
+var proximity = new five.Proximity({
+  controller: &quot;GP2Y0A21YK&quot;,
+  pin: &quot;A0&quot;
+});
+
+proximity.within([ 100, 200 ], &quot;cm&quot;, function() {
+  
+  // This is called when the proximity sensor's cm value falls within 100-200
+
+});
+
+</code></pre></li>
+</ul>
+<h2>Events</h2>
+<ul>
+<li><p><strong>data</strong> The &quot;data&quot; event is fired as frequently as the user defined freq will allow in milliseconds.</p></li>
+<li><p><strong>change</strong> The &quot;change&quot; event is fired when the distance to obstruction reading changes within the observable range of the sensor.</p></li>
+</ul>
+<h2>PingFirmata</h2>
+<p><strong>DOES NOT APPLY TO NON-ARDUINO PLATFORMS</strong></p>
+<p>For use with:</p>
+<ul>
+<li><a href="http://www.amazon.com/SainSmart-HC-SR04-Ranging-Detector-Distance/dp/B004U8TOE6">SR04 or HCSR04</a></li>
+<li><a href="http://www.robotshop.com/en/devantech-ultrasonic-range-finder-srf05.html">SRF05</a></li>
+<li><a href="https://www.parallax.com/product/28015">Parallax Ping</a></li>
+<li><a href="http://www.seeedstudio.com/depot/Ultra-Sonic-range-measurement-module-p-626.html">SeeedStudio Ultrasonic Range</a></li>
+<li><a href="http://www.seeedstudio.com/depot/Grove-Ultrasonic-Ranger-p-960.html">Grove - Ultrasonic Ranger</a></li>
+</ul>
+<p>The above listed devices require a special version of Firmata (shown below) to be loaded onto the Arduino in order to function properly. <strong>This is only necessary for the components listed in this section!</strong></p>
+<p>The most straightforward method to enabling this module is to use the <a href="https://github.com/ajfisher/nodebots-hcsr04">Ping I2C Backpack</a>. If you still want / need to use a custom firmata then the easiest way to get the firmata onto your board is to use <a href="https://github.com/ajfisher/nodebots-interchange">interchange</a>. Follow the directions below:</p>
+<pre><code>npm install nodebots-interchange
+</code></pre>
+<p>With your arduino plugged in then issue the following instruction, where <port> is the serial port your arduino is plugged into (COM3, /dev/ttyUSB0 etc).</p>
+<pre><code>interchange install hc-sr04 -a uno -p &lt;port&gt; --firmata
+</code></pre>
+<p>The latest firmware will be downloaded and installed upon your board.</p>
+<p>The final alternative is to copy and paste <a href="https://gist.githubusercontent.com/rwaldron/0519fcd5c48bfe43b827/raw/f17fb09b92ed04722953823d9416649ff380c35b/PingFirmata.ino">the source</a> into the Arduino IDE and click the Upload button.</p>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/ir-proximity">IR Proximity</a></li>
+<li><a href="/examples/proximity">Proximity</a></li>
+<li><a href="/examples/proximity-GP2Y0A710K0F">Proximity - GP2Y0A710K0F</a></li>
+<li><a href="/examples/proximity-srf10">Proximity - SRF10</a></li>
+<li><a href="/examples/proximity-mb1000">Proximity - MB1000</a></li>
+<li><a href="/examples/proximity-mb1010">Proximity - MB1010</a></li>
+<li><a href="/examples/proximity-mb1003">Proximity - MB1003</a></li>
+<li><a href="/examples/proximity-mb1230">Proximity - MB1230</a></li>
+<li><a href="/examples/proximity-hcsr04">Proximity - HC-SR04</a></li>
+<li><a href="/examples/proximity-hcsr04-analog">Proximity - HC-SR04 (Analog)</a></li>
+<li><a href="/examples/proximity-hcsr04-i2c">Proximity - HC-SR04 I2C Backpack</a></li>
+<li><a href="/examples/proximity-lidarlite">Proximity - LIDAR-Lite</a></li>
+<li><a href="/examples/proximity-EVS_EV3_IR">Proximity - EVShield EV3 (IR)</a></li>
+<li><a href="/examples/proximity-EVS_EV3_US">Proximity - EVShield EV3 (Ultrasonic)</a></li>
+<li><a href="/examples/proximity-EVS_EV3_IR-alert">Proximity - EVShield EV3 (IR)</a></li>
+<li><a href="/examples/proximity-EVS_EV3_US-alert">Proximity - EVShield EV3 (Ultrasonic)</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,549 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Thermometer API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Thermometer API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/thermometer">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Thermometer">
+  <meta name="keywords" content="JavaScript, Robotics , Thermometer">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Thermometer</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p>The <code>Thermometer</code> class constructs objects that represents a single Thermometer/Temperature sensor attached to the physical board.</p>
+<p>Johnny-Five currently supports several kinds of Thermometer/Temperature sensors:</p>
+<ul>
+<li>Analog (with user-supplied <code>toCelsius(raw)</code> function)</li>
+<li>LM35
+<ul>
+<li><a href="http://www.mouser.com/search/ProductDetail.aspx?R=0virtualkey0virtualkeyLM35DZ-NOPB">Mouser</a></li>
+<li><a href="http://www.ti.com/product/lm35">TI</a></li>
+</ul></li>
+<li>TMP36
+<ul>
+<li><a href="https://www.adafruit.com/products/165?utm_source=j5">Adafruit</a></li>
+<li><a href="http://www.analog.com/en/mems-sensors/digital-temperature-sensors/tmp36/products/product.html">Analog Devices</a></li>
+<li><a href="https://www.sparkfun.com/products/10988?utm_source=j5">SparkFun</a></li>
+</ul></li>
+<li>TMP102
+<ul>
+<li><a href="https://www.sparkfun.com/products/11931?utm_source=j5">SparkFun</a></li>
+</ul></li>
+<li>DS18B20 (requires <a href="https://github.com/firmata/arduino/tree/configurable">ConfigurableFirmata</a>)
+<ul>
+<li><a href="https://www.adafruit.com/products/374?utm_source=j5">Adafruit</a></li>
+<li><a href="http://www.maximintegrated.com/en/products/analog/sensors-and-sensor-interface/DS18B20.html">Maxim Integrated</a></li>
+<li><a href="https://www.sparkfun.com/products/245?utm_source=j5">SparkFun</a></li>
+</ul></li>
+<li>MPU6050
+<ul>
+<li><a href="http://www.invensense.com/products/motion-tracking/6-axis/mpu-6050/">Invensense</a></li>
+<li><a href="https://www.sparkfun.com/products/11028?utm_source=j5">SparkFun</a></li>
+</ul></li>
+<li>Grove Thermometer
+<ul>
+<li><a href="http://www.seeedstudio.com/depot/Grove-Thermometer-Sensor-p-774.html">Seeed Studio</a></li>
+</ul></li>
+<li>BMP180
+<ul>
+<li><a href="https://www.adafruit.com/products/1603?utm_source=j5">Adafruit</a></li>
+<li><a href="https://www.sparkfun.com/products/11824?utm_source=j5">SparkFun</a></li>
+<li><a href="http://www.seeedstudio.com/depot/Grove-Barometer-Sensor-BMP180-p-1840.html?utm_source=j5">Grove</a></li>
+</ul></li>
+<li>BMP280
+<ul>
+<li><a href="https://www.adafruit.com/products/2651?utm_source=j5">Adafruit</a></li>
+</ul></li>
+<li>BME280
+<ul>
+<li><a href="https://www.adafruit.com/products/2652?utm_source=j5">Adafruit</a></li>
+<li><a href="https://www.sparkfun.com/products/13676?utm_source=j5">Sparkfun</a></li>
+</ul></li>
+<li>MPL115A2
+<ul>
+<li><a href="https://www.adafruit.com/products/992?utm_source=j5">Adafruit</a></li>
+<li><a href="https://www.sparkfun.com/products/9721?utm_source=j5">SparkFun</a></li>
+</ul></li>
+<li>MPL3115A2
+<ul>
+<li><a href="https://www.adafruit.com/products/1893?utm_source=j5">Adafruit</a></li>
+<li><a href="https://www.sparkfun.com/products/11084?utm_source=j5">Sparkfun</a>
+<ul>
+<li><a href="https://www.sparkfun.com/products/12081?utm_source=j5">SparkFun Weather Shield</a></li>
+<li><a href="https://www.sparkfun.com/products/13630?utm_source=j5">SparkFun Photon Weather Shield</a></li>
+</ul></li>
+</ul></li>
+<li>HTU21D
+<ul>
+<li><a href="https://www.adafruit.com/product/1899?utm_source=j5">Adafruit</a></li>
+<li><a href="https://www.sparkfun.com/products/12064?utm_source=j5">Sparkfun</a></li>
+</ul></li>
+<li>HIH6130
+<ul>
+<li><a href="https://www.sparkfun.com/products/11295?utm_source=j5">Sparkfun</a></li>
+</ul></li>
+<li>MCP9808
+<ul>
+<li><a href="https://www.adafruit.com/product/1782?utm_source=j5">Adafruit</a></li>
+</ul></li>
+<li>SI7020
+<ul>
+<li><a href="http://www.seeedstudio.com/depot/Tessel-Climate-Module-p-2225.html?utm_source=j5">Tessel Climate</a></li>
+</ul></li>
+<li>SI7021
+<ul>
+<li><a href="https://www.sparkfun.com/products/13763?utm_source=j5">Sparkfun</a></li>
+</ul></li>
+<li>MS5611
+<ul>
+<li><a href="http://www.amazon.com/MS5611-High-resolution-Atmospheric-Pressure-Module/dp/B00F4P6LKE?utm_source=j5">Amazon</a></li>
+</ul></li>
+<li>TH02
+<ul>
+<li><a href="http://www.seeedstudio.com/depot/Grove-TemperatureHumidity-Sensor-HighAccuracy-Mini-p-1921.html?utm_source=j5">Grove</a></li>
+</ul></li>
+<li>DHT11 (Via I2C Backpack)
+<ul>
+<li><a href="https://www.google.com/search?q=DHT11?utm_source=j5">Google</a></li>
+</ul></li>
+<li>DHT21 (Via I2C Backpack)
+<ul>
+<li><a href="https://www.google.com/search?q=DHT21?utm_source=j5">Google</a></li>
+</ul></li>
+<li>DHT22 (Via I2C Backpack)
+<ul>
+<li><a href="https://www.google.com/search?q=DHT22?utm_source=j5">Google</a></li>
+</ul></li>
+<li>SHT31D
+<ul>
+<li><a href="https://www.adafruit.com/products/2857?utm_source=j5">Adafruit</a></li>
+</ul></li>
+<li>LSM303C
+<ul>
+<li><a href="https://www.adafruit.com/product/1120?utm_source=j5">Adafruit</a></li>
+<li><a href="https://www.sparkfun.com/products/13303?utm_source=j5">SparkFun</a></li>
+</ul></li>
+</ul>
+<p>This list will continue to be updated as more devices are confirmed.</p>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>General Options</strong>
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>controller</td><td>string</td><td>ANALOG, LM35, TMP36, DS18B20, MPU6050, GROVE, BMP180, MPL115A2, MPL3115A2, HTU21D, MCP9808, SI7020, SI7021, LSM303C. The Name of the controller to use.</td><td><code>ANALOG</code></td><td>no</td></tr>
+<tr><td>pin</td><td>string or int</td><td>Analog Pin. Use with analog sensor.</td><td></td><td>Yes<sup>1</sup></td></tr>
+<tr><td>toCelsius</td><td>function</td><td><code>function toCelsius(raw) {}</code> A raw-to-celsius transform override</td><td></td><td>no</td></tr>
+<tr><td>freq</td><td>Number</td><td>Milliseconds. The rate in milliseconds to emit the data event</td><td>25ms</td><td>no</td><td></td></tr>
+<tr><td>enabled</td><td>boolean</td><td>Whether to start emitting events right away (&gt;= <a href="https://github.com/rwaldron/johnny-five/releases/tag/v0.11.0">v0.11</a>)</td><td><code>true</code></td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<p><sup>1</sup> Yes for analog devices. No for digital devices (MPU6050 or DS18B20)</p>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>id</code></td><td>A user definable id value. Defaults to a generated uid</td><td>No</td></tr>
+<tr><td><code>celsius</code></td><td>The temperature in celsius degrees.</td><td>Yes</td></tr>
+<tr><td><code>fahrenheit</code></td><td>The temperature in fahrenheit degrees.</td><td>Yes</td></tr>
+<tr><td><code>kelvin</code></td><td>The temperature in kelvin degrees.</td><td>Yes</td></tr>
+<tr><td><code>C</code></td><td>A convenience alias for celsius.</td><td>Yes</td></tr>
+<tr><td><code>F</code></td><td>A convenience alias for fahrenheit.</td><td>Yes</td></tr>
+<tr><td><code>K</code></td><td>A convenience alias for kelvin.</td><td>Yes</td></tr>
+<tr><td><code>freq</code></td><td>The rate in milliseconds to emit the data event. Disables the event if set to <code>null</code>. (&gt;= <a href="https://github.com/rwaldron/johnny-five/releases/tag/v0.11.0">v0.11</a>)</td><td>No</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>Analog</h4>
+<pre><code class="language-js">// Create an analog Thermometer object:
+new five.Thermometer({
+  pin: &quot;A0&quot;,
+  toCelsius: function(raw) { // optional
+    return (raw / sensivity) + offset;
+  }
+});
+</code></pre>
+<h4>LM35</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;LM35&quot;,
+  pin: &quot;A0&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/temperature-lm35.png" alt="LM35"></p>
+<h4>TMP36</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;TMP36&quot;,
+  pin: &quot;A0&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/temperature-tmp36.png" alt="TMP36"></p>
+<h4>TMP102</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;TMP102&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/temperature-tmp102.png" alt="TMP102"></p>
+<h4>DS18B20</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;DS18B20&quot;,
+  pin: &quot;A0&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/temperature-ds18b20.png" alt="DS18B20"></p>
+<h4>MPU6050</h4>
+<pre><code class="language-js">// Create an MPU-6050 Thermometer object:
+//
+//  - attach SDA and SCL to the I2C pins on your board (A4 and A5 for the Uno)
+//  - specify the MPU6050 controller
+new five.Thermometer({
+  controller: &quot;MPU6050&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/temperature-mpu6050.png" alt="MPU6050"></p>
+<h4>MPL115A2</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;MPL115A2&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/multi-mpl115a2.png" alt="MPL115A2"></p>
+<h4>MPL3115A2</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;MPL3115A2&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/barometer-mpl3115a2.png" alt="MPL3115A2"></p>
+<h4>BMP180</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;BMP180&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/multi-bmp180.png" alt="BMP180"></p>
+<h4>HTU21D</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;HTU21D&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/temperature-HTU21D-F.png" alt="HTU21D">
+<img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/temperature-HTU21D.png" alt="HTU21D">
+<img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/tessel-temperature-HTU21D-F.png" alt="HTU21D">
+<img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/tessel-temperature-HTU21D.png" alt="HTU21D"></p>
+<h4>HIH6130</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;HIH6130&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/multi-HIH6130.png" alt="HIH6130"></p>
+<h4>MCP9808</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;MCP9808&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/temperature-MCP9808.png" alt="MCP9808">
+<img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/temperature-MCP9808-tessel.png" alt="MCP9808"></p>
+<h4>MS5611</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;MS5611&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/multi-MS5611.png" alt="MS5611"></p>
+<h4>TH02</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;TH02&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/multi-TH02.png" alt="TH02"></p>
+<h4>DHT11_I2C_NANO_BACKPACK</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;DHT11_I2C_NANO_BACKPACK&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/multi-DHT11_I2C_NANO_BACKPACK.png" alt="DHT11_I2C_NANO_BACKPACK"></p>
+<h4>DHT21_I2C_NANO_BACKPACK</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;DHT21_I2C_NANO_BACKPACK&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/multi-DHT21_I2C_NANO_BACKPACK.png" alt="DHT21_I2C_NANO_BACKPACK"></p>
+<h4>DHT22_I2C_NANO_BACKPACK</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;DHT22_I2C_NANO_BACKPACK&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/multi-DHT22_I2C_NANO_BACKPACK.png" alt="DHT22_I2C_NANO_BACKPACK"></p>
+<h4>SI7020</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;SI7020&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/temperature-SI7020.png" alt="SI7020"></p>
+<h4>SI7021</h4>
+<pre><code class="language-js">new five.Thermometer({
+  controller: &quot;SI7021&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/multi-SI7021.png" alt="SI7021"></p>
+<h4>LSM303C</h4>
+<pre><code class="language-js">// Create an LSM303C Thermometer object:
+//
+//  - attach SDA and SCL to the I2C pins on your board (A4 and A5 for the Uno)
+//  - specify the LSM303C controller
+new five.Thermometer({
+  controller: &quot;LSM303C&quot;
+});
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/imu-lsm303c.png" alt="imu-lsm303c.png"></p>
+<h2>Usage</h2>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var temperature = new five.Thermometer({
+    pin: &quot;A0&quot;
+  });
+
+  temperature.on(&quot;data&quot;, function() {
+    console.log(&quot;celsius: %d&quot;, this.C);
+    console.log(&quot;fahrenheit: %d&quot;, this.F);
+    console.log(&quot;kelvin: %d&quot;, this.K);
+  });
+});
+</code></pre>
+<h2>API</h2>
+<ul>
+<li><p><strong>enable()</strong> Start emitting &quot;data&quot; and &quot;change&quot; events, at a rate determined by the user defined <code>freq</code> in milliseconds.  No-op if Thermometer is already enabled. (&gt;= <a href="https://github.com/rwaldron/johnny-five/releases/tag/v0.11.0">v0.11</a>)</p></li>
+<li><p><strong>disable()</strong> Stop emitting &quot;data&quot; and &quot;change&quot; events.  No-op if Thermometer is already disabled. (&gt;= <a href="https://github.com/rwaldron/johnny-five/releases/tag/v0.11.0">v0.11</a>)</p></li>
+</ul>
+<h2>Events</h2>
+<ul>
+<li><p><strong>change</strong> The &quot;change&quot; event is emitted whenever the value of the temperature changes.</p></li>
+<li><p><strong>data</strong> The &quot;data&quot; event is fired as frequently as the user defined <code>freq</code> will allow in milliseconds. (&quot;data&quot; replaced the &quot;read&quot; event)</p></li>
+</ul>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/imu-lsm303c">IMU - LSM303C</a></li>
+<li><a href="/examples/imu-mpu6050">IMU - MPU6050</a></li>
+<li><a href="/examples/imu-bno055">IMU - BNO055</a></li>
+<li><a href="/examples/multi-mpl115a2">Multi - MPL115A2</a></li>
+<li><a href="/examples/multi-mpl3115a2">Multi - MPL3115A2</a></li>
+<li><a href="/examples/multi-BME280">Multi - BME280</a></li>
+<li><a href="/examples/multi-bmp180">Multi - BMP180</a></li>
+<li><a href="/examples/multi-bmp085">Multi - BMP085</a></li>
+<li><a href="/examples/multi-htu21d">Multi - HTU21D</a></li>
+<li><a href="/examples/multi-sht31d">Multi - SHT31D</a></li>
+<li><a href="/examples/multi-HIH6130">Multi - HIH6130</a></li>
+<li><a href="/examples/multi-DHT11_I2C_NANO_BACKPACK">Multi - DHT11_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/multi-DHT21_I2C_NANO_BACKPACK">Multi - DHT21_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/multi-DHT22_I2C_NANO_BACKPACK">Multi - DHT22_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/multi-TH02">Multi - TH02</a></li>
+<li><a href="/examples/multi-SI7020">Multi - SI7020</a></li>
+<li><a href="/examples/multi-SI7021">Multi - SI7021</a></li>
+<li><a href="/examples/multi-MS5611">Multi - MS5611</a></li>
+<li><a href="/examples/temperature-tmp36">Thermometer - TMP36</a></li>
+<li><a href="/examples/temperature-tmp102">Thermometer - TMP102</a></li>
+<li><a href="/examples/temperature-lm35">Thermometer - LM35</a></li>
+<li><a href="/examples/temperature-lm335">Thermometer - LM335</a></li>
+<li><a href="/examples/temperature-ds18b20">Thermometer - DS18B20</a></li>
+<li><a href="/examples/temperature-mpu6050">Thermometer - MPU6050</a></li>
+<li><a href="/examples/temperature-htu21d">Thermometer - HTU21D</a></li>
+<li><a href="/examples/temperature-sht31d">Thermometer - SHT31D</a></li>
+<li><a href="/examples/temperature-HIH6130">Thermometer - HIH6130</a></li>
+<li><a href="/examples/temperature-MCP9808">Thermometer - MCP9808</a></li>
+<li><a href="/examples/temperature-mpl3115a2">Thermometer - MPL3115A2</a></li>
+<li><a href="/examples/temperature-mpl115a2">Thermometer - MPL115A2</a></li>
+<li><a href="/examples/temperature-BMP180">Thermometer - BMP180</a></li>
+<li><a href="/examples/temperature-bmp085">Thermometer - BMP085</a></li>
+<li><a href="/examples/temperature-SI7020">Thermometer - SI7020</a></li>
+<li><a href="/examples/temperature-SI7021">Thermometer - SI7021</a></li>
+<li><a href="/examples/temperature-MS5611">Thermometer - MS5611</a></li>
+<li><a href="/examples/temperature-TH02">Thermometer - TH02</a></li>
+<li><a href="/examples/temperature-DHT11_I2C_NANO_BACKPACK">Thermometer - DHT11_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/temperature-DHT21_I2C_NANO_BACKPACK">Thermometer - DHT21_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/temperature-DHT22_I2C_NANO_BACKPACK">Thermometer - DHT22_I2C_NANO_BACKPACK</a></li>
+<li><a href="/examples/grove-humidity-temperature-edison">Intel Edison + Grove - Humidity &amp; Temperature (TH02)</a></li>
+<li><a href="/examples/grove-lcd-rgb-temperature-display-edison">Intel Edison + Grove - RGB LCD temperature display</a></li>
+<li><a href="/examples/grove-lcd-rgb-temperature-display">Grove - RGB LCD temperature display</a></li>
+<li><a href="/examples/tinkerkit-thermistor">TinkerKit - Temperature</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

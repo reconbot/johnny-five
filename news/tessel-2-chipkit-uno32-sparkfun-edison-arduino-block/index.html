@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Johnny-Five.io: Tessel 2, chipKit Uno32 & SparkFun Edison Arduino Block</title>
+  <meta property="og:title" content="Johnny-Five.io: Tessel 2, chipKit Uno32 & SparkFun Edison Arduino Block">
+  <meta property="og:url" content="http://johnny-five.io/news/tessel-2-chipkit-uno32-sparkfun-edison-arduino-block">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Tessel 2, chipKit Uno32 & SparkFun Edison Arduino Block">
+  <meta name="keywords" content="JavaScript, Robotics , Tessel 2, chipKit Uno32 & SparkFun Edison Arduino Block">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Tessel 2, chipKit Uno32 & SparkFun Edison Arduino Block</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <ul>
+<li><a href="/news/v1_0/">Johnny-Five v1.0</a></li>
+<li><a href="/news/multi-turn-servo/">Multi-Turn Servo Support in Johnny-Five</a></li>
+<li><a href="/news/linux-io/">Extensible Linux IO Plugin for Johnny-Five</a></li>
+<li><a href="/news/johnny-five-node-red-raspbian/">Configuring Johnny-Five For Node-RED on Raspbian</a></li>
+<li><a href="/news/june-2016-release/">June Release: v0.9.58 &amp; Changelog Recap</a></li>
+<li><a href="/news/may-2016-release/">May Release: v0.9.45</a></li>
+<li><a href="/news/johnny-five-gps-class/">Johnny-Five GPS Class</a></li>
+<li><a href="/news/bno055-sensor-absolute-orientation/">BNO055 Sensor and Absolute Orientation</a></li>
+<li><a href="/news/the-next-thing-co.-c.h.i.p./">The Next Thing Co. C.H.I.P.</a></li>
+<li><a href="/news/hcsr04-i2c-backpack-support-lands/">HC-SR04 I2C Backpack support lands</a></li>
+<li><a href="/news/johnny-five-expander-class/">Johnny-Five Expander Class</a></li>
+<li><a href="/news/particle-io-now-supports-i2c/">Particle-IO Now Supports I2C</a></li>
+<li><a href="/news/lego-evshield-support/">Lego EVShield Support</a></li>
+<li><a href="/news/intel-edison-+-grove-iot-kit-examples/">Intel Edison + Grove IoT Kit Examples</a></li>
+<li><a href="/news/introducing-i2c-component-backpacks/">Introducing I2C Component Backpacks</a></li>
+<li><a href="/news/tessel-2-chipkit-uno32-sparkfun-edison-arduino-block/">Tessel 2, chipKit Uno32 &amp; SparkFun Edison Arduino Block</a></li>
+<li><a href="/news/new-keypad-component-class/">New Keypad Component Class</a></li>
+<li><a href="/news/release-v0.8.82/">Release v0.8.82</a></li>
+<li><a href="/news/motion-detection-components-now-share-common-api/">Motion Detection Components Now Share Common API</a></li>
+<li><a href="/news/proximity-components-now-share-common-api/">Proximity Components Now Share Common API</a></li>
+<li><a href="/news/edison-io:-default-i2c-bus-updates/">Galileo-IO/Edison-IO: Default I2C Bus Updates</a></li>
+<li><a href="/news/welcome-to-johnny-five.io/">Welcome to Johnny-Five.io</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        
+<p>The team is pleased to announce support for three new hardware platforms:</p>
+<h2><a href="/platform-support/#tessel-2">Tessel 2</a></h2>
+<p><a href="https://www.sparkfun.com/products/13036"><img src="/img/platforms/tessel-2.png" alt="Tessel 2 Fritzing Component Part from Johnny-Five"></a></p>
+<p>The <a href="https://shop.tessel.io/">Tessel 2</a> is a complete hardware and software overhaul from the Tessel 1, featuring a <a href="http://www.anz.ru/files/mediatek/MT7620_Datasheet.pdf">580MHz Mediatek MT7620n SoC</a> running <a href="https://www.openwrt.org/">OpenWrt</a> Linux, with the <a href="https://iojs.org">io.js</a> runtime, in conjunction with an <a href="http://www.atmel.com/Images/Atmel-42181-SAM-D21_Datasheet.pdf">48MHz ARM Cortex M0 microcontroller (Atmel SAMD21)</a>. For more information, take a look at their <a href="https://tessel.io/blog/113259439202/tessel-2-hardware-overview">hardware overview announcement</a>.</p>
+<p>The <a href="https://github.com/rwaldron/tessel-io">Tessel-IO</a> module is still in development, so early test reports are wanted! Using the module is just like any other <a href="https://github.com/rwaldron/io-plugins">IO-Plugin</a>:</p>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var Tessel = require(&quot;tessel-io&quot;);
+var board = new five.Board({
+  io: new Tessel()
+});
+
+board.on(&quot;ready&quot;, function() {
+  // Write your program locally and push to the Tessel 2 when ready!  
+});
+</code></pre>
+<p>Once you're ready to test:</p>
+<pre><code class="language-sh">tessel run program.js
+</code></pre>
+<p>(Subject to change as development continues)</p>
+<p>Check out the <a href="https://github.com/rwaldron/tessel-io#install--setup">Tessel-IO README</a> for installation and setup details, as well as board and per-pin capability information.</p>
+<h2><a href="/platform-support/#chipkit-uno32">chipKit Uno32</a></h2>
+<p><a href="http://chipkit.net/wpcproduct/chipkit-uno32/"><img src="/img/platforms/chipkit-uno32.png" alt="chipKit Uno32"></a></p>
+<p>This <a href="http://chipkit.net/wpcproduct/chipkit-uno32/">chipKit Uno32</a> was the highlight of this year's <a href="https://github.com/nodebots/nodebotsday">International Nodebots Day</a> at <a href="http://www.heatsynclabs.org/">HeatSync Labs</a> in <a href="http://chipkit.net/nodebots-day/">Mesa, AZ</a>! Compatible with the <a href="https://www.arduino.cc/en/Main/arduinoBoardUno">Arduino Uno</a>, simply flash <a href="https://github.com/firmata/arduino/">StandardFirmata</a> to the board via Arduino IDE and it's ready to go! (Note: digital pins 26-41 and analog pins A6-A11 are presently not supported, pending a pin definition update in StandardFirmata's <code>Boards.h</code>).</p>
+<h2><a href="/platform-support/#sparkfun-arduino-block">SparkFun Edison Arduino Block</a></h2>
+<p><a href="https://www.sparkfun.com/products/13036"><img src="/img/platforms/sparkfun-arduino-block.png" alt=""></a></p>
+<p>The <a href="https://www.sparkfun.com/products/13036">SparkFun Edison Arduino Block</a> is an interesting addition to Johnny-Five's <a href="https://software.intel.com/en-us/iot/library/edison-getting-started">Intel Edison</a> supported variants. This &quot;block&quot; doesn't take advantage of the native bindings provided by <a href="https://github.com/rwaldron/galileo-io">Galileo-IO</a>; instead, it connects via Serial/Uart to an Atmega328P chip, which is flashed with StandardFirmata! Checkout the tutorial at <a href="https://learn.sparkfun.com/tutorials/sparkfun-blocks-for-intel-edison---arduino-block">SparkFun Blocks for Intel® Edison - Arduino Block</a> for help getting started.</p>
+<p>As with all Intel Edison variants, your program will run directly on the board itself. The only difference is that instead of requiring the <a href="https://github.com/rwaldron/galileo-io">Galileo-IO</a> plugin, you'll simply specify the serialport path:</p>
+<pre><code class="language-js">// This code runs on the Edison, communicating with the 
+// SparkFun Arduino Block via Serial1 (/dev/ttyMFD1)
+var five = require(&quot;johnny-five&quot;);
+var board = new five.Board({
+  port: &quot;/dev/ttyMFD1&quot;
+});
+
+board.on(&quot;ready&quot;, function() {
+  var led = new five.Led(13);
+  led.blink(500);
+});
+</code></pre>
+
+
+<br>
+<hr>
+<br>
+
+<h4><a href="https://github.com/rwaldron">Rick Waldron</a>
+ on August 3rd 2015</h4>
+
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

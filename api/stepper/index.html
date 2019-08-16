@@ -1,0 +1,443 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Stepper API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Stepper API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/stepper">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Stepper">
+  <meta name="keywords" content="JavaScript, Robotics , Stepper">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Stepper</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p>The <code>Stepper</code> class constructs objects that represent a single stepper motor attached to the physical board. This class is new and should be considered unstable.</p>
+<p>In order to use the <code>Stepper</code> class, your board must be flashed with <code>AdvancedFirmata</code>, which is available here: https://github.com/soundanalogous/AdvancedFirmata</p>
+<p>Stepper motors generally require significantly involved hardware setup (that is, more than just plugging a single lead into a pin).</p>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>options</strong> An object of property parameters.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>pins</td><td>Object *</td><td>See Table. An object containing the named pin addresses for the 3 supported types</td><td></td><td>yes *</td></tr>
+<tr><td>pins</td><td>Array *</td><td>See Table. An array containing the pin addresses for the 3 supported types</td><td></td><td>yes<sup>1</sup></td></tr>
+<tr><td>stepsPerRev</td><td>Number</td><td>Steps per revolution. This will differ by motor, refer to motor specs for value</td><td></td><td>yes</td></tr>
+<tr><td>type</td><td>constant</td><td><code>five.Stepper.TYPE.DRIVER</code>, <code>five.Stepper.TYPE.TWO_WIRE</code>, <code>five.Stepper.TYPE.FOUR_WIRE</code></td><td></td><td>yes</td></tr>
+<tr><td>rpm</td><td>Number</td><td>Revolutions per minute, used to calculate speed.</td><td>180</td><td>no</td></tr>
+<tr><td>direction</td><td>constant</td><td><code>five.Stepper.DIRECTION.CW</code>, <code>five.Stepper.DIRECTION.CCW</code></td><td></td><td>no<sup>2</sup></td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<h3>Pins</h3>
+<table>
+<thead>
+<tr><th>Config</th><th>As Object</th><th>As Array</th></tr>
+</thead>
+<tbody>
+<tr><td>DRIVER</td><td><code>{ step, dir }</code></td><td><code>[ step, dir ]</code></td></tr>
+<tr><td>TWO_WIRE</td><td><code>{ m1, m2 }</code></td><td><code>[ m1, m2 ]</code></td></tr>
+<tr><td>FOUR_WIRE</td><td><code>{ m1, m2, m3, m4 }</code></td><td><code>[ m1, m2, m3, m4 ]</code></td></tr>
+</tbody>
+</table>
+<ol>
+<li>The <strong>pins</strong> property is required, but can be EITHER an object or an array.</li>
+<li>The <strong>direction</strong> property is not required, but if it is undefined then Stepper.step() will do nothing.</li>
+</ol>
+<h2>Shape</h2>
+<pre><code>{ 
+  id: A user definable id value. Defaults to a generated uid
+  pins: Object containing the pin addresses for the Stepper
+  rpm: Revolutions per minute, used to calculate speed. Defaluts to 180
+  direction: 
+  speed:
+  accel:
+  decel:
+}
+</code></pre>
+<h2>Component Initialization</h2>
+<h4>Driver</h4>
+<pre><code class="language-js">// Create a stepper motor
+// 
+//   - Step on pin 11
+//   - Direction on pin 12
+//   - Steps per revolution: 200
+//   - Uses a Driver board
+//
+
+new five.Stepper({
+  type: five.Stepper.TYPE.DRIVER,
+  stepsPerRev: 200,
+  pins: [ 11, 12 ]
+});
+
+// Is the same as...
+
+five.Stepper({
+  type: five.Stepper.TYPE.DRIVER
+  stepsPerRev: 200,
+  pins: {
+    step: 11
+    dir: 12
+  }
+ });
+</code></pre>
+<pre><code class="language-js">five.Stepper({
+  type: five.Stepper.TYPE.DRIVER
+  stepsPerRev: number,
+  pins: {
+    step: number
+    dir: number
+  }
+ });
+</code></pre>
+<pre><code class="language-js">five.Stepper({
+  type: five.Stepper.TYPE.DRIVER
+  stepsPerRev: number,
+  pins: [ step, dir ]
+}); 
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/stepper-easy-driver.png" alt="Stepper.Stepper.TYPE.DRIVER"></p>
+<h4>TWO WIRE</h4>
+<pre><code class="language-js">five.Stepper({
+  type: five.Stepper.TYPE.TWO_WIRE
+  stepsPerRev: number,
+  pins: {
+    motor1: number,
+    motor2: number
+  }
+ });
+</code></pre>
+<pre><code class="language-js">five.Stepper({
+  type: five.Stepper.TYPE.TWO_WIRE
+  stepsPerRev: number,
+  pins: [ motor1, motor2 ]
+}); 
+</code></pre>
+<h4>FOUR WIRE</h4>
+<pre><code class="language-js">five.Stepper({
+  type: five.Stepper.TYPE.FOUR_WIRE
+  stepsPerRev: number,
+  pins: {
+    motor1: number,
+    motor2: number,
+    motor3: number,
+    motor4: number
+  }
+});
+</code></pre>
+<pre><code class="language-js">five.Stepper({
+  type: five.Stepper.TYPE.FOUR_WIRE
+  stepsPerRev: number,
+  pins: [ motor1, motor2, motor3, motor4 ]
+}); 
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/stepper-driver.png" alt="Stepper.Stepper.TYPE.DRIVER"></p>
+<h2>Usage</h2>
+<pre><code class="language-js">var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+  var k = 0;
+  var stepper = new five.Stepper({
+    type: five.Stepper.TYPE.DRIVER,
+    stepsPerRev: 200,
+    pins: [11, 12]
+  });
+
+  stepper.rpm(180).ccw().step(2000, function() {
+    console.log(&quot;done&quot;);
+  });
+});
+</code></pre>
+<h2>API</h2>
+<ul>
+<li><p><strong>step(stepsOrOpts, callback)</strong> Move a stepper motor.</p>
+<pre><code class="language-js">// stepsOrOpts
+{
+  steps: number of steps to move
+  direction: 1, 0 (CCW, CW)
+  rpm: Revolutions per minute. Defaults to 180
+  accel: Number of steps to accelerate
+  decel: Number of steps to decelerate
+}
+
+//
+//   - 10 full revolutions
+//   - Clockwise
+//   - Accelerate over the first 1600 steps
+//   - Decelerate over the last 1600 steps
+//
+
+stepper.step({ steps: 2000, direction: 1, accel: 1600, decel: 1600 }, function() {
+  console.log(&quot;Done stepping!&quot;);
+});
+</code></pre></li>
+<li><p><strong>rpm()</strong> Get the rpm.</p></li>
+<li><p><strong>rpm(value)</strong> Set the rpm.</p>
+<pre><code class="language-js">stepper.rpm(180).step(2000, function() {
+  console.log(&quot;Done stepping!&quot;);
+});
+</code></pre></li>
+<li><p><strong>speed()</strong> Get the speed.</p></li>
+<li><p><strong>speed(value)</strong> Set the speed in <code>0.01 * rad/s</code>.</p>
+<pre><code class="language-js">// 180 rpm
+stepper.speed(0.18850).step(2000, function() {
+  console.log(&quot;Done stepping!&quot;);
+});
+</code></pre></li>
+<li><p><strong>direction()</strong> Get the direction.</p></li>
+<li><p><strong>direction(value)</strong> Set the direction.</p>
+<pre><code class="language-js">stepper.direction(1).step(2000, function() {
+  console.log(&quot;Done stepping!&quot;);
+});
+
+stepper.direction(0).step(2000, function() {
+  console.log(&quot;Done stepping!&quot;);
+});
+</code></pre>
+<p>Or...</p>
+<pre><code class="language-js">stepper.direction(five.Stepper.DIRECTION.CW).step(2000, function() {
+  console.log(&quot;Done stepping!&quot;);
+});
+
+stepper.direction(five.Stepper.DIRECTION.CCW).step(2000, function() {
+  console.log(&quot;Done stepping!&quot;);
+});
+</code></pre></li>
+<li><p><strong>accel()</strong> Get the acceleration.</p></li>
+<li><p><strong>accel(value)</strong> Set the acceleration.</p>
+<pre><code class="language-js">stepper.accel(1600).step(2000, function() {
+  console.log(&quot;Done stepping!&quot;);
+});
+</code></pre></li>
+<li><p><strong>decel()</strong> Get the deceleration.</p></li>
+<li><p><strong>decel(value)</strong> Set the deceleration.</p>
+<pre><code class="language-js">stepper.decel(1600).step(2000, function() {
+  console.log(&quot;Done stepping!&quot;);
+});
+</code></pre></li>
+<li><p><strong>cw()</strong> Set the Stepper to move Clockwise.</p>
+<pre><code class="language-js">stepper.cw().step(2000);
+</code></pre></li>
+<li><p><strong>ccw()</strong> Set the Stepper to move Counter-Clockwise.</p>
+<pre><code class="language-js">stepper.ccw().step(2000);
+</code></pre></li>
+</ul>
+<h2>Static</h2>
+<h3>Types</h3>
+<table>
+<thead>
+<tr><th>Type</th><th>Value</th><th>Constant</th></tr>
+</thead>
+<tbody>
+<tr><td>DRIVER</td><td>1</td><td>Stepper.TYPE.DRIVER</td></tr>
+<tr><td>DRIVER</td><td>2</td><td>Stepper.TYPE.TWO_WIRE</td></tr>
+<tr><td>DRIVER</td><td>4</td><td>Stepper.TYPE.FOUR_WIRE</td></tr>
+</tbody>
+</table>
+<h3>Run States</h3>
+<table>
+<thead>
+<tr><th>State</th><th>Value</th><th>Constant</th></tr>
+</thead>
+<tbody>
+<tr><td>STOP</td><td>0</td><td>Stepper.RUNSTATE.STOP</td></tr>
+<tr><td>DRIVE</td><td>1</td><td>Stepper.RUNSTATE.ACCEL</td></tr>
+<tr><td>DRIVE</td><td>2</td><td>Stepper.RUNSTATE.DECEL</td></tr>
+<tr><td>DRIVE</td><td>3</td><td>Stepper.RUNSTATE.RUN</td></tr>
+</tbody>
+</table>
+<h3>Directions</h3>
+<table>
+<thead>
+<tr><th>Direction</th><th>Value</th><th>Constant</th></tr>
+</thead>
+<tbody>
+<tr><td>CCW</td><td>0</td><td>Stepper.DIRECTION.CCW</td></tr>
+<tr><td>CW</td><td>1</td><td>Stepper.DIRECTION.CW</td></tr>
+</tbody>
+</table>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/motor-PCA9685">Motor - PCA9685</a></li>
+<li><a href="/examples/stepper-driver">Stepper - Driver</a></li>
+<li><a href="/examples/stepper-sweep">Stepper - Sweep</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Expander API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Expander API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/expander">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Expander">
+  <meta name="keywords" content="JavaScript, Robotics , Expander">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Expander</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p>The <code>Expander</code> class constructs objects that represent a single I2C IO Expander attached to the physical board. Expansion chips are useful for adding additional I/O to a project. In certain cases, I/O expansion chips can be used to provide capabilities on platforms that don't support natively support them. A couple examples:</p>
+<ul>
+<li>To add &quot;Analog Read&quot; (ADC) capabilities to your Raspberry Pi project, use either:
+<ul>
+<li><code>PCF8591</code></li>
+<li><code>GROVEPI</code></li>
+</ul></li>
+<li>To add &quot;Servo Write&quot; (60Hz PWM) capabilities to your Raspberry Pi or pcDuino project, use either:
+<ul>
+<li><code>PCA9685</code></li>
+<li><code>GROVEPI</code></li>
+</ul></li>
+<li>To add &quot;Ping Read&quot; capabilities (<code>Proximity</code> instances for HCSR04, Ultrasonic Ping, Parallax Ping, etc.) to your Raspberry Pi project, use:
+<ul>
+<li><code>GROVEPI</code></li>
+</ul></li>
+<li>Control a shift register as a &quot;sub&quot; board, use:
+<ul>
+<li><code>74HC595</code></li>
+</ul></li>
+</ul>
+<p>Supported Expanders:</p>
+<ul>
+<li>MCP23017
+<ul>
+<li><a href="https://www.adafruit.com/products/732?utm_source=j5">Adafruit</a></li>
+</ul></li>
+<li>MCP23008
+<ul>
+<li><a href="https://www.adafruit.com/product/593?utm_source=j5">Adafruit</a></li>
+</ul></li>
+<li>PCF8574
+<ul>
+<li><a href="http://www.amazon.com/Expansion-PCF8574-Expander-Evaluation-Development/dp/B00DUO17J6/">Amazon</a></li>
+</ul></li>
+<li>PCF8574A
+<ul>
+<li><a href="http://www.amazon.com/Expansion-PCF8574-Expander-Evaluation-Development/dp/B00DUO17J6/">Amazon</a></li>
+</ul></li>
+<li>PCF8575
+<ul>
+<li><a href="https://www.sparkfun.com/products/8130?utm_source=j5">SparkFun</a></li>
+</ul></li>
+<li>PCA9685
+<ul>
+<li><a href="https://www.adafruit.com/products/815?utm_source=j5">Adafruit</a></li>
+</ul></li>
+<li>PCF8591
+<ul>
+<li><a href="http://www.amazon.com/PCF8591-Converter-Module-Digital-Conversion/dp/B00BXX4UWC">Amazon</a></li>
+</ul></li>
+<li>MUXSHIELD2
+<ul>
+<li><a href="http://mayhewlabs.com/products/mux-shield-2">Mayhew</a></li>
+</ul></li>
+<li>GROVEPI
+<ul>
+<li><a href="http://www.dexterindustries.com/grovepi/">Dexter</a></li>
+</ul></li>
+<li>74HC595, SN74HC595
+<ul>
+<li><a href="https://www.sparkfun.com/products/13699">Shift Register 8-Bit</a></li>
+</ul></li>
+<li>CD74HC4067
+<ul>
+<li><a href="https://www.sparkfun.com/products/9056">SparkFun Analog/Digital MUX Breakout</a></li>
+</ul></li>
+</ul>
+<p>This list will continue to be updated as more component support is implemented.</p>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>Controller String</strong>
+When using <em>just</em> the controller name as an argument, the default I2C bus address will be used.</p>
+<ul>
+<li><code>MCP23017</code></li>
+<li><code>MCP23008</code></li>
+<li><code>PCF8574</code></li>
+<li><code>PCF8574A</code></li>
+<li><code>PCF8575</code></li>
+<li><code>PCF8591</code></li>
+<li><code>PCA9685</code></li>
+<li><code>MUXSHIELD2</code></li>
+<li><code>GROVEPI</code></li>
+<li><code>74HC595</code></li>
+<li><code>CD74HC4067</code></li>
+</ul>
+<pre><code class="language-js">// Examples:
+new five.Expander(&quot;MCP23017&quot;);
+
+new five.Expander(&quot;PCF8574&quot;);
+
+new five.Expander(&quot;PCF8575&quot;);
+</code></pre></li>
+<li><p><strong>General Options</strong>
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>controller</td><td>string</td><td>MCP23017, MCP23008, PCF8574, PCF8574A, PCF8575, PCF8591, PCA9685, MUXSHIELD2, GROVEPI, 74HC595, CD74HC4067. The Name of the controller to use</td><td></td><td>Yes</td></tr>
+<tr><td>address</td><td>Number</td><td>Address for I2C device.</td><td><a href="#default-addresses">By Device</a></td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p>
+<pre><code class="language-js">new five.Expander({
+  controller: &quot;MCP23017&quot;
+});
+
+// or
+
+new five.Expander({
+  controller: &quot;MCP23017&quot;,
+  address: 0x??
+});
+</code></pre>
+<h5>Expander Capabilities</h5>
+<table>
+<thead>
+<tr><th>Chip</th><th>Pins</th><th>Modes</th></tr>
+</thead>
+<tbody>
+<tr><td>MCP23017</td><td>16</td><td><code>INPUT</code>, <code>OUTPUT</code></td></tr>
+<tr><td>MCP23008</td><td>8</td><td><code>INPUT</code>, <code>OUTPUT</code></td></tr>
+<tr><td>PCF8574</td><td>8</td><td><code>INPUT</code>, <code>OUTPUT</code></td></tr>
+<tr><td>PCF8574A</td><td>8</td><td><code>INPUT</code>, <code>OUTPUT</code></td></tr>
+<tr><td>PCF8575</td><td>16</td><td><code>INPUT</code>, <code>OUTPUT</code></td></tr>
+<tr><td>PCF8591</td><td>4</td><td><code>ANALOG</code></td></tr>
+<tr><td>PCA9685</td><td>16</td><td><code>OUTPUT</code>, <code>PWM</code>, <code>SERVO</code></td></tr>
+<tr><td>MUXSHIELD2</td><td>48</td><td><code>INPUT</code>, <code>OUTPUT</code>, <code>ANALOG</code> *</td></tr>
+<tr><td>GROVEPI</td><td>10 **</td><td><code>INPUT</code>, <code>OUTPUT</code>, <code>ANALOG</code>, <code>PWM</code>, <code>SERVO</code></td></tr>
+<tr><td>CD74HC4067</td><td>16</td><td><code>ANALOG</code></td></tr>
+<tr><td>LIS3DH</td><td>2</td><td><code>ANALOG</code>, <code>I2C</code></td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+<p>* Modes limited to one per row</p>
+<p>** 7 Digital, 3 Analog</p>
+<h5>Default Addresses</h5>
+<table>
+<thead>
+<tr><th>Chip</th><th>Range</th><th>Default</th></tr>
+</thead>
+<tbody>
+<tr><td>MCP23017</td><td><code>0x20-0x27</code></td><td><code>0x20</code></td></tr>
+<tr><td>MCP23008</td><td><code>0x20-0x27</code></td><td><code>0x20</code></td></tr>
+<tr><td>PCF8574</td><td><code>0x20-0x27</code></td><td><code>0x20</code></td></tr>
+<tr><td>PCF8574A</td><td><code>0x38-0x3F</code></td><td><code>0x38</code></td></tr>
+<tr><td>PCF8575</td><td><code>0x20-0x27</code></td><td><code>0x20</code></td></tr>
+<tr><td>PCF8591</td><td><code>0x48-0x4F</code></td><td><code>0x48</code></td></tr>
+<tr><td>PCA9685</td><td><code>0x40-0x4F</code></td><td><code>0x40</code></td></tr>
+<tr><td>GROVEPI</td><td><code>0x04</code></td><td><code>0x04</code></td></tr>
+<tr><td>CD74HC4067</td><td><code>0x0A-0x0D</code></td><td><code>0x0A</code></td></tr>
+<tr><td>LIS3DH</td><td><code>0x18</code></td><td><code>0x18</code></td></tr>
+</tbody>
+</table>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>id</code></td><td>A user definable id value. Defaults to a generated uid</td><td>No</td></tr>
+<tr><td><code>pins</code></td><td>An array of pin objects, containing capability data.</td><td>No</td></tr>
+<tr><td><code>MODES</code></td><td>An object containing supported modes.</td><td>No</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>MCP23017</h4>
+<pre><code class="language-js">// Create a MCP23017 Expander object:
+//
+//  - attach SDA and SCL to the I2C pins on
+//     your board (A4 and A5 for the Uno)
+//  - specify the MCP23017 controller
+
+new five.Expander(&quot;MCP23017&quot;);
+
+// or
+
+new five.Expander({
+  controller: &quot;MCP23017&quot;
+});
+
+// or
+
+new five.Expander({
+  controller: &quot;MCP23017&quot;,
+  address: 0x??
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/expander-MCP23017-basic.png" alt="MCP23017"></p>
+<h4>MCP23008</h4>
+<pre><code class="language-js">// Create a MCP23008 Expander object:
+//
+//  - attach SDA and SCL to the I2C pins on
+//     your board (A4 and A5 for the Uno)
+//  - specify the MCP23008 controller
+
+new five.Expander(&quot;MCP23008&quot;);
+
+// or
+
+new five.Expander({
+  controller: &quot;MCP23008&quot;
+});
+
+// or
+
+new five.Expander({
+  controller: &quot;MCP23008&quot;,
+  address: 0x??
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/expander-MCP23008-basic.png" alt="MCP23008"></p>
+<h4>PCF8574</h4>
+<pre><code class="language-js">// Create a PCF8574 Expander object:
+//
+//  - attach SDA and SCL to the I2C pins on
+//     your board (A4 and A5 for the Uno)
+//  - specify the PCF8574 controller
+
+new five.Expander(&quot;PCF8574&quot;);
+
+// or
+
+new five.Expander({
+  controller: &quot;PCF8574&quot;
+});
+
+// or
+
+new five.Expander({
+  controller: &quot;PCF8574&quot;,
+  address: 0x??
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/expander-PCF8574-basic.png" alt="PCF8574"></p>
+<h4>PCF8575</h4>
+<pre><code class="language-js">// Create a PCF8575 Expander object:
+//
+//  - attach SDA and SCL to the I2C pins on
+//     your board (A4 and A5 for the Uno)
+//  - specify the PCF8575 controller
+
+new five.Expander(&quot;PCF8575&quot;);
+
+// or
+
+new five.Expander({
+  controller: &quot;PCF8575&quot;
+});
+
+// or
+
+new five.Expander({
+  controller: &quot;PCF8575&quot;,
+  address: 0x??
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/expander-PCF8575-basic.png" alt="PCF8575"></p>
+<h4>PCA9685</h4>
+<pre><code class="language-js">// Create a PCA9685 Expander object:
+//
+//  - attach SDA and SCL to the I2C pins on
+//     your board (A4 and A5 for the Uno)
+//  - specify the PCA9685 controller
+
+new five.Expander(&quot;PCA9685&quot;);
+
+// or
+
+new five.Expander({
+  controller: &quot;PCA9685&quot;
+});
+
+// or
+
+new five.Expander({
+  controller: &quot;PCA9685&quot;,
+  address: 0x??
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-PCA9685.png" alt="PCA9685"></p>
+<h4>PCF8591</h4>
+<pre><code class="language-js">// Create a PCF8591 Expander object:
+//
+//  - attach SDA and SCL to the I2C pins on
+//     your board (A4 and A5 for the Uno)
+//  - specify the PCF8591 controller
+
+new five.Expander(&quot;PCF8591&quot;);
+
+// or
+
+new five.Expander({
+  controller: &quot;PCF8591&quot;
+});
+
+// or
+
+new five.Expander({
+  controller: &quot;PCF8591&quot;,
+  address: 0x??
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/expander-PCF8591.png" alt="PCF8591"></p>
+<h4>74HC595</h4>
+<pre><code class="language-js">// Create a 74HC595 Expander object:
+// (change pins to appropriate pins for board)
+new five.Expander({
+  controller: &quot;74HC595&quot;,
+  pins: {
+    data: 2,
+    clock: 3,
+    latch: 4
+  }
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/expander-74HC595.png" alt="74HC595"></p>
+<h4>CD74HC4067</h4>
+<pre><code class="language-js">// Create a CD74HC4067 Expander object:
+//
+//  - attach SDA and SCL to the I2C pins on
+//     your board (A4 and A5 for the Uno)
+//  - specify the CD74HC4067 controller
+
+new five.Expander(&quot;CD74HC4067&quot;);
+
+// or
+
+new five.Expander({
+  controller: &quot;CD74HC4067&quot;
+});
+
+// or
+
+new five.Expander({
+  controller: &quot;CD74HC4067&quot;,
+  address: 0x??
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/expander-CD74HC4067-14-pots.png" alt="CD74HC4067"></p>
+<h2>Usage</h2>
+<p><code>Expander</code> objects have the same surface API as an <a href="https://github.com/rwaldron/io-plugins">IO Plugin</a>, which allows them to be optionally used as an IO Plugin themselves. The usage examples here show how an <code>Expander</code> can be used to create a virtual board with <code>Board.Virtual</code> that can be passed to any Johnny-Five component class initialization.</p>
+<h4>Example: Digital or PWM Output</h4>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+  var expander = new five.Expander({
+    controller: &quot;PCA9685&quot;
+  });
+
+  var virtual = new five.Board.Virtual({
+    io: expander
+  });
+
+  var led = new five.Led({
+    pin: 0,
+    board: virtual
+  });
+
+  led.on();
+  // or
+  // led.pulse();
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-PCA9685.png" alt="PCA9685"></p>
+<h4>Example: Digital Input &amp; Output</h4>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+  // An Expander instance can also be passed
+  // directly as an argument to Virtual
+  var virtual = new five.Board.Virtual(
+    new five.Expander(&quot;PCF8575&quot;)
+  );
+
+  var led = new five.Led({
+    board: virtual,
+    pin: 0,
+  });
+
+  var button = new five.Button({
+    board: virtual,
+    pin: 17,
+  });
+
+  button.on(&quot;press&quot;, function() {
+    led.on();
+  });
+
+  button.on(&quot;release&quot;, function() {
+    led.off();
+  });
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/expander-PCF8575-led-button.png" alt="PCF8575 Led &amp; Button"></p>
+<h2>API</h2>
+<p>While the API of an <code>Expander</code> instance will be the same as a <code>Board</code> instance, not all capabilities will always be supported. In latter cases, attempts to call methods that would result in attempting an unsupported operation will throw an exception.</p>
+<ul>
+<li><p><strong>normalize(pin)</strong> Provides pin value normalization. In most cases, this will simply return the value it was passed. It exists to override the default Firmata-centric normalization.</p>
+<pre><code class="language-js">expander.normalize(1); // 1;
+</code></pre></li>
+<li><p><strong>pinMode(pin, mode)</strong> Set the mode of a pin. Must correspond to a mode listed in the <code>MODES</code> property. <a href="#expander-capabilities">Expander Capabilities</a></p>
+<pre><code class="language-js">expander.pinMode(0, expander.MODES.INPUT);
+</code></pre></li>
+<li><p><strong>analogRead(pin, handler)</strong> Read an <code>ANALOG</code> pin. <a href="#expander-capabilities">Expander Capabilities</a></p>
+<pre><code class="language-js">expander.analogRead(0, function(value) { ... });
+</code></pre></li>
+<li><p><strong>digitalRead(pin, handler)</strong> Read an <code>INPUT</code> pin. <a href="#expander-capabilities">Expander Capabilities</a></p>
+<pre><code class="language-js">expander.digitalRead(0, function(value) { ... });
+</code></pre></li>
+<li><p><strong>analogWrite(pin, 0-255)</strong> An alias to <code>pwmWrite</code>, for backward compat only. Use <code>pwmWrite</code> instead.</p></li>
+<li><p><strong>digitalWrite(pin, HIGH | LOW)</strong> Write a <code>HIGH</code> or <code>LOW</code> value to an <code>OUTPUT</code> pin. <a href="#expander-capabilities">Expander Capabilities</a></p>
+<pre><code class="language-js">expander.digitalWrite(0, 1);
+</code></pre></li>
+<li><p><strong>pwmWrite(pin, 0-255)</strong> Write an 8-bit PWM value to a <code>PWM</code> pin. <a href="#expander-capabilities">Expander Capabilities</a></p>
+<pre><code class="language-js">expander.pwmWrite(0, 255);
+</code></pre></li>
+<li><p><strong>servoWrite(pin, 0-180)</strong> Write a 0-180° value to a <code>SERVO</code> pin. <a href="#expander-capabilities">Expander Capabilities</a></p>
+<pre><code class="language-js">expander.servoWrite(0, 180);
+</code></pre></li>
+</ul>
+<h2>Events</h2>
+<ul>
+<li><p><strong>digital-read-#</strong> Whenever <code>digitalRead(pin, ...)</code> is called, an event handler with naming form of <code>digital-read-#</code> (where # is the pin number) is registered.</p></li>
+<li><p><strong>analog-read-#</strong> Whenever <code>analogRead(pin, ...)</code> is called, an event handler with naming form of <code>analog-read-#</code> (where # is the pin number) is registered.</p></li>
+<li><p><strong>ready</strong> For compatibility with IO Plugins only. This event is meaningless, so don't use it.</p></li>
+</ul>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/expander-MCP23017">Expander - MCP23017</a></li>
+<li><a href="/examples/expander-MCP23008">Expander - MCP23008</a></li>
+<li><a href="/examples/expander-LIS3DH">Expander - LIS3DH</a></li>
+<li><a href="/examples/expander-PCF8574">Expander - PCF8574</a></li>
+<li><a href="/examples/expander-PCF8575">Expander - PCF8575</a></li>
+<li><a href="/examples/expander-PCA9685">Expander - PCA9685</a></li>
+<li><a href="/examples/expander-PCF8591">Expander - PCF8591</a></li>
+<li><a href="/examples/expander-74HC595">Expander - 74HC595</a></li>
+<li><a href="/examples/expander-MUXSHIELD2-mixed">Expander - MUXSHIELD2, Digital Input and Output</a></li>
+<li><a href="/examples/expander-MUXSHIELD2-analog-read">Expander - MUXSHIELD2, Analog Sensors</a></li>
+<li><a href="/examples/expander-CD74HC4067_NANO_BACKPACK">Expander - CD74HC4067, 16 Channel Analog Input Breakout</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

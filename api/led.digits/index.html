@@ -1,0 +1,373 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Led.Digits API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Led.Digits API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/led.digits">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Led.Digits">
+  <meta name="keywords" content="JavaScript, Robotics , Led.Digits">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Led.Digits</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p>The <code>Led.Digits</code> class constructs an object that may represent one or more (chained) 8 Digit, 7-Segment * LED Digit display (MAX7219/MAX7221) devices attached to the physical board. Up to 8 devices can be controlled with one instance, giving you 64 displayable digits.</p>
+<p>* Support for varying segment devices is in progress.</p>
+<p>Known supported devices:</p>
+<ul>
+<li><a href="http://www.amazon.com/Sunkee-MAX7219-8-Digit-Display-Module/dp/B00D3J04JC/">Sunkee MAX7219 with 8-Digit LED Display Module</a></li>
+<li><a href="http://www.amazon.com/MAX7219-8-Digit-Display-Segment-Digital/dp/B00IHQ7STK">5V MAX7219 8-Digit Red LED Display Module 7 Segment Digital Tube For Arduino MCU</a></li>
+<li><a href="https://www.adafruit.com/search?q=7-segment&amp;b=1">4 Digit, 7 Segment HT16K33</a></li>
+</ul>
+<p>(This list only represents devices that I've personally confirmed, please add devices as needed.)</p>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>options</strong> An object of property parameters.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>pins</td><td>Object</td><td><code>{ data, clock, cs }</code>. Object of digital pin names.</td><td></td><td>yes</td></tr>
+<tr><td>pins</td><td>Array</td><td><code>[ data, clock, cs ]</code>. Array of digital pin names.</td><td></td><td>yes</td></tr>
+<tr><td>devices</td><td>Number</td><td><code>1-8</code>. For single device cases, this can be omitted.</td><td><code>1</code></td><td>no</td></tr>
+<tr><td>controller</td><td>string</td><td>HT16K33. The Name of the controller to use</td><td></td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>isMatrix</code></td><td>false.</td><td>Yes</td></tr>
+<tr><td><code>devices</code></td><td>Number of devices controlled.</td><td>Yes</td></tr>
+<tr><td><code>digitOrder</code></td><td>-1 or 1. -1 for RTL, 1 for LTR.</td><td>No</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>Shift Register Device</h4>
+<pre><code class="language-js">new five.Led.Digits({
+  pins: {
+    data: 2,
+    clock: 3,
+    cs: 4
+  }
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-digits-clock.png" alt="Led.Digits"></p>
+<h4>HT16K33</h4>
+<pre><code class="language-js">new five.Led.Digits({
+  controller: &quot;HT16K33&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-digits-clock-HT16K33.png" alt="Led.Digits"></p>
+<h2>Usage</h2>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var digits = new five.Led.Digits({
+    pins: {
+      data: 2,
+      clock: 3,
+      cs: 4
+    }
+  });
+
+  digits.print(&quot;----&quot;);
+});
+</code></pre>
+<h2>API</h2>
+<p>NOTE: An <code>Led.Digits</code> instance can represent up to 8 chained devices (1 device can support up to 8 seven-segment digits), where each can be addressed directly by its device index in the chain (1-8).</p>
+<blockquote>
+<p>NOTE: When the device is turned off (with the <code>off</code> method), data is retained and will be displayed on the device when turned on (with the <code>on</code> method). This is useful when powering the devices from a battery, by providing a power saving mechanism.</p>
+</blockquote>
+<ul>
+<li><p><strong>on()</strong> Turn on all digits devices.</p></li>
+<li><p><strong>on(device index)</strong> Turn on digits device at specified device index.</p>
+<pre><code class="language-js">// Turn on a specific device by device index.
+digits.on(0);
+
+// Turn on all devices
+digits.on();
+</code></pre></li>
+<li><p><strong>off()</strong> Turn off all digits devices.</p></li>
+<li><p><strong>off(device index)</strong> Turn off digits device at specified device index.</p>
+<pre><code class="language-js">// Turn off a specific device by device index.
+digits.off(0);
+
+// Turn off all devices
+digits.off();
+
+// Send data to the the digits
+// ...Turn on the device to see the data displayed
+</code></pre></li>
+</ul>
+<ul>
+<li><p><strong>clear()</strong> Shut off all LEDs, for all devices.</p></li>
+<li><p><strong>clear(device index)</strong> Shut off all LEDs, for a device at specified device index. (Note: <code>clear()</code> does not shut off the device.)</p>
+<pre><code class="language-js">// Clear the entire display of a specified device.
+digits.clear(0);
+
+// Clear the entire display for all devices
+digits.clear();
+</code></pre></li>
+</ul>
+<ul>
+<li><strong>brightness(0-100)</strong> Set the brightness from 0-100%, of all devices.</li>
+<li><strong>brightness(device index, 0-100)</strong> Set the brightness from 0-100%, for a device at specified <code>device index</code>.</li>
+</ul>
+<pre><code class="language-js">// Set the brightness of a specified device.
+digits.brightness(1, 100);
+
+// Set the brightness for all devices
+digits.brightness(100);
+</code></pre>
+<ul>
+<li><p><strong>draw(position, character)</strong> Draw a <code>character</code> to a digit <code>position</code> (0-7) on all devices.</p></li>
+<li><p><strong>draw(device index, position, character)</strong> Draw a <code>character</code> to a digit <code>position</code> (0-7) on a device at the specified <code>device index</code>.</p>
+<ul>
+<li><p><strong>This is probably not the API you want to use. See <code>print(string)</code> below</strong></p></li>
+<li><p>Valid <code>character</code> values:</p>
+<ul>
+<li>A single number</li>
+<li>A single number or character string</li>
+<li>A string containing a number or letter character followed by a decimal point character.</li>
+</ul>
+<pre><code class="language-js">// Draw a &quot;1&quot; to device 1, digit position 0
+digits.draw(1, 0, &quot;1&quot;);
+
+// Draw a &quot;1&quot; to all devices at digit position 0
+digits.draw(0, &quot;1&quot;);
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/4-digit-7-segment-draw-001.png" alt=""></p>
+<pre><code class="language-js">// Draw an &quot;A&quot; to device 1, digit position 0
+digits.draw(1, 0, &quot;A&quot;);
+
+// Draw an &quot;A&quot; to all devices at digit position 0
+digits.draw(0, &quot;A&quot;);
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/4-digit-7-segment-draw-002.png" alt=""></p>
+<pre><code class="language-js">// Draw a &quot;1.&quot; to device 1, digit position 0
+digits.draw(1, 0, &quot;1.&quot;);
+
+// Draw a &quot;1.&quot; to all devices at digit position 0
+digits.draw(0, &quot;1.&quot;);
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/4-digit-7-segment-draw-003.png" alt=""></p></li>
+</ul></li>
+<li><p><strong>print(string)</strong> Display a string across available digits.</p>
+<ul>
+<li><p>If a colon <code>:</code> is present on the display unit, then it is treated as a single character. That means that a 4 digit display that includes a colon will be treated as a 5 character display.</p>
+<pre><code class="language-js">digits.print(&quot;12:00&quot;); // display the colon
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/4-digit-7-segment-print-001.png" alt=""></p>
+<pre><code class="language-js">digits.print(&quot;12 00&quot;); // do not display the colon
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/4-digit-7-segment-print-002.png" alt=""></p>
+<pre><code class="language-js">digits.print(&quot;HOLA&quot;);
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/4-digit-7-segment-with-colon-001.png" alt=""></p></li>
+<li><p>Periods following a digit are <strong>not</strong> considered a character, they are interpreted as being part of the preceding character.</p>
+<pre><code class="language-js">digits.print(&quot;0.0.0.0.&quot;); 
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/4-digit-7-segment-print-003.png" alt=""></p>
+<pre><code class="language-js">digits.print(&quot;0.0.:0.0.&quot;); 
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/4-digit-7-segment-print-004.png" alt=""></p></li>
+</ul></li>
+</ul>
+<h2>Predefined Characters</h2>
+<p><code>Led.Digits.DIGIT_CHARS</code></p>
+<pre><code>0 1 2 3 4 5 6 7 8 9   
+! .
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+a b c d e f g h i j k l m n o p q r s t u v w x y z
+</code></pre>
+<h2>Events</h2>
+<p><code>Led.Digits</code> objects are output only and therefore do not emit any events.</p>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/led-digits-clock-galileo">LED - Digital Clock</a></li>
+<li><a href="/examples/led-digits-clock-HT16K33">LED - Digital Clock, HT16K33</a></li>
+<li><a href="/examples/led-digits-clock-dual">LED - Digital Clock, Dual Displays</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

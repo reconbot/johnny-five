@@ -1,0 +1,599 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Servo API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Servo API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/servo">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Servo">
+  <meta name="keywords" content="JavaScript, Robotics , Servo">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Servo</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p><img src="http://i.gyazo.com/d3bb767e9fb54c220fd4f6391e135600.png" alt=""></p>
+<p>The <code>Servo</code> class constructs objects that represent a single Servo attached to the physical board. This class is designed to work well with both <strong>Standard</strong> and <strong>Continuous</strong> rotation servos.</p>
+<p>See also:</p>
+<ul>
+<li><a href="/api/servos">Servos</a></li>
+</ul>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>pin</strong> A Number or String address for the Servo pin.</p></li>
+<li><p><strong>General options</strong> An object of property parameters.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>pin</td><td>Number, String</td><td>The address of the pin the servo is attached to</td><td></td><td>yes</td></tr>
+<tr><td>range</td><td>Array</td><td><code>[ lower, upper ]</code> The range of motion in degrees.</td><td><code>[0, 180]</code></td><td>no</td></tr>
+<tr><td>pwmRange</td><td>Array</td><td><code>[ min, max ]</code> The pulse width range in microseconds.</td><td><code>[600, 2400]</code></td><td>no</td></tr>
+<tr><td>deviceRange</td><td>Array</td><td><code>[ min, max ]</code> The physical range of the servo in degrees.</td><td><code>[0, 180]</code></td><td>no</td></tr>
+<tr><td>type</td><td>String</td><td><code>“standard”</code>, <code>“continuous”</code>. The type of servo being created.</td><td><code>“standard”</code></td><td>no</td></tr>
+<tr><td>startAt</td><td>Number</td><td>Any number within the deviceRange. Degrees to initialize the servo at.</td><td></td><td>no</td></tr>
+<tr><td>offset</td><td>Number</td><td>A positive or negative value to adjust the servo.</td><td><code>false</code></td><td>no</td></tr>
+<tr><td>invert</td><td>Boolean</td><td><code>true</code> or <code>false</code>. Optionally Invert servo movement.</td><td><code>false</code></td><td>no</td></tr>
+<tr><td>center</td><td>Boolean</td><td><code>true</code> or <code>false</code>. Optionally center the servo on initialization.</td><td><code>false</code></td><td>no</td></tr>
+<tr><td>controller</td><td>String</td><td>DEFAULT, PCA9685. Controller interface type.</td><td>DEFAULT</td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+<li><p><strong>Debug Options</strong> Although servos can run on digital pins, this can sometimes cause issues. For this reason servos are forced to use only PWM under debug mode and will emit an error if used on a digital pin.</p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>debug</td><td>Boolean</td><td><code>true</code> or <code>false</code>. Set servo to debug mode</td><td><code>false</code></td><td>no</td></tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Continuous Servo Options</strong></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>deadband</td><td>Array</td><td><code>[ lower, upper ]</code>. The deadband/stop point of the servo.*</td><td><code>[90, 90]</code></td><td>no</td></tr>
+</tbody>
+</table>
+<blockquote>
+<p>* Some continuous servos do not have a trim pot for fine tuning the stop point, instead they have a built-in &quot;deadband&quot; range, which should be documented but otherwise requires manual measurement.
+Examples:</p>
+<ul>
+<li><a href="https://www.servocity.com/html/hsr-1425cr__continuous_rotatio.html#.VktWWN-rTOQ">HSR-1425CR</a></li>
+<li><a href="http://tinkersphere.com/motors-wheels/241-high-torque-continuous-rotation-servo-4kg.html">Generic High Torque Continuous Rotation Servo</a></li>
+</ul>
+</blockquote></li>
+<li><p><strong>PCA9685 Options (<code>controller: &quot;PCA9685&quot;</code>)</strong>
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>address</td><td>Number</td><td>I2C device address.</td><td><code>0x40</code></td><td>yes</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<h3>Shape</h3>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>id</code></td><td>A user definable id value. Defaults to a generated uid</td><td>No</td></tr>
+<tr><td><code>pin</code></td><td>The pin address that the Servo is attached to</td><td>No</td></tr>
+<tr><td><code>range</code></td><td>The range of motion in degrees. Defaults to [0, 180]</td><td>No</td></tr>
+<tr><td><code>invert</code></td><td>A boolean, indicates whether servo values are inverted</td><td>No</td></tr>
+<tr><td><code>history</code></td><td>An array containing records of each movement</td><td>No</td></tr>
+<tr><td><code>interval</code></td><td>A reference to the current interval, if one exists</td><td>No</td></tr>
+<tr><td><code>isMoving</code></td><td>A boolean flag, true when moving, false when still</td><td>No</td></tr>
+<tr><td><code>last</code></td><td>The last movement record.</td><td>Yes</td></tr>
+<tr><td><code>position</code></td><td>The angle the servo is at in the physical world.</td><td>Yes</td></tr>
+<tr><td><code>value</code></td><td>The angle the servo was last set to.</td><td>No</td></tr>
+<tr><td><code>startAt</code></td><td>The angle the servo was specified to start at upon initialization</td><td>No</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>Basic</h4>
+<pre><code class="language-js">// Create a standard servo...
+// 
+//   - attached to pin 10
+//
+new five.Servo(10);
+</code></pre>
+<h4>Auto Centered</h4>
+<pre><code class="language-js">// Create a standard servo...
+// 
+//   - attached to pin 10
+//   - centered
+//
+new five.Servo({
+  pin: 10,
+  center: true
+});
+</code></pre>
+<h4>Specify Range</h4>
+<pre><code class="language-js">// Create a standard servo...
+// 
+//   - attached to pin 10
+//   - limited range of 45-135 degrees
+//
+new five.Servo({
+  pin: 10,
+  range: [45, 135]
+});
+</code></pre>
+<h4>Specify Starting Position</h4>
+<pre><code class="language-js">// Create a standard servo...
+// 
+//   - attached to pin 10
+//   - starts at 120°
+//
+new five.Servo({
+  pin: 10,
+  startAt: 120
+});
+</code></pre>
+<h4>Specify Both Range and Starting Position</h4>
+<pre><code class="language-js">// Create a standard servo...
+// 
+//   - attached to pin 10
+//   - limited range of 45-135 degrees
+//   - starts at 120°
+//
+new five.Servo({
+  pin: 10,
+  range: [45, 135],
+  startAt: 120
+});
+</code></pre>
+<h4>Continuous</h4>
+<pre><code class="language-js">// Direct Constructor
+new five.Servo.Continuous(10);
+
+
+// Options object with type property
+new five.Servo({
+  pin: 10,
+  type: &quot;continuous&quot;
+});
+</code></pre>
+<h4>Multi-turn</h4>
+<pre><code class="language-js">// Create a multi-turn servo. 6 rotations = 2160 degrees
+// Note that this is not the same as a continuous rotation servo.
+// 
+//   - attached to pin 10
+//
+new five.Servo({
+  pin: 10,
+  deviceRange: [0, 2160]
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/servo.png" alt="Standard or Continuous"></p>
+<h4>Servo PCA9685</h4>
+<pre><code class="language-js">// Create a standard servo controlled via PCA9685...
+// 
+//   - attached to pin 0 (of the PCA9685)
+//
+new five.Servo({
+  controller: &quot;PCA9685&quot;,
+  pin: 0
+});
+</code></pre>
+<h4>Continuous PCA9685</h4>
+<pre><code class="language-js">// Create a continuous servo controlled via PCA9685...
+// 
+//   - attached to pin 0 (of the PCA9685)
+//
+new five.Servo.Continuous({
+  controller: &quot;PCA9685&quot;,
+  pin: 0
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/servo-PCA9685.png" alt="PCA9685"></p>
+<h2>Usage</h2>
+<p>Standard Servo</p>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var servo = new five.Servo(10);
+
+  // Sweep from 0-180 and repeat.
+  servo.sweep();
+});
+</code></pre>
+<p>Continuous Servo</p>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+
+board.on(&quot;ready&quot;, function() {
+
+  var servo = new five.Servo({
+    pin: 10, 
+    type: &quot;continuous&quot;
+  });
+
+  // Clockwise, top speed.
+  servo.cw(1);
+});
+</code></pre>
+<p>I2C Servo (i.e. via Adafruit PWM controller)</p>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+
+board.on(&quot;ready&quot;, function() {
+
+  var servo = new five.Servo({
+    pin: 0, 
+    controller: &quot;PCA9685&quot;,
+    address: 0x41 // Defaults to 0x40
+  });
+
+  // Sweep from 0-180.
+  servo.sweep();
+});
+</code></pre>
+<h2>API</h2>
+<ul>
+<li><p><strong>to(degrees 0-180 [, ms [, rate]])</strong> Move a servo horn to specified position in degrees, 0-180 (or whatever the current valid range is). If <code>ms</code> is specified, the servo will take that amount of time to move to the position. If <code>rate</code> is specified, the angle change will be split into distance/rate steps for the <code>ms</code> option. If the specified angle is the same as the current angle, no commands are sent.</p>
+<pre><code class="language-js">var servo = new five.Servo(10);
+
+// Set the horn to 90degrees
+servo.to(90);
+
+// Angle change takes 500ms to complete
+servo.to(90, 500);
+
+// Angle change takes 500ms to complete over 10 steps
+servo.to(90, 500, 10);
+</code></pre></li>
+<li><p><strong>min()</strong> Set Servo to minimum degrees. Defaults to 0deg, respects explicit range.</p>
+<pre><code class="language-js">var servo = new five.Servo(10);
+
+// Set horn to 0degrees
+servo.min();
+</code></pre>
+<p>Or</p>
+<pre><code class="language-js">var servo = new five.Servo({
+  pin: 10, 
+  range: [ 45, 135 ]
+});
+
+// Set horn to 45°
+servo.min();
+</code></pre></li>
+<li><p><strong>max()</strong> Set Servo to maximum degrees. Defaults to 180deg, respects explicit range.</p>
+<pre><code class="language-js">var servo = new five.Servo(10);
+
+// Set horn to 135°
+servo.max();
+</code></pre>
+<p>Or</p>
+<pre><code class="language-js">var servo = new five.Servo({
+  pin: 10, 
+  range: [ 45, 135 ]
+});
+
+// Set horn to 135°
+servo.max();
+</code></pre></li>
+</ul>
+<ul>
+<li><strong>center([ ms [, rate ]])</strong> Set Servo to center point. Defaults to 90deg, respects explicit <code>range</code>. If <code>ms</code> is specified, the servo will take that amount of time to move to the position. If <code>rate</code> is specified, the angle change will be split into distance/rate steps for the <code>ms</code> option. If the specified angle is the same as the current angle, no commands are sent.
+<pre><code class="language-js">var servo = new five.Servo(10);
+
+// Set horn to 90degrees
+servo.center();
+</code></pre>
+Or
+<pre><code class="language-js">var servo = new five.Servo({
+  pin: 10, 
+  range: [ 40, 80 ]
+});
+
+// Set horn to 60degrees
+servo.center();
+</code></pre></li>
+</ul>
+<ul>
+<li><p><strong>home()</strong> Set Servo to it's startAt position.</p>
+<pre><code class="language-js">var servo = new five.Servo({
+  pin: 10,
+  startAt: 20
+});
+
+// Set horn to 90 degrees
+servo.to(90);
+
+// Return to startAt value of 20 degrees
+servo.home();
+</code></pre></li>
+<li><p><strong>sweep()</strong> Sweep the servo between default <code>min</code> and <code>max</code>, repeatedly.</p>
+<pre><code class="language-js">var servo = new five.Servo(10);
+
+servo.sweep();
+</code></pre></li>
+<li><p><strong>sweep([ low, high ])</strong> Sweep the servo between an explicit range, repeatedly.</p>
+<pre><code class="language-js">var servo = new five.Servo(10);
+
+// Repeated full range movement
+servo.sweep([45, 135]);
+</code></pre></li>
+<li><p><strong>sweep(options)</strong> Sweep the servo between an (optional) explicit range, within an (optional) explicit interval, and  (optional) explicit steps (in degrees), repeatedly.</p>
+<ul>
+<li><code>options</code>: An object containing:
+<ul>
+<li><code>range</code>: An array containing <code>[low, high]</code> boundaries to sweep between.</li>
+<li><code>interval</code>: The interval of a half sweep (eg. <code>low -&gt; high</code>; a full sweep is <code>low -&gt; high -&gt; low</code>)</li>
+<li><code>step</code>: The size of each step in degrees.</li>
+</ul>
+<pre><code class="language-js">var servo = new five.Servo(10);
+servo.sweep({
+  range: [45, 135]
+});
+
+servo.sweep({
+  range: [45, 135], 
+  interval: 1000,
+});
+
+servo.sweep({
+  range: [45, 135], 
+  interval: 1000,
+  step: 10
+});
+</code></pre></li>
+</ul></li>
+<li><p><strong>stop()</strong> Stop a moving servo.</p>
+<pre><code class="language-js">var servo = new five.Servo(10);
+
+servo.stop();
+</code></pre></li>
+</ul>
+<ul>
+<li><p><strong>cw(speed)</strong> (Continuous only) Move a <em>continuous</em> servo clockwise at speed, 0-1</p>
+<pre><code class="language-js">var servo = new five.Servo({
+  pin: 10, 
+  type: &quot;continuous&quot;
+});
+// full speed 
+servo.cw(1);
+</code></pre></li>
+<li><p><strong>ccw(speed)</strong> (Continuous only) Move a <em>continuous</em> servo counter clockwise at speed, 0-1</p>
+<pre><code class="language-js">var servo = new five.Servo({
+  pin: 10, 
+  type: &quot;continuous&quot;
+});
+// full speed 
+servo.ccw(1);
+</code></pre></li>
+</ul>
+<h2>Events</h2>
+<p>It's recommended to use a rotary potentiometer as the mechanism for determining servo movement.</p>
+<ul>
+<li><strong>move:complete</strong> This is emitted when a timed move is completed. The event won't fire unless a time argument has been passed to the <code>servo.to()</code> method.</li>
+</ul>
+<h2>Troubleshooting</h2>
+<p>If you are experiencing memory leak crashes when using your servo, make sure that you are not powering the servo directly from your board. Excessive power draw on the USB port causes such crashes. The following diagram shows an example of how to provide external power for servos:</p>
+<p><img src="https://dl.dropboxusercontent.com/u/3531958/external-servo-power.png"></p>
+<p>If your continuous servo moves when it should be stopped, it likely needs to be calibrated. Find instructions <a href="http://bocoup.com/weblog/assembling-preparing-robotsconf-sumobot-with-johnny-five/">here</a>.</p>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/servo">Servo</a></li>
+<li><a href="/examples/servo-PCA9685">Servo - PCA9685</a></li>
+<li><a href="/examples/servo-tessel-servo-module">Servo - Tessel Servo Module</a></li>
+<li><a href="/examples/servo-continuous">Servo - Continuous</a></li>
+<li><a href="/examples/servo-multi-turn">Servo - Multi-Turn</a></li>
+<li><a href="/examples/servo-slider">Servo - Slider control</a></li>
+<li><a href="/examples/servo-prompt">Servo - Prompt</a></li>
+<li><a href="/examples/servo-drive">Servo - Drive</a></li>
+<li><a href="/examples/servo-sweep">Servo - Sweep</a></li>
+<li><a href="/examples/servo-array">Servos - An array of servos</a></li>
+<li><a href="/examples/servo-animation">Servo - Animation</a></li>
+<li><a href="/examples/servo-animation-leg">Servo - Leg Animation</a></li>
+<li><a href="/examples/motor-PCA9685">Motor - PCA9685</a></li>
+<li><a href="/examples/joystick-pantilt">Joystick - Pan + Tilt control</a></li>
+<li><a href="/examples/magnetometer-log">Compass - Logger</a></li>
+<li><a href="/examples/magnetometer-north">Compass - Find north</a></li>
+<li><a href="/examples/accelerometer-pan-tilt">Accelerometer - Pan + Tilt</a></li>
+<li><a href="/examples/gyro">Gyro</a></li>
+<li><a href="/examples/grove-servo-edison">Intel Edison + Grove - Servo</a></li>
+<li><a href="/examples/grove-servo">Grove - Servo</a></li>
+<li><a href="/examples/micromagician-servo">Micro Magician V2 - Servo</a></li>
+<li><a href="/examples/tinkerkit-combo">TinkerKit - Combo</a></li>
+<li><a href="/examples/tinkerkit-continuous-servo">TinkerKit - Continuous servo</a></li>
+<li><a href="/examples/tinkerkit-rotary">TinkerKit - Rotary potentiometer</a></li>
+<li><a href="/examples/tinkerkit-tilt">TinkerKit - Tilt</a></li>
+<li><a href="/examples/line-follower">Line Follower</a></li>
+<li><a href="/examples/navigator">Navigator</a></li>
+<li><a href="/examples/phoenix">Phoenix Hexapod</a></li>
+<li><a href="/examples/boe-test-servos">BOE Bot</a></li>
+<li><a href="/examples/bug">Bug</a></li>
+<li><a href="/examples/brat">Lynxmotion Biped BRAT</a></li>
+<li><a href="/examples/claw">Robotic Claw</a></li>
+<li><a href="/examples/kinect-arm-controller">Kinect Robotic Arm Controller</a></li>
+<li><a href="/examples/radar">Radar</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

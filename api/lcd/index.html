@@ -1,0 +1,1442 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: LCD API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: LCD API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/lcd">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , LCD">
+  <meta name="keywords" content="JavaScript, Robotics , LCD">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>LCD</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p>The <code>LCD</code> class constructs an object that represents an LCD Display. Controllers are generally named for the chip used or component model number. Most LCD's use the HD44780 screen (or similar), so be sure to check the model number or chip name for the right controller (valid controllers are listed below).</p>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>General Options</strong>
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>rows</td><td>Number</td><td>The number of rows on the device</td><td>2</td><td>No</td></tr>
+<tr><td>cols</td><td>Number</td><td>The number of columns on the device</td><td>16</td><td>No</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+<li><p><strong>I2C Options</strong>
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>controller</td><td>String</td><td>&quot;PCF8574&quot;, &quot;PCF8574A&quot;, &quot;JHD1313M1&quot; (Grove). The name of the controller to use.</td><td></td><td>Yes</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+<li><p><strong>Parallel Options (Default Controller)</strong>
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>pins</td><td>Object</td><td><code>{ rs, en, d4, d5, d6, d7 }</code>. Sets the values of the rs, en, d4, d5, d6 and d7 pins.</td><td></td><td>Yes (Either)</td></tr>
+<tr><td>pins</td><td>Array</td><td><code>[ rs, en, d4, d5, d6, d7 ]</code>. Sets the values of the rs, en, d4, d5, d6 and d7 pins.</td><td></td><td>Yes (Either)</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>id</code></td><td>A user definable id value. Defaults to null</td><td>No</td></tr>
+<tr><td><code>rows</code></td><td>The number of rows that the LCD display supports. Defaults to 2.</td><td>No</td></tr>
+<tr><td><code>cols</code></td><td>The number of columns that the LCD display contains. Defaults to 16.</td><td>No</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>Parallel</h4>
+<pre><code class="language-js">// Parallel LCD
+new five.LCD({ 
+  pins: [7, 8, 9, 10, 11, 12]
+});
+
+// Parallel LCD w/ Backlight
+new five.LCD({ 
+  pins: [7, 8, 9, 10, 11, 12],
+  backlight: 13,
+});
+
+// Parallel LCD w/ Backlight &amp; Explicit Rows and Columns (20 cols, 2 rows)
+new five.LCD({ 
+  pins: [7, 8, 9, 10, 11, 12],
+  backlight: 13,
+  rows: 2,
+  cols: 16
+});
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/lcd.png" alt="LCD"></p>
+<h4>I2C, PCF8574 (Generic)</h4>
+<pre><code class="language-js">/* I2C LCD Controllers PCF8574X Series have SDA and SCL pins which need to be connected to respective i/o ports on Arduino boards e.g
+* Arduino UNO SDA = A4  and SCL = A5
+* Arduino MEGA 2560 SDA = 20  and SCL = 21   
+* + To Adjust the LCD text Brightness use blue color variable resistor on I2C board. turn it around with screw driver.
+*/
+
+// I2C LCD, PCF8574
+new five.LCD({ 
+  controller: &quot;PCF8574&quot;
+});
+
+// I2C LCD, PCF8574A
+new five.LCD({ 
+  controller: &quot;PCF8574A&quot;
+});
+
+// I2C LCD, PCF8574T
+new five.LCD({ 
+  controller: &quot;PCF8574T&quot;
+});
+
+// I2C LCD, PCF8574AT
+new five.LCD({ 
+  controller: &quot;PCF8574AT&quot;
+});
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/lcd-i2c-PCF8574.png" alt="LCD I2C"></p>
+<h4>I2C, JHD1313M1 (Grove)</h4>
+<pre><code class="language-js">new five.LCD({ 
+  controller: &quot;JHD1313M1&quot;
+});
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/grove-lcd-rgb.png" alt="LCD Grove"></p>
+<h2>Usage</h2>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var lcd = new five.LCD({ pins: [7, 8, 9, 10, 11, 12] });
+
+  lcd.print(&quot;Hello&quot;);
+});
+
+</code></pre>
+<h2>API</h2>
+<ul>
+<li><p><strong>print(message, opts)</strong> prints the string 'message' to the LCD display at the cursor's current position</p>
+<ul>
+<li>if <code>opts.dontProcessSpecials</code> is set to true, it will not print out any special characters created by the <code>useChar(charCode|name)</code> function.</li>
+</ul>
+<pre><code class="language-js">
+// No special characters
+lcd.print(&quot;Bleep bloop&quot;);
+
+// With special characters.
+// This will print a heart character in 1 character space.
+lcd.useChar(&quot;heart&quot;);
+lcd.print(&quot;:heart:&quot;);
+
+// With special characters, unprocessed.
+// This will print the literal string &quot;:heart:&quot; in 7 character spaces.
+lcd.useChar(&quot;heart&quot;);
+lcd.print(&quot;:heart:&quot;, { dontProcessSpecials: true });
+</code></pre></li>
+<li><p><strong>useChar(charCode|name)</strong> Creates the character in LCD memory and adds character to current LCD character map. LCD memory is limited to 8 special characters at a time (see predefined characters <a href="#predefined-characters">here</a>).</p>
+<pre><code class="language-js">lcd.useChar(&quot;heart&quot;);
+lcd.print(&quot;Hello :heart:&quot;);
+</code></pre></li>
+<li><p><strong>clear()</strong> Clears all text on the LCD.</p>
+<pre><code class="language-js">lcd.print(&quot;Bleep bloop&quot;);
+lcd.clear();
+</code></pre></li>
+<li><p><strong>cursor(row, column)</strong> Sets the cursor position.</p>
+<pre><code class="language-js">// The starting position of the LCD display
+lcd.cursor(0, 0).print(&quot;Bleep&quot;);
+
+// The second line, first character of the LCD display
+lcd.cursor(0, 1).print(&quot;Bloop&quot;);
+
+</code></pre></li>
+<li><p><strong>home()</strong> Sets the cursor position to row 0, column 0.</p>
+<pre><code class="language-js">// The second line, first character of the LCD display
+lcd.cursor(1, 0).print(&quot;Bloop&quot;);
+
+// The first line, first character of the LCD display
+lcd.home().print(&quot;Bleep&quot;);
+</code></pre></li>
+<li><p><strong>on()</strong> Turn the display on.</p></li>
+<li><p><strong>off()</strong> Turn the display off.</p></li>
+<li><p><strong>blink()</strong> This causes the cursor to show and blink</p>
+<pre><code class="language-js">lcd.blink().print(&quot;Bleep Bloop&quot;);
+</code></pre></li>
+<li><p><strong>noBlink()</strong> This causes the cursor to stop blinking</p>
+<pre><code class="language-js">lcd.noBlink().print(&quot;Bleep Bloop&quot;);
+</code></pre></li>
+<li><p><strong>autoscroll()</strong> Turns on automatic scrolling of the LCD. This causes each character output to the display to push previous characters over by one space.</p>
+<pre><code class="language-js">lcd.autoscroll().print(&quot;Bloop&quot;).print(&quot;Bleep&quot;);
+</code></pre></li>
+<li><p><strong>noAutoscroll()</strong> Turns off automatic scrolling of the LCD.</p>
+<pre><code class="language-js">lcd.noAutoscroll().print(&quot;Bloop&quot;).print(&quot;Bleep&quot;);
+</code></pre></li>
+<li><p><strong>bgColor(color)</strong> Set the background color for LCDs that support this capability.</p>
+<pre><code class="language-js">// R, G, B bytes
+lcd.bgColor(red, green, blue);
+// R, G, B byte array 
+lcd.bgColor([red, green, blue]);
+// Keyword 
+lcd.bgColor(&quot;red&quot;);
+// Hex Code 
+lcd.bgColor(&quot;#ff0000&quot;);
+// Hex Code, no #
+lcd.bgColor(&quot;ff0000&quot;);
+</code></pre></li>
+</ul>
+<h2>Predefined Characters</h2>
+<pre><code>
+0:
+  ■ ■ ■   
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+  ■ ■ ■   
+
+1:
+      ■   
+    ■ ■   
+  ■ ■ ■   
+    ■ ■   
+    ■ ■   
+    ■ ■   
+    ■ ■   
+
+2:
+  ■ ■ ■   
+■ ■   ■ ■ 
+      ■ ■ 
+    ■ ■   
+  ■ ■     
+■ ■       
+■ ■ ■ ■ ■ 
+
+3:
+  ■ ■ ■   
+■ ■   ■ ■ 
+      ■ ■ 
+  ■ ■ ■   
+      ■ ■ 
+■ ■   ■ ■ 
+  ■ ■ ■   
+
+4:
+      ■ ■ 
+    ■ ■ ■ 
+  ■ ■ ■ ■ 
+■ ■   ■ ■ 
+■ ■ ■ ■ ■ 
+      ■ ■ 
+      ■ ■ 
+
+5:
+■ ■ ■ ■ ■ 
+■ ■       
+■ ■ ■ ■   
+      ■ ■ 
+      ■ ■ 
+■ ■   ■ ■ 
+  ■ ■ ■   
+
+6:
+  ■ ■ ■   
+■ ■   ■ ■ 
+■ ■       
+■ ■ ■ ■   
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+  ■ ■ ■   
+
+7:
+■ ■ ■ ■ ■ 
+      ■ ■ 
+    ■ ■   
+  ■ ■     
+  ■ ■     
+  ■ ■     
+  ■ ■     
+
+8:
+  ■ ■ ■   
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+  ■ ■ ■   
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+  ■ ■ ■   
+
+9:
+  ■ ■ ■   
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+  ■ ■ ■ ■ 
+      ■ ■ 
+■ ■   ■ ■ 
+  ■ ■ ■   
+
+10:
+■   ■ ■ ■ 
+■   ■   ■ 
+■   ■   ■ 
+■   ■   ■ 
+■   ■ ■ ■ 
+          
+■ ■ ■ ■ ■ 
+
+11:
+  ■   ■   
+  ■   ■   
+  ■   ■   
+  ■   ■   
+  ■   ■   
+          
+■ ■ ■ ■ ■ 
+
+12:
+■   ■ ■ ■ 
+■       ■ 
+■   ■ ■ ■ 
+■   ■     
+■   ■ ■ ■ 
+          
+■ ■ ■ ■ ■ 
+
+13:
+■   ■ ■ ■ 
+■       ■ 
+■     ■ ■ 
+■       ■ 
+■   ■ ■ ■ 
+          
+■ ■ ■ ■ ■ 
+
+14:
+■   ■   ■ 
+■   ■   ■ 
+■   ■ ■ ■ 
+■       ■ 
+■       ■ 
+          
+■ ■ ■ ■ ■ 
+
+15:
+■   ■ ■ ■ 
+■   ■     
+■   ■ ■ ■ 
+■       ■ 
+■   ■ ■ ■ 
+          
+■ ■ ■ ■ ■ 
+
+16:
+■   ■ ■ ■ 
+■   ■     
+■   ■ ■ ■ 
+■   ■   ■ 
+■   ■ ■ ■ 
+          
+■ ■ ■ ■ ■ 
+
+17:
+■   ■ ■ ■ 
+■       ■ 
+■     ■   
+■     ■   
+■     ■   
+          
+■ ■ ■ ■ ■ 
+
+18:
+■   ■ ■ ■ 
+■   ■   ■ 
+■   ■ ■ ■ 
+■   ■   ■ 
+■   ■ ■ ■ 
+          
+■ ■ ■ ■ ■ 
+
+19:
+■   ■ ■ ■ 
+■   ■   ■ 
+■   ■ ■ ■ 
+■       ■ 
+■   ■ ■ ■ 
+          
+■ ■ ■ ■ ■ 
+
+circle:
+          
+  ■ ■ ■   
+■       ■ 
+■       ■ 
+■       ■ 
+  ■ ■ ■   
+          
+
+cdot:
+          
+  ■ ■ ■   
+■       ■ 
+■   ■   ■ 
+■       ■ 
+  ■ ■ ■   
+          
+
+donut:
+          
+  ■ ■ ■   
+■ ■ ■ ■ ■ 
+■ ■   ■ ■ 
+■ ■ ■ ■ ■ 
+  ■ ■ ■   
+          
+
+ball:
+          
+  ■ ■ ■   
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+  ■ ■ ■   
+          
+
+square:
+          
+■ ■ ■ ■ ■ 
+■       ■ 
+■       ■ 
+■       ■ 
+■ ■ ■ ■ ■ 
+          
+
+sdot:
+          
+■ ■ ■ ■ ■ 
+■       ■ 
+■   ■   ■ 
+■       ■ 
+■ ■ ■ ■ ■ 
+          
+
+fbox:
+          
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+          
+
+sbox:
+          
+          
+  ■ ■ ■   
+  ■   ■   
+  ■ ■ ■   
+          
+          
+
+sfbox:
+          
+          
+  ■ ■ ■   
+  ■ ■ ■   
+  ■ ■ ■   
+          
+          
+
+bigpointerright:
+  ■       
+  ■ ■     
+  ■   ■   
+  ■     ■ 
+  ■   ■   
+  ■ ■     
+  ■       
+
+bigpointerleft:
+      ■   
+    ■ ■   
+  ■   ■   
+■     ■   
+  ■   ■   
+    ■ ■   
+      ■   
+
+arrowright:
+  ■       
+  ■ ■     
+  ■   ■   
+  ■     ■ 
+  ■   ■   
+  ■ ■     
+  ■       
+
+arrowleft:
+      ■   
+    ■ ■   
+  ■   ■   
+■     ■   
+  ■   ■   
+    ■ ■   
+      ■   
+
+ascprogress1:
+■         
+■         
+■         
+■         
+■         
+■         
+■         
+■         
+
+ascprogress2:
+■ ■       
+■ ■       
+■ ■       
+■ ■       
+■ ■       
+■ ■       
+■ ■       
+■ ■       
+
+ascprogress3:
+■ ■ ■     
+■ ■ ■     
+■ ■ ■     
+■ ■ ■     
+■ ■ ■     
+■ ■ ■     
+■ ■ ■     
+■ ■ ■     
+
+ascprogress4:
+■ ■ ■ ■   
+■ ■ ■ ■   
+■ ■ ■ ■   
+■ ■ ■ ■   
+■ ■ ■ ■   
+■ ■ ■ ■   
+■ ■ ■ ■   
+■ ■ ■ ■   
+
+fullprogress:
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+
+descprogress1:
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+
+descprogress2:
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+
+descprogress3:
+    ■ ■ ■ 
+    ■ ■ ■ 
+    ■ ■ ■ 
+    ■ ■ ■ 
+    ■ ■ ■ 
+    ■ ■ ■ 
+    ■ ■ ■ 
+    ■ ■ ■ 
+
+descprogress4:
+  ■ ■ ■ ■ 
+  ■ ■ ■ ■ 
+  ■ ■ ■ ■ 
+  ■ ■ ■ ■ 
+  ■ ■ ■ ■ 
+  ■ ■ ■ ■ 
+  ■ ■ ■ ■ 
+  ■ ■ ■ ■ 
+
+ascchart1:
+■ ■ ■ ■ ■ 
+          
+          
+          
+          
+          
+          
+          
+
+ascchart2:
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+          
+          
+          
+          
+          
+          
+
+ascchart3:
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+          
+          
+          
+          
+          
+
+ascchart4:
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+          
+          
+          
+          
+
+ascchart5:
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+          
+          
+          
+
+ascchart6:
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+          
+          
+
+ascchart7:
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+          
+
+descchart1:
+          
+          
+          
+          
+          
+          
+          
+■ ■ ■ ■ ■ 
+
+descchart2:
+          
+          
+          
+          
+          
+          
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+
+descchart3:
+          
+          
+          
+          
+          
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+
+descchart4:
+          
+          
+          
+          
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+
+descchart5:
+          
+          
+          
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+
+descchart6:
+          
+          
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+
+descchart7:
+          
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+
+borderleft1:
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+
+borderleft2:
+      ■ ■ 
+      ■   
+      ■   
+      ■   
+      ■   
+      ■   
+      ■   
+      ■ ■ 
+
+borderleft3:
+    ■ ■ ■ 
+    ■     
+    ■     
+    ■     
+    ■     
+    ■     
+    ■     
+    ■ ■ ■ 
+
+borderleft4:
+  ■ ■ ■ ■ 
+  ■       
+  ■       
+  ■       
+  ■       
+  ■       
+  ■       
+  ■ ■ ■ ■ 
+
+borderleft5:
+■ ■ ■ ■ ■ 
+■         
+■         
+■         
+■         
+■         
+■         
+■ ■ ■ ■ ■ 
+
+bordertopbottom5:
+■ ■ ■ ■ ■ 
+          
+          
+          
+          
+          
+          
+■ ■ ■ ■ ■ 
+
+borderright1:
+■         
+■         
+■         
+■         
+■         
+■         
+■         
+■         
+
+borderright2:
+■ ■       
+  ■       
+  ■       
+  ■       
+  ■       
+  ■       
+  ■       
+■ ■       
+
+borderright3:
+■ ■ ■     
+    ■     
+    ■     
+    ■     
+    ■     
+    ■     
+    ■     
+■ ■ ■     
+
+borderright4:
+■ ■ ■ ■   
+      ■   
+      ■   
+      ■   
+      ■   
+      ■   
+      ■   
+■ ■ ■ ■   
+
+borderright5:
+■ ■ ■ ■ ■ 
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+        ■ 
+■ ■ ■ ■ ■ 
+
+box1:
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+          
+          
+          
+          
+
+box2:
+■ ■       
+■ ■       
+■ ■       
+          
+          
+          
+          
+
+box3:
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+          
+          
+          
+          
+
+box4:
+          
+          
+          
+          
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+
+box5:
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+          
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+
+box6:
+■ ■       
+■ ■       
+■ ■       
+          
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+
+box7:
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+          
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+
+box8:
+          
+          
+          
+          
+■ ■       
+■ ■       
+■ ■       
+
+box9:
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+          
+■ ■       
+■ ■       
+■ ■       
+
+box10:
+■ ■       
+■ ■       
+■ ■       
+          
+■ ■       
+■ ■       
+■ ■       
+
+box11:
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+          
+■ ■       
+■ ■       
+■ ■       
+
+box12:
+          
+          
+          
+          
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+
+box13:
+      ■ ■ 
+      ■ ■ 
+      ■ ■ 
+          
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+
+box14:
+■ ■       
+■ ■       
+■ ■       
+          
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+
+box15:
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+          
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+■ ■   ■ ■ 
+
+euro:
+      ■ ■ 
+    ■     
+■ ■ ■ ■   
+  ■       
+■ ■ ■ ■   
+  ■       
+    ■ ■ ■ 
+
+cent:
+          
+          
+  ■ ■ ■   
+■       ■ 
+■         
+■   ■   ■ 
+  ■ ■ ■   
+  ■       
+
+speaker:
+        ■ 
+      ■ ■ 
+  ■ ■ ■ ■ 
+  ■ ■ ■ ■ 
+  ■ ■ ■ ■ 
+      ■ ■ 
+        ■ 
+
+sound:
+  ■       
+■         
+          
+■ ■       
+          
+■         
+  ■       
+
+x:
+          
+■ ■   ■ ■ 
+  ■ ■ ■   
+    ■     
+  ■ ■ ■   
+■ ■   ■ ■ 
+          
+
+target:
+          
+  ■   ■   
+■       ■ 
+■   ■   ■ 
+■       ■ 
+  ■   ■   
+          
+
+pointerright:
+          
+  ■       
+  ■ ■     
+  ■ ■ ■   
+  ■ ■     
+  ■       
+          
+
+pointerup:
+          
+          
+    ■     
+  ■ ■ ■   
+■ ■ ■ ■ ■ 
+          
+          
+
+pointerleft:
+          
+      ■   
+    ■ ■   
+  ■ ■ ■   
+    ■ ■   
+      ■   
+          
+
+pointerdown:
+          
+          
+■ ■ ■ ■ ■ 
+  ■ ■ ■   
+    ■     
+          
+          
+
+arrowne:
+          
+  ■ ■ ■ ■ 
+      ■ ■ 
+    ■   ■ 
+  ■     ■ 
+■         
+          
+
+arrownw:
+          
+■ ■ ■ ■   
+■ ■       
+■   ■     
+■     ■   
+        ■ 
+          
+
+arrowsw:
+          
+        ■ 
+■     ■   
+■   ■     
+■ ■       
+■ ■ ■ ■   
+          
+
+arrowse:
+          
+■         
+  ■     ■ 
+    ■   ■ 
+      ■ ■ 
+  ■ ■ ■ ■ 
+          
+
+dice1:
+          
+          
+          
+    ■     
+          
+          
+          
+
+dice2:
+          
+■         
+          
+          
+          
+        ■ 
+          
+
+dice3:
+          
+■         
+          
+    ■     
+          
+        ■ 
+          
+
+dice4:
+          
+■       ■ 
+          
+          
+          
+■       ■ 
+          
+
+dice5:
+          
+■       ■ 
+          
+    ■     
+          
+■       ■ 
+          
+
+dice6:
+          
+■       ■ 
+          
+■       ■ 
+          
+■       ■ 
+          
+
+bell:
+    ■     
+  ■ ■ ■   
+  ■ ■ ■   
+  ■ ■ ■   
+■ ■ ■ ■ ■ 
+          
+    ■     
+
+smile:
+          
+  ■   ■   
+          
+■       ■ 
+  ■ ■ ■   
+          
+          
+
+note:
+      ■   
+      ■ ■ 
+      ■   
+  ■ ■ ■   
+■ ■ ■ ■   
+  ■ ■     
+          
+
+clock:
+          
+  ■ ■ ■   
+■   ■   ■ 
+■   ■ ■ ■ 
+■       ■ 
+  ■ ■ ■   
+          
+
+heart:
+          
+  ■   ■   
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+  ■ ■ ■   
+    ■     
+          
+
+duck:
+          
+  ■ ■     
+■ ■ ■   ■ 
+  ■ ■ ■ ■ 
+  ■ ■ ■ ■ 
+    ■ ■   
+          
+
+check:
+          
+        ■ 
+      ■ ■ 
+■   ■ ■   
+■ ■ ■     
+  ■       
+          
+
+retarrow:
+        ■ 
+        ■ 
+    ■   ■ 
+  ■     ■ 
+■ ■ ■ ■ ■ 
+  ■       
+    ■     
+
+runninga:
+    ■ ■   
+    ■ ■   
+    ■   ■ 
+  ■ ■ ■   
+■   ■     
+    ■     
+  ■   ■   
+■       ■ 
+
+runningb:
+    ■ ■   
+    ■ ■   
+    ■     
+  ■ ■ ■   
+  ■ ■ ■   
+    ■     
+  ■   ■   
+  ■   ■   
+</code></pre>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/lcd">LCD</a></li>
+<li><a href="/examples/lcd-16x2-tessel">LCD - Tessel 2 16x2</a></li>
+<li><a href="/examples/lcd-enumeratechars">LCD - Enumerate characters</a></li>
+<li><a href="/examples/lcd-runner-20x4">LCD - Runner 20x4</a></li>
+<li><a href="/examples/lcd-runner">LCD - Runner 16x2</a></li>
+<li><a href="/examples/lcd-i2c">LCD - I2C</a></li>
+<li><a href="/examples/lcd-i2c-PCF8574">LCD - I2C PCF8574</a></li>
+<li><a href="/examples/lcd-i2c-runner">LCD - I2C Runner</a></li>
+<li><a href="/examples/lcd-rgb-tessel-grove-JHD1313M1">Tessel 2 + Grove - RGB LCD Display</a></li>
+<li><a href="/examples/lcd-rgb-bgcolor-previewer">Grove - RGB LCD Color Previewer</a></li>
+<li><a href="/examples/lcd-rgb-bgcolor-previewer-tessel">Tessel 2 + Grove - RGB LCD Color Previewer</a></li>
+<li><a href="/examples/grove-lcd-rgb-edison">Intel Edison + Grove - RGB LCD</a></li>
+<li><a href="/examples/grove-lcd-rgb-bgcolor-previewer-edison">Intel Edison + Grove - RGB LCD Color Previewer</a></li>
+<li><a href="/examples/grove-lcd-rgb-temperature-display-edison">Intel Edison + Grove - RGB LCD temperature display</a></li>
+<li><a href="/examples/grove-lcd-rgb">Grove - RGB LCD</a></li>
+<li><a href="/examples/grove-lcd-rgb-temperature-display">Grove - RGB LCD temperature display</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

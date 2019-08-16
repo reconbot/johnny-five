@@ -1,0 +1,360 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Compass API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Compass API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/compass">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Compass">
+  <meta name="keywords" content="JavaScript, Robotics , Compass">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Compass</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p><img src="http://i.gyazo.com/5808690439afa3eb111d82234ed97f76.png" alt=""></p>
+<p>The <code>Compass</code> class constructs an object that represents a single Compass or Magnetometer.</p>
+<p>Supported Compass/Magnetometer:</p>
+<ul>
+<li>HMC6352
+<ul>
+<li>No longer in production, but we assume people may still have them.</li>
+</ul></li>
+<li>HMC5883L
+<ul>
+<li><a href="https://www.adafruit.com/products/1746?utm_source=j5">Triple-axis Magnetometer (Compass) Board - HMC5883L</a></li>
+<li><a href="https://www.sparkfun.com/products/10530?utm_source=j5">SparkFun Triple Axis Magnetometer Breakout - HMC5883L</a></li>
+</ul></li>
+<li>BNO055
+<ul>
+<li><a href="https://www.adafruit.com/product/2472">Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055</a></li>
+</ul></li>
+<li>MAG3110
+<ul>
+<li><a href="https://www.sparkfun.com/products/12670">SparkFun Triple Axis Magnetometer Breakout - MAG3110</a></li>
+</ul></li>
+<li>LSM303C
+<ul>
+<li><a href="https://www.adafruit.com/product/1120?utm_source=j5">Adafruit</a></li>
+<li><a href="https://www.sparkfun.com/products/13303?utm_source=j5">SparkFun</a></li>
+</ul></li>
+</ul>
+<p>This list will continue to be updated as more component support is implemented.</p>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>Options</strong> An object of property parameters.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>controller</td><td>String</td><td>BNO055, HMC6352, HMC5883L, MAG3110, LSM303C. The name of the controller to use</td><td></td><td>yes</td></tr>
+<tr><td>gauss</td><td>Number</td><td>cgs units. Set the scale gauss for compass readings.</td><td>1.3</td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>raw</code></td><td>The raw x/y/z values.</td><td>Yes</td></tr>
+<tr><td><code>heading</code></td><td>The current heading in degrees, 0-360°</td><td>Yes</td></tr>
+<tr><td><code>bearing</code></td><td>An object of properties whose values are relevant bearing information ★</td><td>Yes</td></tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>bearing</strong> ★</p>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>point</code></td><td>A cardinal direction, eg. &quot;north&quot;, &quot;south&quot;, &quot;east&quot;, &quot;west&quot;</td><td>No</td></tr>
+<tr><td><code>abbr</code></td><td>Abbreviated <code>point</code>, eg. &quot;N&quot;, &quot;NE&quot;, &quot;NEbE&quot;</td><td>No</td></tr>
+<tr><td><code>low</code></td><td>Low end of cardinal range in degrees</td><td>No</td></tr>
+<tr><td><code>mid</code></td><td>Middle end of cardinal range in degrees</td><td>No</td></tr>
+<tr><td><code>high</code></td><td>High end of cardinal range in degrees</td><td>No</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2>Component Initialization</h2>
+<h4>BNO055</h4>
+<pre><code class="language-js">new five.Compass({
+  controller: &quot;BNO055&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/imu-bno055.png" alt="BNO055"></p>
+<h4>HMC6352</h4>
+<pre><code class="language-js">new five.Compass({
+  controller: &quot;HMC6352&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/compass-hmc6352.png" alt="HMC6352"></p>
+<h4>HMC5883L</h4>
+<pre><code class="language-js">new five.Compass({
+  controller: &quot;HMC5883L&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/compass-hmc5883l.png" alt="HMC5883L"></p>
+<h4>MAG3110</h4>
+<pre><code class="language-js">new five.Compass({
+  controller: &quot;MAG3110&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/compass-MAG3110.png" alt="MAG3110"></p>
+<h4>LSM303C</h4>
+<pre><code class="language-js">// Create an LSM303C Compass/Magnetometer object:
+//
+//  - attach SDA and SCL to the I2C pins on your board (A4 and A5 for the Uno)
+//  - specify the LSM303C controller
+new five.Compass({
+  controller: &quot;LSM303C&quot;
+});
+// Or...
+new five.Magnetometer({
+  controller: &quot;LSM303C&quot;
+});
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/imu-lsm303c.png" alt="imu-lsm303c.png"></p>
+<h2>Usage</h2>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var compass = new five.Compass({
+    controller: &quot;HMC6352&quot;
+  });
+
+  compass.on(&quot;change&quot;, function() {
+    console.log(&quot;change&quot;);
+    console.log(&quot;  heading : &quot;, Math.floor(this.heading));
+    console.log(&quot;  bearing : &quot;, this.bearing.point);
+    console.log(&quot;--------------------------------------&quot;);
+  });
+
+  compass.on(&quot;data&quot;, function() {
+    console.log(&quot;  heading : &quot;, Math.floor(this.heading));
+    console.log(&quot;  bearing : &quot;, this.bearing.point);
+    console.log(&quot;--------------------------------------&quot;);
+  });
+});
+</code></pre>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var compass = new five.Compass({
+    controller: &quot;HMC5883L&quot;
+  });
+
+  compass.on(&quot;change&quot;, function() {
+    console.log(&quot;change&quot;);
+    console.log(&quot;  heading : &quot;, Math.floor(this.heading));
+    console.log(&quot;  bearing : &quot;, this.bearing.point);
+    console.log(&quot;--------------------------------------&quot;);
+  });
+
+  compass.on(&quot;data&quot;, function() {
+    console.log(&quot;  heading : &quot;, Math.floor(this.heading));
+    console.log(&quot;  bearing : &quot;, this.bearing.point);
+    console.log(&quot;--------------------------------------&quot;);
+  });
+});
+</code></pre>
+<h2>API</h2>
+<p>There are no special API functions for this class.</p>
+<h2>Events</h2>
+<ul>
+<li><strong>change</strong> The &quot;change&quot; event is emitted whenever the heading of the compass has changed from it's last position</li>
+<li><strong>data</strong> The &quot;data&quot; event is fired as frequently as the user defined freq will allow in milliseconds.</li>
+</ul>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/magnetometer">Compass / Magnetometer</a></li>
+<li><a href="/examples/compass-hmc6352">Compass - HMC6352</a></li>
+<li><a href="/examples/compass-MAG3110">Compass - MAG3110</a></li>
+<li><a href="/examples/compass-MAG3110-tessel">Compass - MAG3110 on Tessel 2</a></li>
+<li><a href="/examples/compass-hmc5883l">Compass - HMC5883L</a></li>
+<li><a href="/examples/grove-compass-edison">Intel Edison + Grove - Compass (HMC588L)</a></li>
+<li><a href="/examples/navigator">Navigator</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

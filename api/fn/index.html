@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Fn API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Fn API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/fn">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Fn">
+  <meta name="keywords" content="JavaScript, Robotics , Fn">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Fn</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p>The <code>Fn</code> object gives you access to a number of handy utility functions and &quot;constants&quot; for your Johnny-Five convenience. The source in <code>lib/fn.js</code> has extensive inline comments, as well. The <code>Fn</code> object is available in Johnny-Five's top-level context:</p>
+<pre><code class="language-js">var five = require('johnny-five');
+var total = five.Fn.sum([3, 4, 2, 0, 5]); // -&gt; 14
+</code></pre>
+<h2>API</h2>
+<h3>General Utility Functions</h3>
+<ul>
+<li><p><strong>constrain(value, lower, upper)</strong> Constrain <code>value</code> so that it falls within the range bounded by <code>lower</code> and <code>upper</code>.</p>
+<pre><code class="language-js">five.Fn.constrain(235, 0, 255); // --&gt; 235
+five.Fn.constrain(948, 0, 255); // --&gt; 255
+</code></pre></li>
+<li><p><strong>inRange(value, lower, upper)</strong> Is the <code>value</code> within the range bounded by <code>lower</code> and <code>upper</code>?</p>
+<pre><code class="language-js">five.Fn.inRange(235, 0, 255); // --&gt; true
+five.Fn.inRange(948, 0, 255); // --&gt; false
+</code></pre></li>
+<li><p><strong>map(value, fromLow, fromHigh, toLow, toHigh)</strong> Map a numeric <code>value</code> from one range to another. Based on Arduino's <code>map(...)</code>.</p>
+<pre><code class="language-js">five.Fn.map(500, 0, 1000, 0, 255); // --&gt; 127
+</code></pre></li>
+<li><p><strong>fmap(...)</strong> Like <code>Fn.map</code>, but the return value will be cast to a <code>Float32</code>.</p></li>
+<li><p><strong>range(lower, upper, tick)</strong> Generate an Array of Numbers with element values ranging from <code>lower</code> to <code>upper</code>; the step (increment/decrement) between each is defined by <code>tick</code>. If <code>range</code> is invoked with a single argument, it will be used to determine the number of elements in the resulting Array.</p>
+<pre><code class="language-js">five.Fn.range(5); // -&gt; [0, 1, 2, 3, 4];
+five.Fn.range(5, 10); // -&gt; [5, 6, 7, 8, 9, 10];
+five.Fn.range(3, 27, 3); // -&gt; [3, 6, 9, 12, 15, 18, 21, 24, 27];
+five.Fn.range(0, -9, -3); // -&gt; [0, -3, -6, -9];
+</code></pre></li>
+<li><p><strong>range.prefixed(prefix, ...)</strong> Adds prefix to each element in the range Array returned by <code>Fn.range</code>. The function passes on arguments (other than <code>prefix</code>) to the <code>range</code> function.</p>
+<pre><code class="language-js">five.Fn.range.prefixed(&quot;A&quot;, 0, 10, 2); // -&gt; [&quot;A0&quot;, &quot;A2&quot;, &quot;A4&quot;, &quot;A6&quot;, &quot;A8&quot;, &quot;A10&quot;]
+</code></pre></li>
+<li><p><strong>scale(...)</strong> Alias for <code>Fn.map</code></p></li>
+<li><p><strong>fscale(...)</strong> Alias for <code>Fn.fmap</code></p></li>
+<li><p><strong>sum(values)</strong> Calculate a sum of all the elements in an Array.</p>
+<pre><code class="language-js">five.Fn.sum([3, 4, 2, 0, 5]); // -&gt; 14
+</code></pre></li>
+<li><p><strong>toFixed(number, digits)</strong> Format a number such that it has a given number of digits after the decimal point.</p>
+<pre><code class="language-js">five.Fn.toFixed(5.4564, 2); // -&gt; 5.46
+five.Fn.toFixed(1.5, 2); // -&gt; 1.5
+</code></pre></li>
+<li><p><strong>uid()</strong> Generate a reasonably-unique ID string.</p></li>
+</ul>
+<h3>Functions for Manipulating Bits and Integers</h3>
+<ul>
+<li><p><strong>bitSize(n)</strong> Return the number of bits in a given number <code>n</code>.</p>
+<pre><code class="language-js">five.Fn.bitSize(1000); // --&gt; 10
+</code></pre></li>
+<li><p><strong>bitValue(bit)</strong> (also aliased as <strong>_BV</strong> and <strong>bv</strong>) Return a value with the bit at the position (<code>bit</code>) indicated set (to 1). (From avr/io.h &quot;BV&quot;)</p>
+<pre><code>An example: logically OR these bits together:
+var ORed = _BV(0) | _BV(2) | _BV(7);
+
+BIT         7  6  5  4  3  2  1  0
+---------------------------------------------------------
+_BV(0)  =   0  0  0  0  0  0  0  1
+_BV(2)  =   0  0  0  0  0  1  0  0
+_BV(7)  =   1  0  0  0  0  0  0  0
+ORed    =   1  0  0  0  0  1  0  1
+
+ORed === 133;
+</code></pre></li>
+</ul>
+<h4>Ints from Multiple Bytes</h4>
+<p>The following functions allow you to build 16-, 24- and 32-bit numbers by cobbling together multiple bytes:</p>
+<ul>
+<li><p><strong>int16(msb, lsb)</strong> Combine <code>msb</code> (most-significant byte) and <code>lsb</code> (least-significant byte) into a 16-bit signed integer.</p>
+<pre><code class="language-js">five.Fn.int16(8, 0); // --&gt; 2048
+five.Fn.int16(255, 255); // --&gt; -1 (because signed)
+</code></pre></li>
+<li><p><strong>uint16(msb, lsb)</strong> Combine <code>msb</code> (most-significant byte) and <code>lsb</code> (least-significant byte) into a 16-bit unsigned integer.</p>
+<pre><code class="language-js">five.Fn.int16(8, 0); // --&gt; 2048
+five.Fn.int16(255, 255); // --&gt; 65535 (because unsigned)
+</code></pre></li>
+<li><p><strong>int24(b16, b8, b0)</strong> Combine three bytes to make a signed 24-bit integer.</p>
+<pre><code class="language-js">five.Fn.int24(127, 255, 255); // --&gt; 8388607
+five.Fn.int24(255, 255, 255); // --&gt; -1 (because signed)
+</code></pre></li>
+<li><p><strong>uint24(b16, b8, b0)</strong> Combine three bytes to make an unsigned 24-bit integer.</p>
+<pre><code class="language-js">five.Fn.int24(127, 255, 255); // --&gt; 8388607
+five.Fn.int24(255, 255, 255); // --&gt; 16777215 (because unsigned)
+</code></pre></li>
+<li><p><strong>int32(b24, b16, b8, b0)</strong> Combine four bytes to make a signed 32-bit integer.</p>
+<pre><code class="language-js">five.Fn.int32(127, 255, 255, 255); // --&gt; 2147483647
+five.Fn.int32(200, 255, 255, 255); // --&gt; -922746881 (because signed)
+</code></pre></li>
+<li><p><strong>uint32(b24, b16, b8, b0)</strong> Combine three bytes to make an unsigned 32-bit integer.</p>
+<pre><code class="language-js">five.Fn.uint32(127, 255, 255, 255); // --&gt; 2147483647
+five.Fn.uint32(200, 255, 255, 255); // --&gt; 4294967295 (because unsigned)
+</code></pre></li>
+</ul>
+<h4>Auto-Generated Functions</h4>
+<p>The following functions are available in the bitSizes of: <code>4, 8, 10, 12, 16, 20, 24, 32</code></p>
+<ul>
+<li><p><strong>u[bitSize](value)</strong> (e.g. <code>Fn.u8</code>) Constrain <code>value</code> to the valid range of <em>unsigned</em> ints for the given bitsize.</p>
+<pre><code class="language-js">Fn.u8(255); // --&gt; 255
+Fn.u8(256); // --&gt; 255
+Fn.u8(0);   // --&gt; 0
+Fn.u4(255); // --&gt; 15
+</code></pre></li>
+<li><p><strong>s[bitSize](value)</strong> (e.g. <code>Fn.s16</code>) Constrain <code>value</code> to the valid range of <em>signed</em> ints for the given bitsize.</p>
+<pre><code class="language-js">Fn.s8(255); // --&gt; -1
+Fn.s8(127); // --&gt; 127
+Fn.s8(128); // --&gt; -128
+</code></pre></li>
+</ul>
+<h3>Useful &quot;Constants&quot;</h3>
+<ul>
+<li><strong>RAD_TO_DEG</strong></li>
+<li><strong>DEG_TO_RAD</strong></li>
+<li><strong>TAU</strong></li>
+<li><strong>POW_2_0</strong> through <strong>POW_2_53</strong> Powers of 2</li>
+</ul>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/servo-array">Servos - An array of servos</a></li>
+<li><a href="/examples/esc-keypress">ESC - Keypress controlled ESCs</a></li>
+<li><a href="/examples/joystick-pantilt">Joystick - Pan + Tilt control</a></li>
+<li><a href="/examples/motobot">Motobot</a></li>
+<li><a href="/examples/navigator">Navigator</a></li>
+<li><a href="/examples/boe-test-servos">BOE Bot</a></li>
+<li><a href="/examples/brat">Lynxmotion Biped BRAT</a></li>
+<li><a href="/examples/kinect-arm-controller">Kinect Robotic Arm Controller</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

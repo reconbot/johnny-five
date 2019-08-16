@@ -1,0 +1,366 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Pin API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Pin API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/pin">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Pin">
+  <meta name="keywords" content="JavaScript, Robotics , Pin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Pin</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p>The <code>Pin</code> class constructs objects that represent any one pin on the physical board.</p>
+<p><strong>For most cases, a proper Component class should be used instead of <code>Pin</code>.</strong></p>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>pin</strong> A Number or String address for the pin. If digital, use the number, if analog use the &quot;A&quot; prefixed string.</p></li>
+<li><p><strong>options</strong> An object of property parameters.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>id</td><td>Number, String</td><td>Non-specific. Any string or number value. Defaults to <code>null</code></td><td></td><td>no</td></tr>
+<tr><td>pin</td><td>Number, String</td><td>Any Pin. The Number or String address of the pin, defaults to 0, or addr when that is supplied</td><td>no</td><td></td></tr>
+<tr><td>type</td><td>String</td><td>&quot;digital&quot;, &quot;analog&quot;. For most cases, this can be omitted; the type will be inferred based on the pin address number.</td><td>Inferred</td><td>no</td></tr>
+<tr><td>mode</td><td>Number</td><td>See <a href="#modes">Modes</a></td><td>1 or 2 depending on type</td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>id</code></td><td>A user definable id value. Defaults to null</td><td>No</td></tr>
+<tr><td><code>pin</code></td><td>The pin address of the pin</td><td>No</td></tr>
+<tr><td><code>type</code></td><td>The type of pin this is, either &quot;digital&quot; or &quot;analog&quot;</td><td>No</td></tr>
+<tr><td><code>value</code></td><td>The most recently reported value for this pin.</td><td>No</td></tr>
+<tr><td><code>mode</code></td><td>The mode (number) for the pin.  See &quot;Modes&quot; below</td><td>No</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>Basic</h4>
+<pre><code class="language-js">// Digital
+new five.Pin(13);
+
+// Analog
+new five.Pin(&quot;A0&quot;);
+</code></pre>
+<pre><code class="language-js">// Digital
+new five.Pin({
+  pin: 13
+});
+
+// Analog
+new five.Pin({
+  pin: &quot;A0&quot;
+});
+
+// Analog As Digital
+new five.Pin({
+  pin: 14,
+  type: &quot;digital&quot;
+});
+</code></pre>
+<h2>Usage</h2>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+  var strobe = new five.Pin(13);
+  var state = 0x00;
+
+  this.loop(500, function() {
+    strobe.write(state ^= 0x01);
+  });
+});
+</code></pre>
+<h2>API</h2>
+<ul>
+<li><p><strong>query(callback(value))</strong> Query the board for the current state of this pin, invoking <code>callback</code> with argument <code>state</code> when complete.</p>
+<pre><code class="language-js">var pin = new five.Pin(13);
+
+pin.query(function(state) {
+  console.log(state);
+});
+</code></pre>
+<p>An example pin state object looks like:</p>
+<pre><code class="language-js">{ 
+  supportedModes: [ 0, 1, 3, 4 ],
+  mode: 0,
+  value: 0,
+  report: 1,
+  state: 1,
+  analogChannel: 127 
+}
+</code></pre>
+<table>
+<thead>
+<tr><th>Property</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>supportedModes</code></td><td>This is a list of modes that are supported by the pin. These numbers correspond to the <a href="#modes">modes</a> below.</td></tr>
+<tr><td><code>mode</code></td><td>This is the present mode of the pin (eg. A digital output pin would have <code>mode: 1</code>).</td></tr>
+<tr><td><code>value</code></td><td>This is the present value of the pin (eg. An analog pin with half voltage reading would have <code>value: 512</code>).</td></tr>
+<tr><td><code>report</code></td><td>This pin is presently reporting its value.</td></tr>
+<tr><td><code>state</code></td><td>For output modes, the <code>state</code> is any value that has been previously written to the pin. For input modes, the state is the status of the pullup resistor.</td></tr>
+<tr><td><code>analogChannel</code></td><td>The numeric &quot;index&quot; of an analog (ADC) pin, or <code>127</code> if digital (eg. &quot;A0&quot; would have <code>analogChannel: 0</code>).</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ul>
+<li><p><strong>high()</strong> Set the pin <code>HIGH</code>.</p>
+<pre><code class="language-js">var pin = new five.Pin(13);
+// This will set pin 13 high (on)
+pin.high();
+</code></pre></li>
+<li><p><strong>low()</strong> Set the pin <code>LOW</code>.</p>
+<pre><code class="language-js">var pin = new five.Pin(13);
+// This will set pin 13 low (off)
+pin.low();
+</code></pre></li>
+<li><p><strong>write(value)</strong> Write a <code>value</code> to this pin.</p>
+<pre><code class="language-js">var pin = new five.Pin(13);
+
+pin.write(1);
+</code></pre></li>
+<li><p><strong>read(callback(error, value))</strong> Register a handler to be called whenever the board reports the <code>value</code> (digital or analog) of this pin.</p>
+<pre><code class="language-js">var pin = new five.Pin(13);
+
+pin.read(function(error, value) {
+  console.log(value);
+});
+</code></pre></li>
+</ul>
+<h2>Events</h2>
+<p>Whenever a pin is set to <code>INPUT</code> or <code>ANALOG</code>, it will automatically emit the following events:</p>
+<ul>
+<li><p><strong>high</strong> The &quot;high&quot; event is emitted whenever the pin goes high.</p></li>
+<li><p><strong>low</strong> The &quot;low&quot; event is emitted whenever the pin goes low.</p></li>
+<li><p><strong>data</strong> The &quot;data&quot; event is emitted for every all data (firehose).</p></li>
+</ul>
+<h2>Static</h2>
+<h3>Modes</h3>
+<table>
+<thead>
+<tr><th>Mode</th><th>Value</th><th>Constant</th></tr>
+</thead>
+<tbody>
+<tr><td>INPUT</td><td>0</td><td>Pin.INPUT</td></tr>
+<tr><td>OUTPUT</td><td>1</td><td>Pin.OUTPUT</td></tr>
+<tr><td>ANALOG</td><td>2</td><td>Pin.ANALOG</td></tr>
+<tr><td>PWM</td><td>3</td><td>Pin.PWM</td></tr>
+<tr><td>SERVO</td><td>4</td><td>Pin.SERVO</td></tr>
+</tbody>
+</table>
+<h3>Methods</h3>
+<ul>
+<li><p><strong>Pin.write(pin instance, value)</strong> Write a <code>value</code> to a <code>pin</code>.</p>
+<pre><code class="language-js">// This will set pin 13 High
+var pin = new five.Pin(13);
+
+five.Pin.write(pin, 1);
+</code></pre></li>
+<li><p><strong>Pin.read(pin instance, callback)</strong> Register a handler to be called whenever the board reports the value (digital or analog) of the specified pin.</p>
+<pre><code class="language-js">var pin = new five.Pin(13);
+
+five.Pin.read(pin, function(error, value) {
+  console.log(value);
+});
+</code></pre></li>
+</ul>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/pin">Pin</a></li>
+<li><a href="/examples/motor">Motor</a></li>
+<li><a href="/examples/motor-TB6612FNG">Motor - Sparkfun TB6612FNG</a></li>
+<li><a href="/examples/button-pullup">Button - Pullup</a></li>
+<li><a href="/examples/accelerometer-mma7361">Accelerometer - MMA7361</a></li>
+<li><a href="/examples/sensor-photon-weather-shield-moisture">Photon Weather Shield: Moisture</a></li>
+<li><a href="/examples/nunchuk">Wii Nunchuck</a></li>
+<li><a href="/examples/classic-controller">Wii Classic Controller</a></li>
+<li><a href="/examples/navigator">Navigator</a></li>
+<li><a href="/examples/whisker">Whisker</a></li>
+<li><a href="/examples/radar">Radar</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

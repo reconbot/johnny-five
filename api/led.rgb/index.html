@@ -1,0 +1,436 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Led.RGB API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Led.RGB API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/led.rgb">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Led.RGB">
+  <meta name="keywords" content="JavaScript, Robotics , Led.RGB">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Led.RGB</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p>The <code>Led.RGB</code> class constructs objects that represent an RGB Led.</p>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>pins</strong> An Array containing the pins <strong>red</strong>, <strong>green</strong> and <strong>blue</strong>. All pins must support PWM.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Index</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>Number</td><td>PWM capable to control red</td><td></td><td>yes</td></tr>
+<tr><td>1</td><td>Number</td><td>PWM capable to control green</td><td></td><td>yes</td></tr>
+<tr><td>2</td><td>Number</td><td>PWM capable to control blue</td><td></td><td>yes</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+<li><p><strong>options</strong>
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>pins</td><td>Object</td><td>See <strong>pins</strong> table below</td><td></td><td>Yes (either)</td></tr>
+<tr><td>pins</td><td>Array</td><td>See <strong>pins</strong> table below</td><td></td><td>Yes (either)</td></tr>
+<tr><td>isAnode</td><td>Boolean</td><td><code>true</code>, <code>false</code>. Set this to true to indicate the LED is a common anode LED. Defaults to false, indicating a common cathode LED.</td><td></td><td>no</td></tr>
+<tr><td>controller</td><td>String</td><td>DEFAULT, PCA9685, BLINKM. Controller interface type.</td><td><code>&quot;DEFAULT&quot;</code></td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p>
+<ul>
+<li><p><strong>pins</strong> (Object)
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>red</td><td>Number</td><td>PWM capable to control <strong>red</strong></td><td></td><td>yes</td></tr>
+<tr><td>green</td><td>Number</td><td>PWM capable to control <strong>green</strong></td><td></td><td>yes</td></tr>
+<tr><td>blue</td><td>Number</td><td>PWM capable to control <strong>blue</strong></td><td></td><td>yes</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+<li><p><strong>pins</strong> (Array)
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Index</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>Number</td><td>PWM capable to control <strong>red</strong></td><td></td><td>yes</td></tr>
+<tr><td>1</td><td>Number</td><td>PWM capable to control <strong>green</strong></td><td></td><td>yes</td></tr>
+<tr><td>2</td><td>Number</td><td>PWM capable to control <strong>blue</strong></td><td></td><td>yes</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul></li>
+</ul>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>red</code></td><td><code>Led</code> object</td><td>No</td></tr>
+<tr><td><code>green</code></td><td><code>Led</code> object</td><td>No</td></tr>
+<tr><td><code>blue</code></td><td><code>Led</code> object</td><td>No</td></tr>
+<tr><td><code>isAnode</code></td><td>Boolean</td><td>Yes</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>LED RGB</h4>
+<pre><code class="language-js">// With Options object &amp; pins object
+new five.Led.RGB({
+  pins: {
+    red: 6,
+    green: 5,
+    blue: 3
+  }
+});
+
+// With Options object &amp; pins array
+new five.Led.RGB({
+  pins: [6, 5, 3]
+});
+
+// With pins array
+new five.Led.RGB([6, 5, 3]);
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-rgb.png" alt="led rgb"></p>
+<h4>LED RGB Anode</h4>
+<pre><code class="language-js">// With Options object &amp; pins object
+new five.Led.RGB({
+  pins: {
+    red: 6,
+    green: 5,
+    blue: 3
+  },
+  isAnode: true
+});
+
+// With Options object &amp; pins array
+new five.Led.RGB({
+  pins: [6, 5, 3],
+  isAnode: true
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-rgb-anode.png" alt="led rgb anode"></p>
+<h4>LED RGB PCA9685</h4>
+<pre><code class="language-js">// With Options object &amp; pins object
+new five.Led.RGB({
+  controller: &quot;PCA9685&quot;,
+  pins: {
+    red: 2,
+    green: 1,
+    blue: 0
+  }
+});
+
+// With Options object &amp; pins array
+new five.Led.RGB({
+  controller: &quot;PCA9685&quot;,
+  pins: [2, 1, 0]
+});
+
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-rgb-pca9685-tessel.png" alt="Tessel PCA9685"></p>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-rgb-PCA9685.png" alt="Arduino PCA9685"></p>
+<h4>LED RGB BlinkM</h4>
+<pre><code class="language-js">new five.Led.RGB({
+  controller: &quot;BLINKM&quot;,
+});
+
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-blinkm-basic-tessel.png" alt="BlinkM"></p>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-blinkm-basic-arduino.png" alt="BlinkM"></p>
+<h2>Usage</h2>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+  var a = new five.Led.RGB([ 9, 10, 11 ]);
+
+  var b = new five.Led.RGB({
+    pins: {
+      red: 3,
+      green: 5,
+      blue: 6
+    }
+  });
+
+  this.repl.inject({
+    a: a,
+    b: b
+  });
+
+  a.strobe(500);
+  b.strobe(1000);
+});
+
+</code></pre>
+<h2>API</h2>
+<ul>
+<li><p><strong>on()</strong> Turn the led on, honoring any previous color value</p>
+<pre><code class="language-js">var led = new five.Led.RGB([9, 10, 11]);
+
+led.on();
+</code></pre></li>
+<li><p><strong>off()</strong> Turn the Led off.</p>
+<pre><code class="language-js">var led = new five.Led.RGB([9, 10, 11]);
+
+led.off();
+</code></pre></li>
+<li><p><strong>color(value)</strong> Sets the Led color. If no value is supplied, it returns a copy of the state value.</p>
+<pre><code class="language-js">var led = new five.Led.RGB([9, 10, 11]);
+
+led.color(&quot;#ff00ff&quot;);
+
+console.log( led.color() );
+// {red: 255, blue: 0, green: 255}
+</code></pre></li>
+</ul>
+<table>
+<thead>
+<tr><th>Valid Color Arguments</th><th>Example(s)</th><th>In Situ</th></tr>
+</thead>
+<tbody>
+<tr><td>Any CSS color name string</td><td><code>&quot;red&quot;</code>, <code>&quot;green&quot;</code>, <code>&quot;blue&quot;</code></td><td><code>rgb.color(&quot;red&quot;)</code></td></tr>
+<tr><td>Hexadecimal color strings</td><td><code>&quot;ff0000&quot;</code>, <code>&quot;00ff00&quot;</code>, <code>&quot;0000ff&quot;</code></td><td><code>rgb.color(&quot;0000ff&quot;)</code></td></tr>
+<tr><td>Hexadecimal color strings, w/ leading #</td><td><code>&quot;#ff0000&quot;</code>, <code>&quot;#00ff00&quot;</code>, <code>&quot;#0000ff&quot;</code></td><td><code>rgb.color(&quot;#0000ff&quot;)</code></td></tr>
+<tr><td>Array of 8-bit bytes</td><td><code>[0xff, 0x00, 0x00]</code></td><td><code>rgb.color([0xff, 0x00, 0x00])</code></td></tr>
+<tr><td>Object of 8-bit bytes</td><td><code>{ red: 0x00, green: 0xFF, blue: 0x00 }</code></td><td><code>rgb.color({ red: 0x00, green: 0xFF, blue: 0x00 })</code></td></tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>intensity(value)</strong> Sets the overall intensity or &quot;brightness&quot; of the Led. Maintains current color state. If no value is supplied, it returns the current intensity value.</p>
+<pre><code class="language-js">var led = new five.Led.RGB([9, 10, 11]);
+
+// Set the initial color (red)
+led.color(&quot;#ff0000&quot;);
+
+...Sometime later...
+
+// Stays red, but at 30% intensity
+led.intensity(30);
+
+</code></pre></li>
+<li><p><strong>toggle()</strong> Toggle the current state, if on then turn off, if off then turn on.</p>
+<pre><code class="language-js">var led = new five.Led.RGB([9, 10, 11]);
+
+led.toggle();
+</code></pre></li>
+<li><p><strong>strobe(ms)</strong> Strobe/Blink the Led on/off in phases over <code>ms</code>. This is an <strong>interval</strong> operation and can be stopped by calling <code>led.stop()</code>, however that will not necessarily turn it &quot;off&quot;. Defaults to 500ms.</p>
+<pre><code class="language-js">var led = new five.Led.RGB([9, 10, 11]);
+
+// Strobe on-off in 500ms phases
+led.strobe(500);
+</code></pre></li>
+<li><p><strong>stop(ms)</strong> For <strong>interval</strong> operations, call <code>stop</code> to stop the interval. <code>stop</code> does not necessarily turn &quot;off&quot; the Led, in order to fully shut down an Led, a program must call <code>stop().off()</code>.</p>
+<pre><code class="language-js">var led = new five.Led.RGB([9, 10, 11]);
+
+// Blink from on to off in 500ms phases
+led.strobe(500);
+
+...Sometime later...
+
+led.stop();
+
+</code></pre></li>
+</ul>
+<h2>Events</h2>
+<p>Led objects are output only and therefore do not emit any events.</p>
+<h2>Examples</h2>
+<ul>
+<li><a href="https://github.com/rwaldron/johnny-five/blob/master/docs/led-rgb.md">Led Rgb</a></li>
+<li><a href="https://github.com/rwaldron/johnny-five/blob/master/docs/led-rainbow.md">Led Rainbow</a></li>
+<li><a href="https://github.com/rwaldron/johnny-five/blob/master/docs/led-rgb-PCA9685.md">Led Rgb PCA9685</a></li>
+</ul>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/led-rgb">LED - RGB</a></li>
+<li><a href="/examples/led-rgb-anode">LED - RGB (Common Anode)</a></li>
+<li><a href="/examples/led-rgb-anode-PCA9685">LED - RGB (Common Anode) PCA9685</a></li>
+<li><a href="/examples/led-rgb-intensity">LED - RGB Intensity</a></li>
+<li><a href="/examples/led-rainbow">LED - Rainbow</a></li>
+<li><a href="/examples/led-rgb-BLINKM">LED - Rainbow BlinkM</a></li>
+<li><a href="/examples/color-ISL29125">Color - ISL29125</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

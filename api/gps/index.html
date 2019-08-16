@@ -1,0 +1,361 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: GPS API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: GPS API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/gps">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , GPS">
+  <meta name="keywords" content="JavaScript, Robotics , GPS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>GPS</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p>The <code>GPS</code> class constructs objects that represent a single GPS (Global Positioning System) receiver attached to the physical board. The receiver can be used to find current latitude, longitude, altitude, course and ground speed. GPS receivers get their signals from an array of 32 satellites orbiting the Earth at an altitude of 12,600 miles. In other words, you can use Johnny-Five to talk to things in outer space (Is that cool or what?)</p>
+<p>Supported chipsets, modules and breakouts:</p>
+<ul>
+<li><a href="http://www.mediatek.com/en/products/connectivity/gps/mt3339?utm_source=j5">MediaTek MT3339</a>
+<ul>
+<li><a href="https://www.pololu.com/product/2138?utm_source=j5">66-Channel LS20031 GPS Receiver Module</a></li>
+<li><a href="http://www.gtop-tech.com/en/product/LadyBird-1-PA6H/MT3339_GPS_Module_04.html?utm_source=j5">G-Top LadyBird 1 (PA6H)</a></li>
+<li><a href="https://www.adafruit.com/products/746?utm_source=j5">Adafruit Ultimate GPS Breakout</a></li>
+</ul></li>
+<li><a href="https://www.u-blox.com/en/product/neo-6-series?utm_source=j5">U-blox NEO-6M</a></li>
+<li><a href="http://www.ebay.com/itm/like/281357870575?ul_noapp=true&amp;chn=ps&amp;lpid=82">Crius Neo-6 v3.1</a></li>
+<li><a href="https://www.sparkfun.com/products/13740?utm_source=j5">GP-20U7 (56 Channel)</a></li>
+</ul>
+<p>Any GPS Module that by default transmits NMEA sentences over serial at 9600bps should &quot;just work&quot;. If your device automatically transmits NMEA sentences at a different baud rate, you can set a custom baud rate in the configuration options.</p>
+<p>The universe of breakouts, modules, receivers and chip sets can be confusing. Just because you don't see your device listed here doesn't mean it won't work. If you have a device that is not explicitly listed here, open an issue with links to as much documentation you can find on your device and we will take a look. If you have a device not explicitly listed here and it works, please update our list above and add and example to the eg folder.</p>
+<p>This list will continue to be updated as more component support is implemented and tested.</p>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>General Options</strong>
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>port</td><td>string</td><td>The microcontroller's serial port to use.</td><td><code>io.SERIAL_PORT_IDs.DEFAULT</code></td><td>no</td></tr>
+<tr><td>pins</td><td>array</td><td><code>{ tx: ?, rx: ?[, onOff: ?]}</code></td><td>none</td><td>no</td></tr>
+<tr><td>breakout</td><td>string</td><td>The breakout or shield being used</td><td>none</td><td>no</td></tr>
+<tr><td>receiver</td><td>string</td><td>The receiver module being used</td><td>none</td><td>no</td></tr>
+<tr><td>chip</td><td>string</td><td>The chipset being used on the receiver module</td><td>none</td><td>no</td></tr>
+<tr><td>fixed</td><td>integer</td><td>The number of digits after the decimal</td><td>6</td><td>no</td></tr>
+<tr><td>baud</td><td>integer</td><td>The baud rate for communication over serial</td><td>9600</td><td>no</td></tr>
+<tr><td>frequency</td><td>integer</td><td>The frequency of updates in Hz</td><td>1</td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p>
+<h5>Breakouts</h5>
+<table>
+<thead>
+<tr><th>Breakout</th><th>Use With...</th></tr>
+</thead>
+<tbody>
+<tr><td>ADAFRUIT_ULTIMATE_GPS</td><td>Adafruit Ultimate GPS Breakout</td></tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td>latitude</td><td>Current latitude</td><td>Yes</td></tr>
+<tr><td>longitude</td><td>Current longitude</td><td>Yes</td></tr>
+<tr><td>altitude</td><td>Current altitude</td><td>Yes</td></tr>
+<tr><td>sat</td><td>Satellite operation details {pdop, hdop, vdop}</td><td>Yes</td></tr>
+<tr><td>course</td><td>Current course</td><td>Yes</td></tr>
+<tr><td>speed</td><td>Current ground speed</td><td>Yes</td></tr>
+<tr><td>time</td><td>Time of last fix</td><td>Yes</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>Default</h4>
+<pre><code class="language-js">// U-Blox NEO-6M
+new five.GPS([11, 10]);  // [RX, TX]
+</code></pre>
+<pre><code class="language-js">// GPS Receiver - GP-20U7 (56 Channel)
+new five.GPS([11, 10]);  // [RX, TX]
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/gps-GP-20U7.png" alt="gps-GP-20U7.png"></p>
+<h4>Adafruit Ultimate GPS Breakout</h4>
+<pre><code class="language-js">// Adafruit Ultimate GPS attached to Arduino UNO on Software Serial 0, pins 10 and 11
+new five.GPS({
+  pins: [11, 10], // [RX, TX]
+  breakout: &quot;ADAFRUIT_ULTIMATE_GPS&quot;
+});
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/rwaldron/johnny-five/master/docs/breadboard/gps-adafruit.png" alt="gps-adafruit.png"></p>
+<h2>Usage</h2>
+<ul>
+<li><strong>GPS Module connected to Arduino UNO with default buadrate which is 9600</strong></li>
+</ul>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var gps = new five.GPS({
+    pins: {rx: 11, tx: 10}
+  });
+
+  // If latitude, longitude change log it
+  gps.on(&quot;change&quot;, function() {
+    console.log(&quot;position&quot;);
+    console.log(&quot;  latitude   : &quot;, this.latitude);
+    console.log(&quot;  longitude  : &quot;, this.longitude);
+    console.log(&quot;  altitude   : &quot;, this.altitude);
+    console.log(&quot;--------------------------------------&quot;);
+  });
+  // If speed, course change log it
+  gps.on(&quot;navigation&quot;, function() {
+    console.log(&quot;navigation&quot;);
+    console.log(&quot;  speed   : &quot;, this.speed);
+    console.log(&quot;  course  : &quot;, this.course);
+    console.log(&quot;--------------------------------------&quot;);
+  });
+});
+</code></pre>
+<h2>More Customize Usage</h2>
+<ul>
+<li><strong>GPS Module connected to Arduino MEGA 2560's hardware serial with custom buadrate which is 4800</strong></li>
+</ul>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var gps = new five.GPS({
+    port: this.io.SERIAL_PORT_IDs.HW_SERIAL3,
+    baud: 4800
+  });
+
+  // If latitude, longitude change log it
+  gps.on(&quot;change&quot;, function() {
+    console.log(&quot;position&quot;);
+    console.log(&quot;  latitude   : &quot;, this.latitude);
+    console.log(&quot;  longitude  : &quot;, this.longitude);
+    console.log(&quot;  altitude   : &quot;, this.altitude);
+    console.log(&quot;--------------------------------------&quot;);
+  });
+  // If speed, course change log it
+  gps.on(&quot;navigation&quot;, function() {
+    console.log(&quot;navigation&quot;);
+    console.log(&quot;  speed   : &quot;, this.speed);
+    console.log(&quot;  course  : &quot;, this.course);
+    console.log(&quot;--------------------------------------&quot;);
+  });
+});
+</code></pre>
+<h2>API</h2>
+<ul>
+<li><p><strong>sendCommand(commandString)</strong> Send a command to the GPS chipset. The checksum and CR/LF will be automatically appended.</p>
+<pre><code class="language-js">var gps = new five.GPS([10,11]);
+
+// Warm reboot
+gps.sendCommand(&quot;$PMTK103&quot;);
+</code></pre></li>
+<li><p><strong>restart(coldRestart)</strong> Reboot the receiver. If coldRestart is true, all cached positioning data is flushed. If you do this, it could take up to 60 seconds to get a new fix.</p>
+<pre><code class="language-js">var gps = new five.GPS([10,11]);
+
+// Warm reboot
+gps.restart();
+</code></pre></li>
+</ul>
+<h2>Events</h2>
+<ul>
+<li><p><strong>message</strong> A valid message (NMEA Sentence) was received from the GPS.</p></li>
+<li><p><strong>operations</strong> Satellite operating details have received.</p></li>
+<li><p><strong>acknowledge</strong> An &quot;acknowledge&quot; message was received from the GPS chipset.</p></li>
+<li><p><strong>unknown</strong> An valid but unrecognized message was received from the GPS chipset.</p></li>
+<li><p><strong>change</strong> The position has changed.</p></li>
+<li><p><strong>navigation</strong> The speed or direction has changed.</p></li>
+</ul>
+<h2>Notes on Serial</h2>
+<p>GPS is the first class in Johnny-Five to leverage firmata's new support for serial. Other IO plugins are following suit and adding their own support for serial.</p>
+<p><a href="https://www.arduino.cc/en/Main/ArduinoBoardUno">Arduino Uno</a> has a single UART. Assuming your Arduino is connected to a computer via USB, that UART is already in use. By default the GPS class will try and use software serial to connect but please note that software serial does not work reliably above 57600bps. Other boards such as <a href="https://www.arduino.cc/en/Main/arduinoBoardMega2560">Arduino MEGA 2560</a> has 4 UARTs so hardware serial is the better option on those boards.</p>
+<p>Arduino boards that use the SAM and SAMD architectures (i.e. the Due and Zero) do not support Software Serial at all.</p>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/gps">GPS - Default GPS</a></li>
+<li><a href="/examples/gps-GP-20U7">GPS - Sparkfun GP-20U7</a></li>
+<li><a href="/examples/gps-adafruit">GPS - Adafruit Ultimate GPS Breakout</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Led.Matrix API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Led.Matrix API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/led.matrix">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Led.Matrix">
+  <meta name="keywords" content="JavaScript, Robotics , Led.Matrix">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Led.Matrix</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p><img src="https://cdn.sparkfun.com//assets/parts/8/2/6/4/11861-04.jpg" alt=""></p>
+<p>The <code>Led.Matrix</code> class constructs an object that may represent one or more (chained) 8x8 or 8x16 LED Matrix (MAX7219, MAX7221 and HT16K33) devices attached to the physical board. Up to 8 devices can be controlled with one instance, giving you 512 controllable LEDs.</p>
+<p>Known supported devices:</p>
+<p><a href="https://www.tindie.com/search/?q=MAX7219">See all on Tindie!</a></p>
+<ul>
+<li><p>Shift Register Devices</p>
+<ul>
+<li>MAX7219
+<ul>
+<li><a href="https://www.tindie.com/products/mmm999/max7219-dot-matrix-mcu-led-display-control-module-kit-for-arduino-with-dupont-cable/">MAX7219 Dot Matrix MCU LED Display Control Module Kit For Arduino With Dupont Cable</a></li>
+<li><a href="https://www.sparkfun.com/products/11861?utm_source=j5">LED Matrix Kit</a></li>
+<li><a href="http://www.amazon.com/gp/product/B009U7LAS0/">DIY MAX7219 Red LED Dot Matrix Display Module for Arduino</a></li>
+<li><a href="http://www.electrodragon.com/product/dot-matrix-display-kit-wmax7219-ic-pcb/">Dot Matrix Display Kit w/MAX7219 IC, PCB</a></li>
+<li><a href="http://www.electrodragon.com/product/dot-matrix-chain-display-kit-max7219-v2/">Dot Matrix Chain Display Kit Max7219 V2</a></li>
+</ul></li>
+</ul></li>
+<li><p>I2C devices</p>
+<ul>
+<li>HT16K33
+<ul>
+<li><a href="https://learn.adafruit.com/adafruit-led-backpack/0-8-8x8-matrix">Adafruit 0.8 8x8 LED Matrix (Any color)</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-led-backpack/bi-color-8x8-matrix">Adafruit 1.2 8x8 LED Matrix bicolor</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-led-backpack/1-2-8x8-matrix">Adafruit 1.2 8x8 LED Matrix (Any color)</a></li>
+<li><a href="https://www.adafruit.com/products/2040?utm_source=j5">Adafruit 1.2 16x8 LED Matrix (Any color)</a></li>
+<li><a href="http://www.aliexpress.com/item/Free-Shipping-1pc-Red-and-green-color-dot-matrix-module-I2C-1-8-inches-3mm-8/1364967656.html">OCROBOT 8x8 LED Matrix - bicolor</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>If you are working with HT16K33 devices, you will need to run at least version 2.4.0 of Firmata on the board.</p>
+<p>Adafruit offers a selection of 8x8 matrices in various colors:</p>
+<ul>
+<li><a href="https://www.adafruit.com/products/1821?utm_source=j5">White</a></li>
+<li><a href="https://www.adafruit.com/products/1818?utm_source=j5">Amber</a></li>
+<li><a href="https://www.adafruit.com/products/1819?utm_source=j5">Yellow</a></li>
+<li><a href="https://www.adafruit.com/products/1820?utm_source=j5">Green</a></li>
+<li><a href="https://www.adafruit.com/products/1817?utm_source=j5">Blue</a></li>
+</ul>
+<p>(This list only represents devices that I've personally confirmed, please add devices as needed.)</p>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>General Options</strong> An object of property parameters.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>pins</td><td>Object</td><td><code>{ data, clock, cs }</code>. Object of digital pin names.</td><td></td><td>yes</td></tr>
+<tr><td>pins</td><td>Array</td><td><code>[ data, clock, cs ]</code>. Array of digital pin names.</td><td></td><td>yes</td></tr>
+<tr><td>devices</td><td>Number</td><td><code>1-8</code>. For single device cases, this can be omitted.</td><td><code>1</code></td><td>no</td></tr>
+<tr><td>controller</td><td>string</td><td>&quot;HT16K33&quot;. A valid controller model name</td><td></td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+<li><p><strong>HT16K33 options (<code>controller: &quot;HT16K33&quot;</code>)</strong> (Arduino Requires StandardFirmata 2.4.0 or greater)
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>addresses</td><td>array</td><td>An array of I2C addresses</td><td>Range 0x70-0x77</td><td>no</td></tr>
+<tr><td>isBicolor</td><td>Boolean</td><td><code>true</code>, <code>false</code>.</td><td><code>false</code></td><td>no</td></tr>
+<tr><td>dims</td><td>Object</td><td><code>{rows, columns}</code>. See Dimensions table</td><td>8x8</td><td>no</td></tr>
+<tr><td>dims</td><td>Array</td><td><code>[rows, columns]</code>. See Dimensions table</td><td>8x8</td><td>no</td></tr>
+<tr><td>dims</td><td>String</td><td>&quot;8x8&quot;, &quot;16x8&quot; or &quot;8x16&quot;.</td><td>8x8</td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<h3>Dimensions</h3>
+<table>
+<thead>
+<tr><th>Name</th><th>Rows</th><th>Columns</th></tr>
+</thead>
+<tbody>
+<tr><td>8x8</td><td>8</td><td>8</td></tr>
+<tr><td>16x8</td><td>16</td><td>8</td></tr>
+<tr><td>8x16</td><td>8</td><td>16</td></tr>
+</tbody>
+</table>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>isMatrix</code></td><td>true.</td><td>Yes</td></tr>
+<tr><td><code>devices</code></td><td>Number of devices controlled.</td><td>Yes</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>Shift Register Device</h4>
+<pre><code class="language-js">new five.Led.Matrix({
+  pins: {
+    data: 2,
+    clock: 3,
+    cs: 4
+  }
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-matrix.png" alt="Led.Matrix"></p>
+<h4>I2C HT16K33</h4>
+<pre><code class="language-js">// Led.Matrix HT16K33
+new five.Led.Matrix({
+  controller: &quot;HT16K33&quot;
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-matrix-HT16K33.png" alt="Led.Matrix Mono Color"></p>
+<pre><code class="language-js">// Led.Matrix HT16K33
+new five.Led.Matrix({
+  controller: &quot;HT16K33&quot;,
+  isBicolor: true
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-matrix-HT16K33.png" alt="Led.Matrix Mono Color"></p>
+<h4>I2C HT16K33 16x8</h4>
+<pre><code class="language-js">// 16x8 I2C device
+new five.Led.Matrix({
+  controller: &quot;HT16K33&quot;,
+  dims: &quot;8x16&quot;, // or &quot;16x8&quot;
+  rotation: 2
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-matrix-HT16K33-16x8.png" alt="Led.Matrix HT16K33 16x8"></p>
+<h2>Usage</h2>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var matrix = new five.Led.Matrix({
+    pins: {
+      data: 2,
+      clock: 3,
+      cs: 4
+    },
+    devices: 1
+  });
+
+  var heart = [
+    &quot;01100110&quot;,
+    &quot;10011001&quot;,
+    &quot;10000001&quot;,
+    &quot;10000001&quot;,
+    &quot;01000010&quot;,
+    &quot;00100100&quot;,
+    &quot;00011000&quot;,
+    &quot;00000000&quot;
+  ];
+
+  matrix.draw(heart);
+});
+</code></pre>
+<h2>API</h2>
+<blockquote>
+<p>NOTE: An <code>Led.Digits</code> instance can represent up to 8 chained devices (1 device can support up to 8 seven-segment digits), where each can be addressed directly by its device index in the chain (1-8).</p>
+</blockquote>
+<blockquote>
+<p>NOTE: When the device is turned off (with the <code>off</code> method), data is retained and will be displayed on the device when turned on (with the <code>on</code> method). This is useful when powering the devices from a battery, by providing a power saving mechanism.</p>
+</blockquote>
+<ul>
+<li><p><strong>on()</strong> Turn on all matrix devices.</p></li>
+<li><p><strong>on(device index)</strong> Turn on matrix device at specified device index.</p>
+<pre><code class="language-js">var matrix = new five.Led.Matrix({
+  pins: {
+    data: 2,
+    clock: 3,
+    cs: 4
+  }
+});
+
+// Turn on a specific device by device index.
+matrix.on(0);
+
+// Turn on all devices
+matrix.on();
+</code></pre></li>
+<li><p><strong>off()</strong> Turn off all matrix devices.</p></li>
+<li><p><strong>off(device index)</strong> Turn off matrix device at specified device index.</p>
+<pre><code class="language-js">var matrix = new five.Led.Matrix({
+  pins: {
+    data: 2,
+    clock: 3,
+    cs: 4
+  }
+});
+
+// Turn off a specific device by device index.
+matrix.off(0);
+
+// Turn off all devices
+matrix.off();
+
+// Send data to the the matrix
+// ...Turn on the device to see the data displayed
+</code></pre></li>
+</ul>
+<ul>
+<li><strong>clear()</strong> Shut off all LEDs, for all devices.</li>
+<li><strong>clear(device index)</strong> Shut off all LEDs, for a device at specified device index.</li>
+</ul>
+<p>Note: <code>clear()</code> does not shut off the device.</p>
+<pre><code class="language-js">var matrix = new five.Led.Matrix({
+  pins: {
+    data: 2,
+    clock: 3,
+    cs: 4
+  }
+});
+
+// Clear the entire display of a specified device.
+matrix.clear(0);
+
+// Clear the entire display for all devices
+matrix.clear();
+</code></pre>
+<ul>
+<li><strong>brightness(0-100)</strong> Set the brightness from 0-100%, of all devices.</li>
+<li><strong>brightness(device index, 0-100)</strong> Set the brightness from 0-100%, for a device at specified <code>device index</code>.</li>
+</ul>
+<pre><code class="language-js">var matrix = new five.Led.Matrix({
+  pins: {
+    data: 2,
+    clock: 3,
+    cs: 4
+  }
+});
+
+// Set the brightness of a specified device.
+matrix.brightness(0, 100);
+
+// Set the brightness for all devices
+matrix.brightness(100);
+</code></pre>
+<ul>
+<li><p><strong>led(row, col, state)</strong> Set on/off/color state for led at <code>row</code> and <code>col</code> (0-16, 0-16), of all devices.</p></li>
+<li><p><strong>led(device index, row, col, state)</strong> Set on/off/color state for led at <code>row</code> and <code>col</code> (00-16), for a device at the specified <code>device index</code>.</p>
+<pre><code class="language-js">// Shift Register device
+var matrix = new five.Led.Matrix({
+  pins: {
+    data: 2,
+    clock: 3,
+    cs: 4
+  }
+});
+
+// Turn on the top-left led of device 1
+matrix.led(0, 0, 0, 1);
+
+// Turn on the top-left led of all devices
+matrix.led(0, 0, 1);
+
+// Turn off the top-left led of all devices
+matrix.led(0, 0, 0);
+
+// I2C device (bicolor)
+var matrix = new five.Led.Matrix({
+  controller: &quot;HT16K33&quot;,
+  isBicolor: true
+});
+// Turn top-left led of device 1 yellow
+matrix.led(0, 0, 0, LedControl.COLORS.YELLOW);
+</code></pre></li>
+</ul>
+<ul>
+<li><p><strong>row(row, 0-255)</strong> Set <code>row</code> (0-16) to 8-bit or 16-bit value (0-0xFFFF), of all devices.</p></li>
+<li><p><strong>row(device index, row, 0-255)</strong> Set <code>row</code> (0-16) to 8-bit or 16-bit value (0-0xFFFF), for a device at the specified <code>device index</code>.</p>
+<pre><code class="language-js">var matrix = new five.Led.Matrix({
+  pins: {
+    data: 2,
+    clock: 3,
+    cs: 4
+  }
+});
+
+// Turn on the entire first row of device 1
+matrix.row(1, 0, 255);
+
+// Turn on the entire first row of all devices
+matrix.row(1, 255);
+
+// 8x16 I2C device
+var matrix = new five.Led.Matrix({
+  controller: &quot;HT16K33&quot;,
+  dims: [8, 16]
+});
+// Turn on entire first row of all devices (16-bit value)
+matrix.row(1, 0xFFFF)
+</code></pre></li>
+</ul>
+<ul>
+<li><p><strong>column(column, 0-255)</strong> Set <code>column</code> (0-16) to 8-bit or 16-bit value (0-0xFFFF), of all devices.</p></li>
+<li><p><strong>column(device index, column, 0-255)</strong> Set <code>column</code> (0-16) to 8-bit or 16-bit value (0-0xFFFF), for a device at the specified <code>device index</code>.</p>
+<pre><code class="language-js">var matrix = new five.Led.Matrix({
+  pins: {
+    data: 2,
+    clock: 3,
+    cs: 4
+  }
+});
+
+// Turn on the entire first column of device 1
+matrix.column(1, 0, 255);
+
+// Turn on the entire first column of all devices
+matrix.column(1, 255);
+</code></pre></li>
+<li><p><strong>draw(character)</strong> Draw a &quot;character&quot; to all devices.</p></li>
+<li><p><strong>draw(device index, character)</strong> Draw a &quot;character&quot; to a device at the specified <code>device index</code>.</p></li>
+</ul>
+<p>Valid &quot;character&quot; values:</p>
+<ul>
+<li>A single character string, eg. <code>&quot;A&quot;, &quot;b&quot;, &quot;1&quot;, &quot;$&quot;</code></li>
+<li>An array (with 8 or 16 elements) of 8-bit or 16-bit values, eg. <code>[0x00, 0x04, 0x15, 0x0E, 0x15, 0x04, 0x00, 0x00]</code> (That array represents <code>*</code> character). The dimensions of the character array must match the dimensions of the matrix i.e. 8x8, 8x16 or 16x8</li>
+<li>An 8 or 16 element array of 8 or 16 character long strings, where each character represents the on/off/color state of the LED at that position in the matrix, eg.
+<pre><code class="language-js">[
+  &quot;01100110&quot;,
+  &quot;10011001&quot;,
+  &quot;10000001&quot;,
+  &quot;10000001&quot;,
+  &quot;01000010&quot;,
+  &quot;00100100&quot;,
+  &quot;00011000&quot;,
+  &quot;00000000&quot;
+];
+</code></pre></li>
+</ul>
+<pre><code class="language-js">var matrix = new five.Led.Matrix({
+  pins: {
+    data: 2,
+    clock: 3,
+    cs: 4
+  }
+});
+
+var heart = [
+  &quot;01100110&quot;,
+  &quot;10011001&quot;,
+  &quot;10000001&quot;,
+  &quot;10000001&quot;,
+  &quot;01000010&quot;,
+  &quot;00100100&quot;,
+  &quot;00011000&quot;,
+  &quot;00000000&quot;
+];
+
+// Draw a heart to device 1
+matrix.draw(1, heart);
+
+// Draw a heart to all devices
+matrix.draw(heart);
+
+// NOTE: this is actually a predefined character
+var exclamation = [
+  0x04,
+  0x04,
+  0x04,
+  0x04,
+  0x00,
+  0x00,
+  0x04,
+  0x00
+];
+
+// Draw an exclamation to device 1
+matrix.draw(1, exclamation);
+
+// Draw an exclamation to all devices
+matrix.draw(exclamation);
+
+var asterisk = &quot;*&quot;;
+
+// Draw an asterisk to device 1
+matrix.draw(1, asterisk);
+
+// Draw an asterisk to all devices
+matrix.draw(asterisk);
+</code></pre>
+<h2>Predefined Characters</h2>
+<p>Led.Matrix.CHARS</p>
+<pre><code>0 1 2 3 4 5 6 7 8 9
+! &quot; # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] ^ _ `
+a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ~
+</code></pre>
+<h2>Events</h2>
+<p><code>Led.Matrix</code> objects are output only and therefore do not emit any events.</p>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/led-matrix">LED - Matrix</a></li>
+<li><a href="/examples/led-matrix-tutorial">LED - Matrix Demo</a></li>
+<li><a href="/examples/led-matrix-HT16K33">LED - Matrix HT16K33</a></li>
+<li><a href="/examples/led-matrix-HT16K33-16x8">LED - Matrix HT16K33 16x8</a></li>
+<li><a href="/examples/led-chars-demo">LED - Draw Matrix Characters Demo</a></li>
+<li><a href="/examples/led-enumeratechars">LED - Enumerate Matrix Characters &amp; Symbols</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

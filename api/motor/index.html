@@ -1,0 +1,809 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Motor API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Motor API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/motor">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Motor">
+  <meta name="keywords" content="JavaScript, Robotics , Motor">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Motor</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p><img src="http://i.gyazo.com/a3003d544f7c58468acdb07793194f2b.png" alt=""></p>
+<p>The <code>Motor</code> class constructs objects that represent a single Motor. The motor may attach to the physical board or a motor controller. The controller may be a third party shield or custom built motor controller. This class works well with both <strong>Directional</strong> and <strong>Non-Directional</strong> motors. It also works well with 2-pin or 3-pin controllers.</p>
+<p>See also:</p>
+<ul>
+<li><a href="/api/motors">Motors</a></li>
+</ul>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>pin</strong> A Number or String address for the Non-Directional Motor pin (PWM).</p></li>
+<li><p><strong>pins</strong> An array of 2 or 3 Numbers or String addresses for the Bi-Directional Motor pins.</p></li>
+<li><p><strong>options</strong> An object of property parameters.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value(s)/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>pins</td><td>Object</td><td>A valid pins object or pins array</td><td></td><td>yes</td></tr>
+<tr><td>current</td><td>Object</td><td>A valid Sensor options object*</td><td></td><td>no</td></tr>
+<tr><td>invertPWM</td><td>Boolean</td><td>true or false</td><td></td><td>no</td></tr>
+<tr><td>address</td><td>Number</td><td>An I2C device address</td><td></td><td>no</td></tr>
+<tr><td>controller</td><td>String</td><td>Motor controller interface type</td><td></td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+<li><p><strong>options.pins</strong>     An object with pins required for the motor controller being used</p>
+<table>
+<thead>
+<tr><th>Pin name</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>pwm</td><td>Yes</td><td>Controls motor speed</td></tr>
+<tr><td>dir</td><td>Yes</td><td>Controls motor direction</td></tr>
+<tr><td>cdir</td><td>No</td><td>Only necessary for 3-pin motor controllers. Is used in conjunction with dir to control direction and braking</td></tr>
+<tr><td>brake</td><td>No</td><td>Engages high impedance braking. Only a few motor controllers have a brake pin</td></tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Shift Register Options</strong> An object of property parameters.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value(s)/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>register</td><td>Object</td><td><code>{data, clock, latch}</code> Pin configuration</td><td></td><td>no</td></tr>
+<tr><td>bits</td><td>Object</td><td><code>{a, b}</code> Switch bits to be flipped to control an HBridge</td><td></td><td>only if register is defined</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>isOn</code></td><td>A boolean flag, <code>true</code> when motor is moving or braking, <code>false</code> when not.</td><td>Yes</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>Two Pin H-Bridge [pwm, dir]</h4>
+<pre><code class="language-js">new five.Motor([3, 12]);
+
+new five.Motor({
+  pins: {
+    pwm: 3,
+    dir: 12
+  }
+});
+</code></pre>
+<h4>Three Pin H-Bridge [pwm, dir, cdir]</h4>
+<pre><code class="language-js">new five.Motor([9, 8, 11]);
+
+new five.Motor({
+  pins: {
+    pwm:9,
+    dir:8,
+    cdir: 11  
+  }
+});
+</code></pre>
+<h4>Three Pin H-Bridge [pwm, dir, brake]</h4>
+<pre><code class="language-js">new five.Motor([9, 8, 11]);
+
+new five.Motor({
+  pins: {
+    pwm:9,
+    dir:8,
+    brake: 11  
+  }
+});
+</code></pre>
+<h3>Pre-packaged Shield Configs</h3>
+<p>There are several shields that Johnny-Five provides preset configuration objects for. Instantiating motors using these shield configurations is designed to be extremely simple:</p>
+<h4>Arduino Motor Shield R3</h4>
+<pre><code class="language-js">var configs = five.Motor.SHIELD_CONFIGS.ARDUINO_MOTOR_SHIELD_R3_1;
+
+var motorA = new five.Motor(configs.A);
+var motorB = new five.Motor(configs.B);
+</code></pre>
+<h4>DF Robot</h4>
+<pre><code class="language-js">var configs = five.Motor.SHIELD_CONFIGS.DF_ROBOT;
+
+var motorA = new five.Motor(configs.A);
+var motorB = new five.Motor(configs.B);
+</code></pre>
+<h4>Rugged Circuits Rugged Motor Driver</h4>
+<pre><code class="language-js">var configs = five.Motor.SHIELD_CONFIGS.RUGGED_CIRCUITS;
+
+var motorA = new five.Motor(configs.A);
+var motorB = new five.Motor(configs.B);
+</code></pre>
+<h4>Sparkfun Ardumoto</h4>
+<pre><code class="language-js">var configs = five.Motor.SHIELD_CONFIGS.SPARKFUN_ARDUMOTO;
+
+var motorA = new five.Motor(configs.A);
+var motorB = new five.Motor(configs.B);
+</code></pre>
+<h4>Seeed Studios Motor Shield V1 or V2</h4>
+<pre><code class="language-js">var configs = five.Motor.SHIELD_CONFIGS.SEEED_STUDIO;
+
+var motorA = new five.Motor(configs.A);
+var motorB = new five.Motor(configs.B);
+</code></pre>
+<h4>Freetronics Dual Channel H-Bridge Motor Driver Shield</h4>
+<pre><code class="language-js">var configs = five.Motor.SHIELD_CONFIGS.FREETRONICS_HBRIDGE;
+
+var motorA = new five.Motor(configs.A);
+var motorB = new five.Motor(configs.B);
+</code></pre>
+<h4>Adafruit Motor/Stepper/Servo Shield V1</h4>
+<pre><code class="language-js">var configs = five.Motor.SHIELD_CONFIGS.ADAFRUIT_V1;
+
+var motor1 = new five.Motor(configs.M1);
+var motor2 = new five.Motor(configs.M2);
+var motor3 = new five.Motor(configs.M3);
+var motor4 = new five.Motor(configs.M4);
+</code></pre>
+<h4>Adafruit Motor/Stepper/Servo Shield V2</h4>
+<pre><code class="language-js">var configs = five.Motor.SHIELD_CONFIGS.ADAFRUIT_V2;
+
+var motor1 = new five.Motor(configs.M1);
+var motor2 = new five.Motor(configs.M2);
+var motor3 = new five.Motor(configs.M3);
+var motor4 = new five.Motor(configs.M4);
+</code></pre>
+<h4>Pololu DRV8835 Shield</h4>
+<pre><code class="language-js">var configs = five.Motor.SHIELD_CONFIGS.POLOLU_DRV8835_SHIELD;
+
+var motor1 = new five.Motor(configs.M1);
+var motor2 = new five.Motor(configs.M2);
+</code></pre>
+<h2>Usage</h2>
+<h4>Non-Directional Motor</h4>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;), 
+    board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var motor = new five.Motor(5);
+
+  // Start the motor at maximum speed
+  motor.start(255);
+
+});
+</code></pre>
+<h4>Directional Motor</h4>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;), 
+    board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var motor = new five.Motor([3, 12]);
+
+  // Reverse the motor at maximum speed
+  motor.reverse(255);
+
+});
+</code></pre>
+<h4>Directional Motor with Brake</h4>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;), 
+    board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var motor = new five.Motor({
+    pins: {
+      pwm: 3,
+      dir: 12,
+      brake: 9
+    }
+  });
+
+  motor.on(&quot;forward&quot;, function(err, timestamp) {
+    // demonstrate braking after 5 seconds
+    board.wait(5000, function() {
+      motor.brake();
+    });
+  });
+
+  motor.on(&quot;brake&quot;, function(err, timestamp) {
+    // Release the brake after .1 seconds
+    board.wait(100, function() {
+      motor.stop();
+    });
+  });
+
+  // Start the motor at maximum speed
+  motor.forward(255);
+
+});
+</code></pre>
+<h4>Directional Motor with Current Sensing</h4>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;), 
+    board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var motor = new five.Motor({
+    pins: [3, 12],
+    current: {
+      pin: &quot;A0&quot;,
+      freq: 250,
+      threshold: 10
+    }
+  });
+
+  // Log current mA every 250ms if that value has changed by 10 or more since the last log
+  motor.current.scale([0, 3030]).on(&quot;change&quot;, function() {
+    console.log(&quot;Motor A: &quot; + this.value.toFixed(2) + &quot;mA&quot;);
+  });
+
+  // Start the motor at maximum speed
+  motor.forward(255);
+
+});
+</code></pre>
+<h4>Directional Motor with ShiftRegister to control HBridge (Like the AdaFruit Motor Shield V1)</h4>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;), 
+    board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var motor = new five.Motor({
+    pins: { pwm: 11 },
+    register: { data: 8, clock: 4, latch: 12 },
+    bits: { a: 2, b: 3 }
+  });
+
+  // Start the motor at maximum speed
+  motor.forward(255);
+
+});
+</code></pre>
+<h4>Directional Motor via Adafruit Motor Shield V2</h4>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;), 
+    board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+
+  var motor = new five.Motor({
+    controller: &quot;PCA9685&quot;,
+    frequency: 200, // Hz
+    pins: {
+      pwm: 8,
+      dir: 9,
+      cdir: 10,
+    },
+  });
+
+  // Start the motor at maximum speed
+  motor.forward(255);
+
+});
+</code></pre>
+<h2>API</h2>
+<ul>
+<li><p><strong>forward(speed 0-255)</strong> Set a motor moving forward</p></li>
+<li><p><strong>fwd(speed 0-255)</strong> Alias to forward()</p>
+<pre><code class="language-js">var motor = new five.Motor([11, 12]);
+
+// Forward at half speed
+motor.forward(128);
+</code></pre></li>
+<li><p><strong>reverse(speed 0-255)</strong> Set a motor moving in reverse</p></li>
+<li><p><strong>rev(speed 0-255)</strong> Alias to reverse()</p>
+<pre><code class="language-js">var motor = new five.Motor([11, 12]);
+
+// Reverse at full speed
+motor.reverse(255);
+</code></pre></li>
+<li><p><strong>start([speed 0-255])</strong> Set a motor moving in the current direction</p>
+<pre><code class="language-js">var motor = new five.Motor([11, 12]);
+
+// Forward at half speed
+motor.forward(128);
+
+// Stop
+motor.stop();
+
+// Resume forward at half speed
+motor.start();
+
+// Continue forward at full speed
+motor.start(255);
+
+</code></pre></li>
+<li><p><strong>stop()</strong> Let the motor coast to a stop</p>
+<pre><code class="language-js">var motor = new five.Motor([11, 12]);
+
+// Forward at full speed
+motor.forward(255);
+
+// Roll to stop
+motor.stop();
+</code></pre></li>
+<li><p><strong>brake()</strong> Force a motor to stop (as opposed to coasting). Please note that this only works on boards with a dedicated brake pin. Other boards and interfaces will simply coast.</p>
+<pre><code class="language-js">var motor = new five.Motor([11, 12]);
+
+// Forward at full speed
+motor.forward(255);
+
+// Stop fast
+motor.brake();
+
+board.wait(100, function() {
+  motor.stop();
+});
+</code></pre></li>
+<li><p><strong>release()</strong> Release the brake and resume current speed and direction</p>
+<pre><code class="language-js">var motor = new five.Motor([11, 12]);
+
+// Forward at full speed
+motor.forward(255);
+
+// Stop fast
+motor.brake();
+
+// Wait five seconds and release the brake
+board.wait(5000, function() {
+  motor.release();
+});
+</code></pre></li>
+</ul>
+<h2>Additional Notes</h2>
+<p>The PWM pins on an Arduino Uno only output about 40mA. That is barely enough to power a humble hobby motor. You are going to need a motor controller between your Arduino and your motor(s) to deliver power from an external source. Most motor controllers are based on the H-Bridge circuit which uses a set of four switches to direct the voltage being sent through each pole of the motor. Different shields handle different input voltages and output currents. Use the Motor Control Shield Survey below to find a shield that works for you.</p>
+<h3>Forward and Reverse are Interchangeable</h3>
+<p>Keep in mind that &quot;forward&quot; and &quot;reverse&quot; are arbitrary labels. If your motor is turning in the wrong direction you can just switch the poles on the motor. Consider a robot with two motors connected directly to the drive wheels. For your bot to go forward, one should turn clockwise and the other should turn counter-clockwise. Switch the poles on one of those motors so that you can use forward() on both and have them work together.</p>
+<h3>Situations Where <code>invertPWM: true</code> is Required</h3>
+<p>Most motor controller board/shield manufacturers abstract the need for this away. If you have wired up your own motor controller or you have purchased a very basic motor controller board you may need this property. To check, set both pwm and dir to their highest values by calling <code>motor.forward(255)</code>. If nothing happens try calling <code>motor.stop()</code>. If this makes the motor move you need to add <code>invertPWM: true</code> as in the example below. Instead of the pins being used for PWM and DIR they are being used to directly control the voltage applied to each pole of the motor. If both are set to high, the motor will not move.</p>
+<pre><code>var motor = new five.Motor({pins:[8,9], invertPWM:true});
+</code></pre>
+<h3>Differences Between 2 and 3 pin Directional Motor Controllers</h3>
+<p>Controllers that use 2 pins instead of 3 are essentially the same. Both arrangements use one PWN pin to control speed. The switches on the H-Bridge work in pairs. With 3-pin controllers you control the state of each pair. With 2-pin controllers the pairs are toggled for you based on the state of that one digital pin.</p>
+<h3>Motor Control Shield Survey</h3>
+<p>This is by no means exhaustive</p>
+<h4>2 Pin</h4>
+<p><span class="abbreviate-table"></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Motor A pins</th>
+      <th>Motor B pins</th>
+      <th>Shield Config</th>
+      <th>Operating Voltage(1)</th>
+      <th>Max A per Channel</th>
+      <th>Stackable(2)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="http://arduino.cc/en/Main/ArduinoMotorShieldR3">Arduino Motor Shield R3</a></td>
+      <td>pwm:3<br/>dir:12<br/>[brake:9,]<br/>[current:A0]</td>
+      <td>pwm:11<br/>dir:13<br/>[brake:8,]<br/>[current:A1]</td>
+      <td>ARDUINO_MOTOR_SHIELD_R3_1 {A, B} (vanilla)<br/>ARDUINO_MOTOR_SHIELD_R3_2 {A, B} (w/brake)<br/>ARDUINO_MOTOR_SHIELD_R3_3 {A, B} (w/brake & current)</td>
+      <td>7-12V</td>
+      <td>2A</td>
+      <td>No</td>
+    </tr>    
+    <tr>
+      <td><a href="http://www.dfrobot.com/index.php?route=product/product&product_id=59">DF Robot 1A</a></td>
+      <td>pwm:6<br/>dir:7</td>
+      <td>pwm:5<br/>dir:4</td>
+      <td>DF_ROBOT {A, B}</td>
+      <td>7 - 12V</td>
+      <td>1A</td>
+      <td>No</td>
+    </tr>    
+    <tr>
+      <td><a href="http://www.dfrobot.com/index.php?route=product/product&product_id=69">DF Robot 2A</a></td>
+      <td>pwm:6<br/>dir:7</td>
+      <td>pwm:5<br/>dir:4</td>
+      <td>DF_ROBOT {A, B}</td>
+      <td>4.8 - 35V</td>
+      <td>2A</td>
+      <td>No</td>
+    </tr>    
+    <tr>
+      <td><a href="http://www.nkcelectronics.com/freeduino-arduino-motor-control-shield-kit.html">NKC Electronics Motor Control Shield Kit</a></td>
+      <td>pwm:9<br/>dir:12</td>
+      <td>pwm:10<br/>dir:13</td>
+      <td>NKC_ELECTRONICS_KIT {A, B}</td>
+      <td>6 - 15V shared</td>
+      <td>1A</td>
+      <td>No</td>
+    </tr>    
+    <tr>
+      <td><a href="http://www.ruggedcircuits.com/motor-control/rugged-motor-driver">Rugged Circuits Rugged Motor Driver</a></td>
+      <td>pwm:3<br/>dir:12</td>
+      <td>pwm:11<br/>dir:13</td>
+      <td>RUGGED_CIRCUITS {A, B}</td>
+      <td>8-30V</td>
+      <td>2.8A</td>
+      <td>Yes</td>
+    </tr>    
+    <tr>
+      <td>Rugged Circuits Basic Motor Driver</td>
+      <td>pwm:3<br/>dir:12</td>
+      <td>pwm:11<br/>dir:13</td>
+      <td>RUGGED_CIRCUITS {A, B}</td>
+      <td>8-30V</td>
+      <td>2A</td>
+      <td>Yes</td>
+    </tr>    
+    <tr>
+      <td><a href="https://www.sparkfun.com/products/9815">Sparkfun Ardumoto</a></td>
+      <td>pwm:3<br/>dir:12</td>
+      <td>pwm:11<br/>dir:13</td>
+      <td>SPARKFUN_ARDUMOTO {A, B}</td>
+      <td>6 - 15V shared</td>
+      <td>2A</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+</span>
+<h4>3 Pin</h4>
+<p><span class="abbreviate-table"></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Motor A pins</th>
+      <th>Motor B pins</th>
+      <th>Shield Config</th>
+      <th>Operating Voltage(1)</th>
+      <th>Max A</th>
+      <th>Stackable(2)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr> 
+      <td><a href="http://www.seeedstudio.com/depot/Motor-Shield-p-913.html">Seeed Studios Motor Shield V1</a> and <a href="http://www.seeedstudio.com/depot/motor-shield-v20-p-1377.html?cPath=132_134">V2</a></td>
+      <td>pwm:9<br/>dir:8<br/>cdir: 11</td>
+      <td>pwm:10<br/>dir:12<br/>cdir: 13</td>
+      <td>SEEED_STUDIO {A, B}</td>
+      <td>6-15V</td>
+      <td>2A</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><a href="http://www.freetronics.com/products/hbridge-dual-channel-h-bridge-motor-driver-shield">Freetronics Dual Channel H-Bridge Motor Driver Shield</a></td>
+      <td>pwm:6<br/>dir:4<br/>cdir: 7</td>
+      <td>pwm:5<br/>dir:3<br/>cdir: 2</td>
+      <td>FREETRONICS_HBRIDGE: {A, B}</td>
+      <td>8-40V</td>
+      <td>2A</td>
+      <td>No</td>
+    </tr>
+    <tr> 
+      <td><a href="https://www.sparkfun.com/products/13295">SparkFun Ludus Protoshield Wireless</a> and <a href="https://www.sparkfun.com/products/13310">SparkFun Ludus Protoshield</a></td>
+      <td>pwm:3<br/>dir:4<br/>cdir: 5</td>
+      <td>pwm:6<br/>dir:7<br/>cdir: 8</td>
+      <td>SPARKFUN_LUDUS {A, B}</td>
+      <td>13V</td>
+      <td>1.2A</td>
+      <td>No</td>
+    </tr>
+    <tr> 
+      <td><a href="https://www.sparkfun.com/products/13043">SparkFun Block for Intel® Edison - Dual H-Bridge
+</a></td>
+      <td>pwm:20<br/>dir:33<br/>cdir: 46</td>
+      <td>pwm:14<br/>dir:48<br/>cdir: 36</td>
+      <td>SPARKFUN_DUAL_HBRIDGE_EDISON_BLOCK {A, B}</td>
+      <td>2.7V-15V</td>
+      <td>1A</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+</span>
+<h4>I2C</h4>
+<p><span class="abbreviate-table"></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Controller</th>
+      <th>Shield Config</th>
+      <th>Operating Voltage(1)</th>
+      <th>Max A</th>
+      <th>Stackable(2)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="http://www.adafruit.com/products/1438">Adafruit Motor/Stepper/Servo Shield V2</a></td>
+      <td>0x60 - 0x80</td>
+      <td>PCA9685</td>
+      <td>ADAFRUIT_V2 {M1, M2, M3, M4}
+      <td>4.5-13.5V</td>
+      <td>3A</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td colspan="6">
+        <table>
+          <thead>
+            <tr>
+              <th>M1</th>
+              <th>M2</th>
+              <th>M3</th>
+              <th>M4</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>pwm:8<br/>dir:9<br/>cdir: 10</td>
+              <td>pwm:13<br/>dir:12<br/>cdir: 11</td>
+              <td>pwm:2<br/>dir:3<br/>cdir: 4</td>
+              <td>pwm:7<br/>dir:6<br/>cdir: 5</td>
+            </tr>
+          </tbody>
+        </table>
+        </td>
+    </tr>    
+  </tbody>
+</table>
+</span>
+<h4>ShiftRegister</h4>
+<p><span class="abbreviate-table"></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Register</th>
+      <th>Shield Config</th>
+      <th>Operating Voltage(1)</th>
+      <th>Max A</th>
+      <th>Stackable(2)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="http://www.sainsmart.com/arduino/arduino-shields/motor-shields/sainsmart-l293d-motor-drive-shield-for-arduino-duemilanove-mega-uno-r3-avr-atmel.html">SainSmart L293D Motor Drive Shield <br/>(clone of AdaFruit Motor Shield v1)</a></td>
+      <td>data: 8<br/>clock: 4<br/>latch: 12</td>
+      <td>ADAFRUIT_V1: {M1, M2, M3, M4}</td>
+      <td>4.5-10V</td>
+      <td>1.2A per motor</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td colspan="6">
+        <table>
+          <thead>
+            <tr>
+              <th>M1</th>
+              <th>M2</th>
+              <th>M3</th>
+              <th>M4</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>pins: { pwm: 11 }<br/>bits: {a: 2, b: 3}</td>
+              <td>pins: { pwm: 3 }<br/>bits: {a: 1, b: 4}</td>
+              <td>pins: { pwm: 6 }<br/>bits: {a: 5, b: 7}</td>
+              <td>pins: { pwm: 5 }<br/>bits: {a: 0, b: 6}</td>
+            </tr>
+          </tbody>
+        </table>
+        </td>
+    </tr>    
+  </tbody>
+</table>
+</span>
+<ol>
+<li>Beware of shared voltage, the shield may be able to handle higher voltages than your Arduino.</li>
+<li>Indicates that the pins can be reconfigured so that you can stack multiple shields of this type or other shields that use the same pins.</li>
+</ol>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/motor">Motor</a></li>
+<li><a href="/examples/motor-directional">Motor - Directional</a></li>
+<li><a href="/examples/motor-brake">Motor - Brake</a></li>
+<li><a href="/examples/motor-current">Motor - Current</a></li>
+<li><a href="/examples/motor-enable">Motor - Enable Pin</a></li>
+<li><a href="/examples/motor-sparkfun-edison-hbridge">Motor - Sparkfun Dual H-bridge Edison Block</a></li>
+<li><a href="/examples/motor-hbridge">Motor - H-Bridge</a></li>
+<li><a href="/examples/motor-TB6612FNG">Motor - Sparkfun TB6612FNG</a></li>
+<li><a href="/examples/motor-hbridge-dual">Motors - Dual H-Bridge</a></li>
+<li><a href="/examples/motor-PCA9685">Motor - PCA9685</a></li>
+<li><a href="/examples/motor-GROVE_I2C">Motor - GROVE_I2C_MOTOR_DRIVER</a></li>
+<li><a href="/examples/motor-l298-breakout">Motor - l298 Breakout</a></li>
+<li><a href="/examples/motor-LUDUS">Motor - LUDUS</a></li>
+<li><a href="/examples/motor-3-pin">Motor - 3 pin</a></li>
+<li><a href="/examples/motor-EVS_EV3">Motor - EVShield EV3</a></li>
+<li><a href="/examples/motor-EVS_NXT">Motor - EVShield NXT</a></li>
+<li><a href="/examples/motor-drv8871">Motor - Adafruit DRV8871 DC Motor Driver Breakout</a></li>
+<li><a href="/examples/stepper-driver">Stepper - Driver</a></li>
+<li><a href="/examples/grove-i2c-motor-driver-edison">Intel Edison + Grove - I2C Motor Driver</a></li>
+<li><a href="/examples/grove-i2c-motor-driver">Grove - Motor (I2C Driver)</a></li>
+<li><a href="/examples/micromagician-motor">Micro Magician V2 - Motor</a></li>
+<li><a href="/examples/motobot">Motobot</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>

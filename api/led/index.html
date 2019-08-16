@@ -1,0 +1,476 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Robotics: Led API (Johnny-Five)</title>
+  <meta property="og:title" content="JavaScript Robotics: Led API (Johnny-Five)">
+  <meta property="og:url" content="http://johnny-five.io/api/led">
+    <meta property="og:site_name" content="Johnny-Five">
+  <meta property="og:image" content="http://johnny-five.io/img/static/johnny-five-fb.png">
+  <meta property="og:description" content="Johnny-Five is the original JavaScript Robotics &amp; IoT Platform. Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.">
+
+  <meta name="description" content="Johnny-Five is the JavaScript Robotics &amp; IoT Platform , Led">
+  <meta name="keywords" content="JavaScript, Robotics , Led">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fonts" content="/css/type.css">
+
+
+  <link rel="stylesheet" href="/css/styles.css?v1">
+  <link rel="stylesheet" href="/css/anchor.css?v1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <script src="/js/fontloader.js" id="fontloader"></script>
+  <script src="/js/anchor.js" id="anchor.js"></script>
+  <script src="/js/es6-shim.js" id="es6-shim.js"></script>
+
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+<body>
+
+  <div class="mast">
+    <nav class="nav-primary wrapper icon-j5">
+            <a href="/">
+        <img src="/img/j5-logo.svg" class="j5-icon">
+      </a>
+
+      <div class="navlist">
+        <a href="/news/">News</a>
+        <a href="/api/">API</a>
+        <a href="/examples/">Examples</a>
+        <a href="/articles/">Articles</a>
+        <a href="/platform-support/" class="link-display-full">Platform Support</a>
+        <a href="/platform-support/" class="link-display-short">Platforms</a>
+      </div>
+
+
+    </nav>
+
+    <header role="banner" class="banner">
+     <h1 class="site-hed"><span>Led</span></h1>
+    </header>
+  </div>
+
+  <main class="central docs">
+    <div class="wrap-a wrap-docs list-docs">
+      <nav id="api-nav" class="docs-nav api-nav-list api-content-view">
+        <h3>Component Classes</h3>
+        <ul>
+<li><a href="/api/accelerometer/">Accelerometer</a></li>
+<li><a href="/api/altimeter/">Altimeter</a></li>
+<li><a href="/api/animation/">Animation</a></li>
+<li><a href="/api/barometer/">Barometer</a></li>
+<li><a href="/api/board/">Board</a></li>
+<li><a href="/api/boards/">Boards</a></li>
+<li><a href="/api/button/">Button</a></li>
+<li><a href="/api/compass/">Compass</a></li>
+<li><a href="/api/esc/">ESC</a></li>
+<li><a href="/api/escs/">ESCs</a></li>
+<li><a href="/api/expander/">Expander</a></li>
+<li><a href="/api/fn/">Fn</a></li>
+<li><a href="/api/gps/">GPS</a></li>
+<li><a href="/api/gyro/">Gyro</a></li>
+<li><a href="/api/hygrometer/">Hygrometer</a></li>
+<li><a href="/api/imu/">IMU</a></li>
+<li><a href="/api/ir.reflect.array/">IR.Reflect.Array</a></li>
+<li><a href="/api/joystick/">Joystick</a></li>
+<li><a href="/api/keypad/">Keypad</a></li>
+<li><a href="/api/lcd/">LCD</a></li>
+<li><a href="/api/led/">Led</a></li>
+<li><a href="/api/led.digits/">Led.Digits</a></li>
+<li><a href="/api/led.matrix/">Led.Matrix</a></li>
+<li><a href="/api/led.rgb/">Led.RGB</a></li>
+<li><a href="/api/leds/">Leds</a></li>
+<li><a href="/api/light/">Light</a></li>
+<li><a href="/api/motion/">Motion</a></li>
+<li><a href="/api/motor/">Motor</a></li>
+<li><a href="/api/motors/">Motors</a></li>
+<li><a href="/api/multi/">Multi</a></li>
+<li><a href="/api/piezo/">Piezo</a></li>
+<li><a href="/api/pin/">Pin</a></li>
+<li><a href="/api/proximity/">Proximity</a></li>
+<li><a href="/api/relay/">Relay</a></li>
+<li><a href="/api/relays/">Relays</a></li>
+<li><a href="/api/sensor/">Sensor</a></li>
+<li><a href="/api/servo/">Servo</a></li>
+<li><a href="/api/servos/">Servos</a></li>
+<li><a href="/api/shiftregister/">ShiftRegister</a></li>
+<li><a href="/api/stepper/">Stepper</a></li>
+<li><a href="/api/switch/">Switch</a></li>
+<li><a href="/api/thermometer/">Thermometer</a></li>
+</ul>
+
+      </nav>
+
+      <div class="docs-content api-content-view">
+        <ul class="api-anchors">
+          <li><a href="#parameters">Parameters</a></li>
+          <li><a href="#shape">Shape</a></li>
+          <li><a href="#component-initialization">Component Initialization</a>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#api">API</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+
+        <p><img src="http://i.gyazo.com/b804a48064ea4db0bdb8fd7c5af352de.png" alt=""></p>
+<p>The <code>Led</code> class constructs objects that represent a single Led attached to the physical board.</p>
+<p>See also:</p>
+<ul>
+<li><a href="/api/led.digits">Led.Digits</a></li>
+<li><a href="/api/led.matrix">Led.Matrix</a></li>
+<li><a href="/api/led.rgb">Led.RGB</a></li>
+<li><a href="/api/leds">Leds</a></li>
+</ul>
+<h2>Parameters</h2>
+<ul>
+<li><p><strong>pin</strong> A Number or String address for the Led pin (digital/PWM).
+For Leds that only have on/off states, use a digital pin:</p>
+<pre><code class="language-js">var digital = new five.Led(13);
+</code></pre>
+<p>For Leds that have on/off states, as well as interval or color related state (Pulse, Brightness, RGB, etc), use a PWM pin (usually demarcated by either a &quot;~&quot; or &quot;#&quot; next to the pin number on the actual board).</p>
+<pre><code class="language-js">// Look for &quot;~&quot;, ie. ~11
+var pwm = new five.Led(11);
+</code></pre></li>
+<li><p><strong>General Options</strong> An object of property parameters.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>pin</td><td>Number</td><td>Digital Pin. The Number address of the pin the led is attached to</td><td></td><td>yes</td></tr>
+<tr><td>controller</td><td>String</td><td>&quot;DEFAULT&quot;, &quot;PCA9685&quot;. Controller interface type.</td><td><code>&quot;DEFAULT&quot;</code></td><td>no</td></tr>
+<tr><td>board</td><td>Object Instance</td><td>The board instance your LED is connected to.  Only required when multiple boards are mounted in your project.</td><td>First board mounted</td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+<li><p><strong>PCA9685 Options (controller: &quot;PCA9685&quot;)</strong> An object of property parameters.
+<span class="abbreviate-table"></p>
+<table>
+<thead>
+<tr><th>Property</th><th>Type</th><th>Value/Description</th><th>Default</th><th>Required</th></tr>
+</thead>
+<tbody>
+<tr><td>address</td><td>Number</td><td>Address for I2C devices.</td><td><code>0x04</code></td><td>no</td></tr>
+</tbody>
+</table>
+<p></span></p></li>
+</ul>
+<h2>Shape</h2>
+<table>
+<thead>
+<tr><th>Property Name</th><th>Description</th><th>Read Only</th></tr>
+</thead>
+<tbody>
+<tr><td><code>id</code></td><td>A user definable id value. Defaults to a generated uid</td><td>No</td></tr>
+<tr><td><code>pin</code></td><td>The pin address that the Led is attached to</td><td>No</td></tr>
+</tbody>
+</table>
+<h2>Component Initialization</h2>
+<h4>LED</h4>
+<pre><code class="language-js">// Just a pin
+var led = new five.Led(13);
+
+// Options object with pin property
+new five.Led({
+  pin: 13
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-13.png" alt="LED"></p>
+<h4>LED PCA9685</h4>
+<pre><code class="language-js">new five.Led({
+  controller: &quot;PCA9685&quot;,
+  pin: 0, 
+});
+</code></pre>
+<p><img src="https://github.com/rwaldron/johnny-five/raw/master/docs/breadboard/led-PCA9685.png" alt="PCA9685"></p>
+<h2>Usage</h2>
+<pre><code class="language-js">// Blink an LED
+var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+  var led = new five.Led(13);
+  led.blink();
+});
+</code></pre>
+<pre><code class="language-js">// Blink LED's with multiple mounted boards
+var five = require(&quot;johnny-five&quot;);
+var board1 = new five.Board();
+var board2 = new five.Board();
+
+board1.on(&quot;ready&quot;, function() {
+  var led1 = new five.Led(board1, 13);
+  led.blink();
+});
+
+board2.on(&quot;ready&quot;, function() {
+  var led2 = new five.Led(board2, 13);
+  led.blink();
+});
+</code></pre>
+<p>Tinkerkit:</p>
+<pre><code class="language-js">// Attached to &quot;Output 0&quot;
+var digital = new five.Led(&quot;O0&quot;);
+</code></pre>
+<p>I2C Led (i.e. via Adafruit PWM controller)</p>
+<pre><code class="language-js">var five = require(&quot;johnny-five&quot;);
+var board = new five.Board();
+
+board.on(&quot;ready&quot;, function() {
+  var led = new five.Led({
+    controller: &quot;PCA9685&quot;,
+    pin: 0,
+  });
+
+  led.blink()
+});
+</code></pre>
+<h2>API</h2>
+<ul>
+<li><p><strong>on()</strong> Turn the led on.</p>
+<pre><code class="language-js">var led = new five.Led(13);
+
+led.on();
+</code></pre></li>
+<li><p><strong>off()</strong> Turn the led off. If a led is strobing, it will not stop. Use <code>led.stop().off()</code> to turn off a led while strobing.</p>
+<pre><code class="language-js">var led = new five.Led(13);
+
+led.off();
+</code></pre></li>
+<li><p><strong>toggle()</strong> Toggle the current state, if <em>on</em> then turn <em>off</em>, if <em>off</em> then turn <em>on</em>.</p>
+<pre><code class="language-js">var led = new five.Led(13);
+
+led.toggle();
+</code></pre></li>
+<li><p><strong>strobe(ms, callback)</strong> Strobe/Blink the Led on/off in phases over <code>ms</code> with an optional callback. This is an <strong>interval</strong> operation and can be stopped by calling <code>led.stop()</code>, however that will not necessarily turn it &quot;off&quot;. The callback will be invoked every time the Led turns on or off. Defaults to 100ms.</p>
+<pre><code class="language-js">var led = new five.Led(13);
+
+// Strobe on-off in 500ms phases
+led.strobe(500);
+</code></pre></li>
+<li><p><strong>blink(ms, callback)</strong> alias to strobe.</p>
+<pre><code class="language-js">var led = new five.Led(13);
+
+// Strobe on-off in 500ms phases
+led.blink(500);
+</code></pre></li>
+</ul>
+<ul>
+<li><p><strong>brightness(0-255)</strong> Set the brightness of led. This operation will only work with Leds attached to PWM pins.</p>
+<pre><code class="language-js">var led = new five.Led(11);
+
+// This will set the brightness to about half 
+led.brightness(128);
+</code></pre></li>
+<li><p><strong>fade(brightness, ms, callback)</strong> Fade from current brightness to <code>brightness</code> over <code>ms</code> with an optional callback. This is an <strong>interval</strong> operation and can be stopped by calling <code>pin.stop()</code>, however that will not necessarily turn it &quot;off&quot;. This operation will only work with Leds attached to PWM pins.</p>
+<pre><code class="language-js">var led = new five.Led(11);
+
+// Fade to half brightness over 2 seconds
+led.fade(128, 2000);
+</code></pre></li>
+<li><p><strong>fade(animation options)</strong> Control the fading of an LED with <a href="/api/animation#segment-properties"><code>Animation</code> options</a>.</p>
+<pre><code class="language-js">var led = new five.Led(11);
+
+led.fade({
+  easing: &quot;outSine&quot;,
+  duration: 1000,
+  cuePoints: [0, 0.2, 0.4, 0.6, 0.8, 1],
+  keyFrames: [0, 250, 25, 150, 100, 125],
+  onstop: function() {
+    console.log(&quot;Animation stopped&quot;);
+  }
+});
+</code></pre></li>
+</ul>
+<ul>
+<li><p><strong>fadeIn(ms, callback)</strong> Fade in from current brightness over <code>ms</code> with an optional callback. This is an <strong>interval</strong> operation and can be stopped by calling <code>pin.stop()</code>, however that will not necessarily turn it &quot;off&quot;. This operation will only work with Leds attached to PWM pins.</p>
+<pre><code class="language-js">var led = new five.Led(11);
+
+// Fade in over 500ms.
+led.fadeIn(500);
+</code></pre></li>
+<li><p><strong>fadeOut(ms, callback)</strong> Fade out from current brightness over <code>ms</code> with an optional callback. This is an <strong>interval</strong> operation and can be stopped by calling <code>pin.stop()</code>, however that will not necessarily turn it &quot;off&quot;. This operation will only work with Leds attached to PWM pins.</p>
+<pre><code class="language-js">var led = new five.Led(11);
+
+// Fade out over 500ms.
+led.fadeOut(500);
+</code></pre></li>
+</ul>
+<ul>
+<li><p><strong>pulse(ms, callback)</strong> Pulse the Led in phases from on to off over <code>ms</code> time, with an optional callback. This is an <strong>interval</strong> operation and can be stopped by calling <code>pin.stop()</code>, however that will not necessarily turn it &quot;off&quot;. The callback will be invoked every time the Led is fully on or off. This operation will only work with Leds attached to PWM pins.</p>
+<pre><code class="language-js">var led = new five.Led(11);
+
+// Pulse from on to off in 500ms phases
+led.pulse(500);
+</code></pre></li>
+<li><p><strong>pulse(animation options)</strong> Control the pulse of an LED with <a href="/api/animation#segment-properties"><code>Animation</code> options</a>.</p>
+<pre><code class="language-js">var led = new five.Led(11);
+
+led.pulse({
+  easing: &quot;linear&quot;,
+  duration: 3000,
+  cuePoints: [0, 0.2, 0.4, 0.6, 0.8, 1],
+  keyFrames: [0, 10, 0, 50, 0, 255],
+  onstop: function() {
+    console.log(&quot;Animation stopped&quot;);
+  }
+});
+</code></pre></li>
+<li><p><strong>stop()</strong> For <strong>interval</strong> operations (<code>blink</code>, <code>pulse</code>, etc.), call <code>stop</code> to stop the interval. <code>stop</code> does not necessarily turn &quot;off&quot; the Led, in order to fully shut down an Led, a program must call <code>stop().off()</code>.</p>
+<pre><code class="language-js">var led = new five.Led(11);
+
+// Blink from on to off in 500ms phases
+led.blink(500);
+
+...Sometime later...
+
+led.stop();
+
+</code></pre></li>
+</ul>
+<h2>Events</h2>
+<p>Led objects are output only and therefore do not emit any events.</p>
+
+
+
+        <h2>Examples</h2>
+<ul>
+<li><a href="/examples/board">Board - Basic Initialization</a></li>
+<li><a href="/examples/board-cleanup">Board - Cleanup in 'exit' event</a></li>
+<li><a href="/examples/board-multi">Board - Multiple in one program</a></li>
+<li><a href="/examples/repl">REPL</a></li>
+<li><a href="/examples/led">LED</a></li>
+<li><a href="/examples/led-PCA9685">LED - PCA9685</a></li>
+<li><a href="/examples/led-tessel-servo-module">LED - Tessel Servo Module</a></li>
+<li><a href="/examples/led-blink">LED - Blink</a></li>
+<li><a href="/examples/led-pulse">LED - Pulse</a></li>
+<li><a href="/examples/led-pulse-animation">LED - Pulse with animation</a></li>
+<li><a href="/examples/led-fade">LED - Fade</a></li>
+<li><a href="/examples/led-fade-callback">LED - Fade callback</a></li>
+<li><a href="/examples/led-fade-animation">LED - Fade with animation</a></li>
+<li><a href="/examples/led-demo-sequence">LED - Demo sequence</a></li>
+<li><a href="/examples/led-slider">LED - Slider</a></li>
+<li><a href="/examples/led-array">LEDs - An array of LEDs</a></li>
+<li><a href="/examples/led-array-controller">LEDs - Controlling an array of LEDs</a></li>
+<li><a href="/examples/led-rgb">LED - RGB</a></li>
+<li><a href="/examples/led-rgb-anode">LED - RGB (Common Anode)</a></li>
+<li><a href="/examples/led-rgb-anode-PCA9685">LED - RGB (Common Anode) PCA9685</a></li>
+<li><a href="/examples/led-rgb-intensity">LED - RGB Intensity</a></li>
+<li><a href="/examples/led-rainbow">LED - Rainbow</a></li>
+<li><a href="/examples/led-rgb-BLINKM">LED - Rainbow BlinkM</a></li>
+<li><a href="/examples/led-digits-clock-galileo">LED - Digital Clock</a></li>
+<li><a href="/examples/led-digits-clock-HT16K33">LED - Digital Clock, HT16K33</a></li>
+<li><a href="/examples/led-digits-clock-dual">LED - Digital Clock, Dual Displays</a></li>
+<li><a href="/examples/led-matrix">LED - Matrix</a></li>
+<li><a href="/examples/led-matrix-tutorial">LED - Matrix Demo</a></li>
+<li><a href="/examples/led-matrix-HT16K33">LED - Matrix HT16K33</a></li>
+<li><a href="/examples/led-matrix-HT16K33-16x8">LED - Matrix HT16K33 16x8</a></li>
+<li><a href="/examples/led-chars-demo">LED - Draw Matrix Characters Demo</a></li>
+<li><a href="/examples/led-enumeratechars">LED - Enumerate Matrix Characters &amp; Symbols</a></li>
+<li><a href="/examples/color-ISL29125">Color - ISL29125</a></li>
+<li><a href="/examples/esc-keypress">ESC - Keypress controlled ESCs</a></li>
+<li><a href="/examples/button-bumper">Button - Bumper</a></li>
+<li><a href="/examples/button-pullup">Button - Pullup</a></li>
+<li><a href="/examples/button-EVS_EV3">Button - EVShield EV3</a></li>
+<li><a href="/examples/button-EVS_NXT">Button - EVShield NXT</a></li>
+<li><a href="/examples/proximity-EVS_EV3_IR-alert">Proximity - EVShield EV3 (IR)</a></li>
+<li><a href="/examples/proximity-EVS_EV3_US-alert">Proximity - EVShield EV3 (Ultrasonic)</a></li>
+<li><a href="/examples/sensor-fsr">Sensor - Force sensitive resistor</a></li>
+<li><a href="/examples/microphone">Sensor - Microphone</a></li>
+<li><a href="/examples/expander-MCP23017">Expander - MCP23017</a></li>
+<li><a href="/examples/expander-MCP23008">Expander - MCP23008</a></li>
+<li><a href="/examples/expander-PCF8574">Expander - PCF8574</a></li>
+<li><a href="/examples/expander-PCF8575">Expander - PCF8575</a></li>
+<li><a href="/examples/expander-PCA9685">Expander - PCA9685</a></li>
+<li><a href="/examples/expander-74HC595">Expander - 74HC595</a></li>
+<li><a href="/examples/expander-MUXSHIELD2-mixed">Expander - MUXSHIELD2, Digital Input and Output</a></li>
+<li><a href="/examples/grove-led-edison">Intel Edison + Grove - LED</a></li>
+<li><a href="/examples/grove-button-edison">Intel Edison + Grove - Button</a></li>
+<li><a href="/examples/grove-rotary-potentiometer-edison">Intel Edison + Grove - Rotary Potentiometer</a></li>
+<li><a href="/examples/grove-touch-edison">Intel Edison + Grove - Touch</a></li>
+<li><a href="/examples/grove-led">Grove - LED</a></li>
+<li><a href="/examples/grove-button">Grove - Button</a></li>
+<li><a href="/examples/grove-touch">Grove - Touch</a></li>
+<li><a href="/examples/grove-rotary-potentiometer">Grove - Rotary Potentiometer</a></li>
+<li><a href="/examples/tinkerkit-blink">TinkerKit - Blink</a></li>
+<li><a href="/examples/navigator">Navigator</a></li>
+<li><a href="/examples/laser-trip-wire">Laser Trip Wire</a></li>
+<li><a href="/examples/imp-io">Led Blink on Electric Imp</a></li>
+<li><a href="/examples/spark-io">Led Blink on Spark Core</a></li>
+<li><a href="/examples/pcduino-io">Led Blink on pcDuino3</a></li>
+<li><a href="/examples/galileo-io">Led Blink on Intel Galileo Gen 2</a></li>
+<li><a href="/examples/raspi-io">Led Blink on Raspberry Pi</a></li>
+<li><a href="/examples/edison-io-arduino">Led Blink on Intel Edison Arduino Board</a></li>
+<li><a href="/examples/edison-io-miniboard">Led Blink on Intel Edison Mini Board</a></li>
+</ul>
+
+      </div>
+    </div>
+  </main>
+
+    <div class="bmast">
+    <div class="bmast-central">
+      <div class="enews-intro">
+        <p>Hi! The Johnny-Five community is building new projects every day. We made this newsletter to tell you about what's new, what's good, and what's next for Open Source robotics. Join us in exploring what we can make together.</p>
+      </div>
+
+      <div class="enews-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="//johnny-five.us1.list-manage.com/subscribe/post?u=118da1f399c6a18b75e6972ee&amp;id=b0bf5cc6c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+              <label for="mce-EMAIL">Email Address</label>
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_118da1f399c6a18b75e6972ee_b0bf5cc6c2" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </div>
+    </div>
+  </div>
+
+  <a href="https://github.com/rwaldron/johnny-five">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" class="fork-me">
+  </a>
+
+  <footer>
+    <div class="created-at-bocoup">
+
+      <a href="http://bocoup.com">
+        <img src="/img/bocoup-bob.png">
+      </a>
+
+    </div>
+    <div class="social">
+
+      <a href="https://github.com/rwaldron/johnny-five" class="github-icon"><img src="/img/github-icon.png"></a>
+
+      <a href="https://www.youtube.com/results?search_query=nodebots" class="yt-icon"><img src="/img/yt-icon.png"></a>
+      <a href="https://twitter.com/rwaldron/lists/nodebotics" class="twitter-icon"><img src="/img/twitter-icon.png"></a>
+    </div>
+  </footer>
+  <script src="/js/platform-data.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/konami.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61698621-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+</html>
